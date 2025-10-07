@@ -1,0 +1,123 @@
+.thank-you-popup {
+  // &.overlay {
+  //   position: fixed;
+  //   width: 100%;
+  //   height: 100%;
+  //   top: 0;
+  //   left: 0;
+  //   transition: ease-in visibility 0s, opacity 0.3s linear;
+  //   background-color: rgba(0, 0, 0, 0.8);
+  //   z-index: 15000;
+  //   // pointer-events: none;
+
+  //   &.modal-open {
+  //     visibility: visible;
+  //     opacity: 1;
+  //     pointer-events: all;
+  //   }
+  // }
+
+
+  .th-you-img-wrap {
+    width: 100%;
+    padding-top: 105px;
+    padding-bottom: 105px;
+
+    @include tablet {
+      padding-top: 150px;
+      padding-bottom: 150px;
+    }
+  }
+
+  &__text {
+    width: 90%;
+    padding: 32px 20px;
+    background-color: $bg-color;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include tablet {
+      padding: 60px 120px;
+      width: fit-content;
+    }
+
+
+
+    svg {
+      align-self: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+    }
+
+
+
+    @include laptop {
+
+
+      svg {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+
+  & .thank-you-popup__title {
+    @include article-title;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  & .thank-you-popup__descr {
+    @include general-text;
+    text-align: center;
+    width: 100%;
+    opacity: 0.5;
+  }
+
+  & .thank-you-popup__btn {
+    // position: absolute;
+    // top: 20px;
+    // right: 20px;
+
+    // svg {
+    //   width: 16px;
+    //   height: 16px;
+
+    //   path {
+    //     stroke: $text-color;
+    //   }
+
+    // }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  background-color: rgba(28, 30, 44, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s ease-in, opacity 0.3s linear;
+  // background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1500;
+  pointer-events: none;
+
+  &.modal-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+  }
+}

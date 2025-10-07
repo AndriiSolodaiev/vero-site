@@ -1,0 +1,84 @@
+// @font-face {
+//   font-family: 'HelveticaNeueCyr';
+//   src: local('HelveticaNeueCyr Thin'), local('HelveticaNeueCyr-Thin'),
+//     url('../fonts/HelveticaNeueCyr-Thin.woff') format('woff'),
+//     url('../fonts/HelveticaNeueCyr-Thin.woff2') format('woff2');
+//   font-weight: 200;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: 'HelveticaNeueCyr';
+//   src: local('HelveticaNeueCyr Light'), local('HelveticaNeueCyr-Light'),
+//     url('../fonts/HelveticaNeueCyr-Light.woff') format('woff'),
+//     url('../fonts/HelveticaNeueCyr-Light.woff2') format('woff2');
+//   font-weight: 300;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: 'HelveticaNeueCyr';
+//   src: local('HelveticaNeueCyr Roman'), local('HelveticaNeueCyr-Roman'),
+//     url('../fonts/HelveticaNeueCyr-Roman.woff') format('woff'),
+//     url('../fonts/HelveticaNeueCyr-Roman.woff2') format('woff2');
+//   font-weight: 400;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: 'HelveticaNeueCyr';
+//   src: local('HelveticaNeueCyr Medium'), local('HelveticaNeueCyr-Medium'),
+//     url('../fonts/HelveticaNeueCyr-Medium.woff') format('woff'),
+//     url('../fonts/HelveticaNeueCyr-Medium.woff2') format('woff2');
+//   font-weight: 500;
+//   font-style: normal;
+// }
+@font-face {
+  font-family: 'WixMadeforDisplay';
+  src: local('WixMadeforDisplay Regular'), local('WixMadeforDisplay-Regular'),
+    url('../fonts/WixMadeforDisplay-Regular.ttf') format('ttf'),
+    url('../fonts/WixMadeforDisplay-Regular.woff') format('woff'),
+    url('../fonts/WixMadeforDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WixMadeforDisplay';
+  src: local('WixMadeforDisplay Medium'), local('WixMadeforDisplay-Medium'),
+    url('../fonts/WixMadeforDisplay-Medium.ttf') format('ttf'),
+    url('../fonts/WixMadeforDisplay-Medium.woff') format('woff'),
+    url('../fonts/WixMadeforDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WixMadeforDisplay';
+  src: local('WixMadeforDisplay SemiBold'), local('WixMadeforDisplay-SemiBold'),
+    url('../fonts/WixMadeforDisplay-SemiBold.ttf') format('ttf'),
+    url('../fonts/WixMadeforDisplay-SemiBold.woff') format('woff'),
+    url('../fonts/WixMadeforDisplay-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WixMadeforDisplay';
+  src: local('WixMadeforDisplay Bold'), local('WixMadeforDisplay-Bold'),
+    url('../fonts/WixMadeforDisplay-Bold.ttf') format('ttf'),
+    url('../fonts/WixMadeforDisplay-Bold.woff') format('woff'),
+    url('../fonts/WixMadeforDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: 'Inter';
+//   src: local('Inter Bold'), local('Inter-Bold'),
+//   url('../fonts/Inter-Bold.ttf') format('ttf'),
+//     url('../fonts/Inter-Bold.woff') format('woff'),
+//     url('../fonts/Inter-Bold.woff2') format('woff2');
+//   font-weight: 700;
+//   font-style: normal;
+// }

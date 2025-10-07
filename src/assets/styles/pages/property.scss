@@ -1,0 +1,34 @@
+.property {
+  padding-top: 160px;
+  padding-bottom: 120px;
+
+  @include laptop {
+    padding-top: 220px;
+  }
+
+  overflow: hidden;
+}
+
+.property-filler {
+  margin-bottom: 120px;
+
+  @include tablet {
+    margin-bottom: 200px;
+  }
+
+  @include laptop {
+    margin-bottom: 300px;
+  }
+}
+
+.property-real-estate {
+  padding-bottom: 120px;
+
+  @include tablet {
+    padding-bottom: 200px;
+  }
+
+  @include laptop {
+    padding-bottom: 300px;
+  }
+}

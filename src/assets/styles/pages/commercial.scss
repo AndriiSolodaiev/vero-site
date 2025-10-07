@@ -1,0 +1,54 @@
+.commercial.floors {
+  padding-bottom: 0;
+
+  .project-content__title-wrap {
+    h2 {
+      width: calc(100% - 100px);
+      line-height: 100%;
+
+    }
+  }
+
+  .project-content__text-wrap {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+
+    &:first-child {
+      margin-bottom: 40px;
+    }
+
+    @include tablet {
+      flex-direction: row;
+      gap: 40px;
+
+      &:first-child {
+        margin-bottom: 60px;
+      }
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    h3 {
+      @include text-20;
+      color: $text-color-2;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.commercial-infra {
+  .project-infra-card .project-infra-card__text-wrap {
+    p {
+      @include general-text;
+      color: $text-color-2;
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

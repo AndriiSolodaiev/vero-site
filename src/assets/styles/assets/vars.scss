@@ -1,0 +1,227 @@
+$default-font: 'WixMadeforDisplay', sans-serif;
+
+
+$mc2: #ff554c;
+$mc3: #e5df06;
+$mc4: #4f90b6;
+$gray: #333;
+$text: #22223e;
+$wc: #F4F5F9;
+$bc: #333;
+$bc2: #1C1E2C;
+
+$bg-color: #f4f5f9;
+$accent-color: #233260;
+$accent-color-2: #F6D7A8;
+$blue-color: #C2E1EF;
+$text-color: #F4F5F9;
+$text-color-2: #343B52;
+$grey-color: #D4DCDF;
+$dark-color: #1C1E2C;
+$cubic-btn: cubic-bezier(.12, .57, .41, 1);
+
+@mixin super-title () {
+	font-size: 66px;
+	font-family: $default-font;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 80%;
+	text-decoration: none;
+	color: $text-color;
+
+	@include tablet {
+		font-size: 17vw;
+	}
+
+	@include laptop {
+		font-size: 16.1vw;
+	}
+}
+
+@mixin section-title () {
+	font-size: 64px;
+	font-family: $default-font;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 90%;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: $text-color;
+	letter-spacing: -0.08em;
+
+	@include tablet {
+		font-size: 11.9vw;
+		font-size: clamp(100px,
+				calc(100px + (160 - 100) * ((100vw - 768px) / (1366 - 768))),
+				160px);
+	}
+
+	@include laptop {
+		font-size: 8.33vw;
+	}
+}
+
+@mixin page-title () {
+	font-size: 42px;
+	font-family: $default-font;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 90%;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: $text-color;
+	letter-spacing: -0.08em;
+
+	@include tablet {
+		font-size: clamp(64px,
+				calc(64px + (120 - 64) * ((100vw - 768px) / (1366 - 768))),
+				120px);
+	}
+
+	@include laptop {
+		font-size: 6.25vw;
+	}
+}
+
+@mixin page-subtitle () {
+	font-size: 36px;
+	font-family: $default-font;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 130%;
+	text-decoration: none;
+	letter-spacing: -0.06em;
+
+	@include tablet {
+		font-size: clamp(48px,
+				calc(48px + (64 - 48) * ((100vw - 768px) / (1366 - 768))),
+				64px);
+	}
+
+	@include laptop {
+		font-size: 3.33vw;
+	}
+}
+
+@mixin text-32 () {
+	font-size: 32px;
+	font-family: $default-font;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 100%;
+	text-decoration: none;
+	letter-spacing: -0.06em;
+
+	@include tablet {
+		font-size: 40px;
+	}
+
+	@include laptop {
+		font-size: 2.08vw;
+	}
+}
+
+@mixin text-20 () {
+	font-size: 20px;
+	font-family: $default-font;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 120%;
+	text-decoration: none;
+	letter-spacing: -0.06em;
+
+	@include tablet {
+		font-size: 20px;
+	}
+
+	@include laptop {
+		font-size: 1.04vw;
+	}
+}
+
+@mixin article-title () {
+	font-size: 20px;
+	font-family: $default-font;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 130%;
+	text-decoration: none;
+	letter-spacing: -0.06em;
+
+	@include tablet {
+		font-size: 5.2vw;
+	}
+
+	@include laptop {
+		font-size: 3.33vw;
+	}
+}
+
+@mixin block-title () {
+	font-size: 18px;
+	font-family: $default-font;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 100%;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: -0.06em;
+
+	@include tablet {
+		font-size: 20px;
+	}
+
+	@include laptop {
+		font-size: 2.083vw
+	}
+}
+
+@mixin subtitle-text() {
+	font-size: 18px;
+	font-family: $default-font;
+	font-weight: 600;
+	font-style: normal;
+	color: $text-color;
+	line-height: 120%;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: -0.06em;
+
+	@include tablet {
+		font-size: 18px;
+	}
+
+	@include laptop {
+		font-size: 1.04vw;
+	}
+}
+
+@mixin general-text() {
+	font-size: 16px;
+	font-family: $default-font;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 120%;
+
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: -0.06em;
+
+	@include laptop {
+		font-size: 0.83vw;
+	}
+}
+
+@mixin tiny-text() {
+	font-size: 14px;
+	font-family: $default-font;
+	font-weight: 600;
+	font-style: normal;
+	line-height: 100%;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: -0.06em;
+	// @include laptop {
+	// 	font-size: 0.93vw;
+	// }
+}

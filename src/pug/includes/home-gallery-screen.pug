@@ -1,0 +1,40 @@
+-
+  var slides = [
+    {title: "Краєвиди"},
+    {title: "Екстерʼєр"},
+    {title: "Інтерʼєр"},
+    {title: "Зони відпочинку"},
+    //- {title: "БАСЕЙН"},
+    //- {title: "ДИТЯЧИЙ МАЙДАНЧИК"},
+    //- {title: "ВНУТРІШНІЙ ДВІР"},
+    //- {title: "СПОРТИВНИЙ МАЙДАНЧИК"},
+  ]
+
+div(class="home-gallery-screen "+galleryBlockCustomClass)#gallery
+  
+  .frame__nav.hide-on-tablet.hide-on-mobile
+    each slide in slides
+      button.general-btn.frame__nav-button.unbutton.text-style-1920-button 
+        span #{slide.title}
+  <div class="slides">
+    each slide in slides
+      div.slide
+        div.slide__inner
+          div.slide__img
+            div.slide__img-inner(style="background-image:url(./assets/images/single-project/gallery-img1.jpg)")
+            div.slide__img-inner2(style="background-image:url(./assets/images/single-project/gallery-img1.jpg)")
+  </div>
+  .home-gallery-screen__nav
+    .slider-nav-button.text-style-1920-button(data-gallery="prev")
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M1.37891 11.1387L0.999023 11.501L1.37891 11.8633L4.67578 15.0029L5.44238 14.3721L3.93359 12.001H23V11.001H3.93457L5.44238 8.63086L4.67578 8L1.37891 11.1387Z" fill="#F4F5F9"/>
+      </svg>
+    //- .home-gallery-screen__nav-digits
+    //-   span.color-white(data-gallery-current) 01
+    //-   span.color-white /
+    //-   span.color-white(data-gallery-all) #{slides.length < 10 ? "0" + slides.length : slides.length}
+    .slider-nav-button(data-gallery="next")
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M22.6211 11.1387L23.001 11.501L22.6211 11.8633L19.3242 15.0029L18.5576 14.3721L20.0664 12.001H1V11.001H20.0654L18.5576 8.63086L19.3242 8L22.6211 11.1387Z" fill="#F4F5F9"/>
+      </svg>
+

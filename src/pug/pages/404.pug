@@ -1,0 +1,60 @@
+extends ../layout/main
+block variable
+    -
+        var headerCustomClass = 'type1' 
+block meta
+    title= '404'
+    meta(name='description' content='')
+    
+block head
+    link(rel='stylesheet' href="./assets/styles/main.min.css")
+
+block scripts
+    script(defer src='./assets/scripts/vendors.bundle.js')
+    script(defer src='./assets/scripts/header.bundle.js')
+    script(defer src='./assets/scripts/footer.bundle.js')
+
+block content
+    section.notFound
+        .decor-svg 
+            <svg xmlns="http://www.w3.org/2000/svg" width="768" height="871" viewBox="0 0 768 871" fill="none">
+            <g filter="url(#filter0_f_919_7155)">
+            <path d="M807 693H-38V663.568L807 8V693Z" fill="url(#paint0_linear_919_7155)"/>
+            </g>
+            <defs>
+            <filter id="filter0_f_919_7155" x="-215.6" y="-169.6" width="1200.2" height="1040.2" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feGaussianBlur stdDeviation="88.8" result="effect1_foregroundBlur_919_7155"/>
+            </filter>
+            <linearGradient id="paint0_linear_919_7155" x1="-48.3973" y1="710.605" x2="883.19" y2="229.066" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E0F09D"/>
+            <stop offset="1" stop-color="#E0F09D" stop-opacity="0"/>
+            </linearGradient>
+            </defs>
+            </svg>
+        .notFound-img__wrap
+            img(src="./assets/images/story.png", alt="house").notFound-img
+        p.big-digits.container 404
+        .notFound__text.container
+            h1 Oops, something went wrong...
+            p This page is missing.  Let's get you back on track!
+        
+        a.general-btn(href="/") 
+            .hover-wrap
+                .svg-wrap 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M7.22703 6.77297H16.773V16.3189M16.1101 7.43588L6.43153 17.1144" stroke="#E0F09D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                span Home page
+            
+
+
+
+
+//- block footer
+//-     include ../includes/footer.pug
+
+block header
+    include ../includes/header.pug
+

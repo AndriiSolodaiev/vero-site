@@ -1,0 +1,1208 @@
+.project {
+  padding-top: 160px;
+  padding-bottom: 120px;
+
+  @include laptop {
+    padding-top: 220px;
+  }
+
+  overflow: hidden;
+}
+
+.project-content {
+  @include laptop {
+    padding-left: 6.7vw;
+    padding-right: 6.7vw;
+    display: flex;
+
+  }
+
+  &__left {
+    margin-bottom: 50px;
+
+    @include tablet {
+      margin-bottom: 100px;
+    }
+
+    @include laptop {
+      margin-bottom: 0;
+
+      &>svg {
+        transform: rotate(5deg) scale(1.2);
+        position: relative;
+        z-index: 3;
+      }
+    }
+  }
+
+  &__right {
+    &>svg {
+      transform: rotate(4deg);
+    }
+
+    @include laptop {
+      display: flex;
+      flex-direction: column-reverse;
+
+      &>svg {
+        transform: rotate(-1deg) scale(1.2);
+      }
+    }
+  }
+
+  &__left,
+  &__right {
+    flex: 1;
+
+    &>svg {
+      width: 100%;
+      height: auto;
+    }
+
+  }
+
+  &__text {
+    margin-bottom: 50px;
+
+    @include tablet {
+      margin-bottom: 100px;
+    }
+
+    @include laptop {
+      padding-left: 4.68vw;
+      padding-right: 3.64vw;
+
+      &--right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-top: 50px;
+      }
+
+      &>* {
+        width: 18.75vw !important;
+      }
+    }
+
+    p {
+      @include general-text;
+      color: $text-color-2;
+      width: calc(100% - 100px);
+      line-height: 140%;
+
+      span {
+        font-weight: 700;
+      }
+
+      @include tablet {
+        width: calc(100% - 180px);
+      }
+    }
+  }
+
+  &__title-wrap {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+
+    @include laptop {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      z-index: 1;
+      width: 80px;
+      height: 80px;
+      transform: translateY(-50%);
+
+      @include tablet {
+        width: 140px;
+        height: 140px;
+      }
+
+      @include laptop {
+        position: static;
+        transform: none;
+      }
+    }
+
+    h2 {
+      @include page-subtitle;
+      color: $dark-color;
+    }
+  }
+
+  .project-content__text-descr {
+    width: 100%;
+
+    &:first-child {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+
+
+
+.project-filler {
+  position: relative;
+
+
+
+  &__content {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    width: 100%;
+    margin-top: -100vh;
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+    @include tablet {
+      padding-left: 60px;
+      padding-right: 60px;
+      padding-bottom: 250px;
+    }
+
+    @include laptop {
+      display: flex;
+      align-items: flex-start;
+      gap: 13.8vw;
+      padding-left: 11.45vw;
+      padding-right: 4.16vw;
+      position: relative;
+    }
+
+
+  }
+
+  &__content-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 120px;
+    flex-shrink: 0;
+
+    @include tablet {
+      margin-bottom: 150px;
+    }
+
+    @include laptop {
+      align-items: flex-start;
+      // margin-bottom: 0;
+      width: 18.75vw;
+      position: sticky;
+      top: 160px;
+    }
+
+    &>svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 40px;
+
+      @include tablet {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    h2 {
+      @include page-subtitle;
+      color: $dark-color;
+      margin-bottom: 20px;
+
+      @include tablet {
+        margin-bottom: 28px;
+      }
+
+      @include tablet {
+        margin-bottom: 40px;
+      }
+    }
+
+    p {
+      font-size: 20px;
+      font-family: $default-font;
+      font-weight: 600;
+      font-style: normal;
+      line-height: 120%;
+      text-decoration: none;
+      letter-spacing: -0.06em;
+      color: $dark-color;
+      text-align: center;
+
+      @include laptop {
+        text-align: start;
+        font-size: 1.04vw;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+
+
+    @include tablet {
+      gap: 160px;
+
+    }
+
+    @include laptop {
+      padding-top: 120px;
+    }
+  }
+
+}
+
+
+.project-filler__card {
+  position: relative;
+  padding: 40px;
+
+  @include tablet {
+    padding: 95px;
+  }
+
+  &:nth-child(2)>svg {
+    transform: rotate(3deg);
+
+    path,
+    rect {
+      fill: $blue-color;
+    }
+  }
+
+  &:nth-child(3)>svg {
+    transform: rotate(-1deg);
+
+
+
+    path,
+    rect {
+      fill: $grey-color;
+    }
+  }
+
+  .mob-svg {
+    @include laptop {
+      display: none;
+    }
+  }
+
+  .lap-svg {
+    display: none;
+
+    @include laptop {
+      display: block;
+    }
+  }
+
+  &>svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transform: rotate(-1deg);
+
+
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 0.635;
+    margin-bottom: 32px;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
+
+    @include laptop {
+      aspect-ratio: 1 / 0.514;
+    }
+  }
+
+  &-text {
+    @include laptop {
+      display: flex;
+      gap: 2.08vw;
+
+    }
+  }
+
+  h3 {
+    @include block-title;
+    font-size: 32px;
+    color: $dark-color;
+    margin-bottom: 20px;
+
+    @include tablet {
+      font-size: 40px;
+    }
+
+    @include laptop {
+      font-size: 2.08vw;
+      margin-bottom: 0;
+      flex: 1
+    }
+  }
+
+  p {
+    @include general-text;
+    color: $dark-color;
+
+    span {
+      font-weight: 700;
+    }
+
+    @include laptop {
+
+      flex: 1
+    }
+  }
+}
+
+
+.Background {
+  width: 100%;
+  height: 100vh;
+  // margin-bottom: -100vh;
+  position: sticky;
+  top: 0;
+  z-index: -1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(0deg, rgba(244, 245, 249, 0.00) 0%, #F4F5F9 100%);
+  }
+}
+
+.project-location {
+  position: relative;
+  overflow: hidden;
+
+  &__img-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h2 {
+      @include page-subtitle;
+      color: $wc;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 80px;
+
+      @include tablet {
+        top: 200px;
+      }
+    }
+  }
+
+  &__text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include laptop {
+      width: 18.75vw;
+
+    }
+  }
+
+  &__left-card {
+    margin-top: -100px;
+    padding-top: 160px;
+    padding-bottom: 160px;
+    position: relative;
+    z-index: 2;
+
+
+    @include tablet {
+      padding: 160px;
+    }
+
+    @include laptop {
+      position: absolute;
+      left: 0;
+      bottom: 140px;
+      z-index: 3;
+
+      width: 36%;
+      padding-right: 80px;
+    }
+
+    &>svg {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500%;
+      height: 100%;
+
+      @include laptop {
+        width: 200%;
+        left: auto;
+        right: 0;
+        transform: translateY(-50%);
+      }
+
+      path,
+      rect {
+        fill: $blue-color;
+      }
+    }
+
+    .project-location__text-wrap {
+      margin-left: auto;
+    }
+
+    p {
+      @include text-20;
+      color: $dark-color;
+
+      &.mini-text {
+        @include general-text;
+      }
+    }
+  }
+
+  &__right-card {
+    margin-top: -120px;
+    padding-top: 160px;
+    padding-bottom: 160px;
+    position: relative;
+    z-index: 2;
+
+
+    @include tablet {
+      padding: 160px;
+    }
+
+    @include laptop {
+      position: absolute;
+      right: 0;
+      bottom: 140px;
+      z-index: 3;
+
+      width: 36%;
+      padding-left: 80px;
+    }
+
+
+
+    &>svg {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(5deg);
+      width: 500%;
+      height: 100%;
+
+      @include laptop {
+        width: 200%;
+        left: 0;
+        transform: translateY(-45%) rotate(5deg);
+      }
+
+      path,
+      rect {
+        fill: $accent-color-2;
+      }
+    }
+
+    .project-location__text-wrap {
+      margin-right: auto;
+    }
+
+    p {
+      @include text-20;
+      color: $dark-color;
+
+      span {
+        font-weight: 700;
+      }
+
+      &.mini-text {
+        @include general-text;
+      }
+    }
+  }
+}
+
+.project-map {
+  padding-top: 160px;
+
+
+  @include tablet {
+    padding-top: 250px;
+
+  }
+
+  &__title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    align-items: center;
+    margin-bottom: 120px;
+
+    @include tablet {
+      gap: 200px;
+      margin-bottom: 200px;
+    }
+
+    @include laptop {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding-left: 11.45vw;
+      padding-right: 11.45vw;
+    }
+  }
+
+  &__links {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+      padding-left: 60px;
+      padding-right: 60px
+    }
+
+    &>svg {
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      @include tablet {
+        width: 45%
+      }
+    }
+
+    h2 {
+      @include text-32;
+
+      color: $dark-color;
+      margin-bottom: 20px;
+      text-align: center;
+
+      @include tablet {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  &__text {
+    @include tablet {
+      padding-left: 140px;
+      padding-right: 140px;
+    }
+
+    @include laptop {
+      padding: 0;
+      width: 18.75vw;
+    }
+
+    h2 {
+      @include text-32;
+
+      color: $dark-color;
+      margin-bottom: 40px;
+      text-align: center;
+
+      @include laptop {
+        text-align: start;
+      }
+    }
+
+    p {
+      @include general-text;
+      color: $dark-color;
+
+      text-align: center;
+
+      @include laptop {
+        text-align: start;
+      }
+    }
+  }
+}
+
+
+
+.project-architect {
+  padding-top: 120px;
+  // padding-bottom: 120px;
+  position: relative;
+  overflow: hidden;
+
+  @include tablet {
+    padding-top: 240px;
+  }
+
+  @include laptop {
+    padding-top: 200px;
+  }
+}
+
+.block-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+
+  @include tablet {
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  svg {
+    width: 80px;
+    height: 80px;
+
+    @include tablet {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
+  h2 {
+    @include page-subtitle;
+    color: $dark-color;
+
+  }
+
+}
+
+.swiper-architect {
+  position: relative;
+  z-index: 2;
+
+}
+
+.architect-card {
+  padding: 20px;
+  aspect-ratio: 1 /1.5;
+  background-color: $wc;
+  border: 1px solid #D4DCDF;
+
+  @include tablet {
+    aspect-ratio: 1 / 0.95;
+  }
+
+  @include tablet-large {
+    aspect-ratio: 1 / 0.34;
+    display: flex;
+    gap: calc(80 / 1920 * 100vw);
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1 /0.6;
+    margin-bottom: 32px;
+    object-fit: cover;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
+
+    @include tablet-large {
+      // aspect-ratio: 1 /0.47;
+      width: 67%;
+      height: 100%;
+    }
+  }
+
+  &__text-wrap {
+    @include tablet-large {
+      width: 28%;
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    @include tablet {
+      margin-bottom: 28px;
+    }
+
+    &>svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    h3 {
+      @include text-32;
+      color: $dark-color;
+
+    }
+  }
+
+  &__descr {
+    @include general-text;
+    color: $dark-color;
+    width: calc(100% - 30px);
+
+    @include tablet-large {
+      width: 18.75vw;
+    }
+  }
+}
+
+.swiper-btns-numbers-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 5;
+
+  @include tablet-large {
+    width: 28%;
+  }
+}
+
+.swiper-btns-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: $accent-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  &.swiper-button-disabled {
+    opacity: 0.7;
+    cursor: no-drop;
+    pointer-events: none;
+  }
+
+  svg {
+    position: relative;
+    z-index: 2;
+
+    path {
+      transition: all 0.4s ease-in-out;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $blue-color;
+    transition: transform 0.4s ease;
+    border-radius: 50%;
+    transform: translateY(-100%);
+
+  }
+
+}
+
+.desktop {
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    &:hover {
+      &::after {
+        transform: translateY(0);
+      }
+
+      svg path {
+        fill: $dark-color;
+      }
+    }
+  }
+}
+
+.swiper-numbers-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  @include tiny-text;
+  color: $text-color-2;
+
+}
+
+.block-description {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  width: 100%;
+
+
+  @include tablet {
+    width: 570px;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+      width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @include tablet-large {
+    position: absolute;
+    top: 160px;
+    padding: 80px;
+    width: fit-content;
+    right: 6.25vw;
+    z-index: 1;
+
+    p {
+      width: 18.75vw;
+      margin: 0;
+    }
+  }
+
+  p {
+    @include general-text;
+    color: $text-color-2;
+    text-align: center;
+  }
+
+  svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 140%;
+    height: auto;
+    transform: translateX(-50%);
+    z-index: -1;
+
+
+    @include tablet {
+      width: 100%;
+    }
+
+    @include tablet-large {
+      bottom: auto;
+      top: 0;
+    }
+  }
+
+}
+
+.project-eco {
+  padding-top: 120px;
+  // padding-bottom: 120px;
+  position: relative;
+  overflow: hidden;
+
+  @include tablet {
+    padding-top: 240px;
+  }
+
+  @include laptop {
+    padding-top: 200px;
+  }
+
+  .block-description {
+    svg {
+      top: 0;
+      bottom: auto;
+
+      @include tablet {
+        width: 100%;
+      }
+
+      @include tablet-large {
+        transform: translateX(-50%) rotate(-5deg)
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+
+    @include tablet-large {
+      flex-direction: row;
+    }
+  }
+}
+
+.project-eco-card {
+  width: 100%;
+  background-color: $wc;
+
+  @include tablet-large {
+    width: calc((100% - 40px) / 3)
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1/0.62;
+    object-fit: cover;
+
+    @include tablet-large {
+      aspect-ratio: 1/0.73;
+    }
+  }
+
+  &__text-wrap {
+
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    @include tablet {
+      padding: 40px;
+
+    }
+
+    &>svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    h3 {
+      @include text-32;
+      color: $dark-color;
+      text-align: center;
+    }
+
+    p {
+      @include general-text;
+      color: $text-color-2;
+      text-align: center;
+    }
+  }
+
+
+
+}
+
+.project-infra {
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  @include tablet {
+    padding-top: 200px;
+    padding-bottom: 200px
+  }
+
+  @include tablet-large {
+    display: flex;
+    align-items: flex-start;
+    gap: 12.5vw;
+    position: relative;
+    padding-right: 6.7vw;
+  }
+
+  @include laptop {
+    padding-bottom: 300px
+  }
+
+  &__title-wrap {
+    width: 100%;
+    position: relative;
+    margin-bottom: 120px;
+
+    @include tablet-large {
+      position: sticky;
+      top: 200px;
+      width: 31.25vw;
+
+    }
+
+    &>svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+
+      @include tablet {
+        width: 140px;
+        height: 140px;
+
+
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-bottom: 40px;
+      }
+
+      @include tablet-large {
+        position: static;
+      }
+    }
+
+    h2 {
+      @include page-subtitle;
+      color: $dark-color;
+      margin-bottom: 20px;
+
+      @include tablet {
+        margin-bottom: 28px;
+      }
+
+      @include laptop {
+        margin-bottom: 40px;
+      }
+    }
+
+    p {
+      @include text-20;
+      color: $dark-color;
+
+      @include tablet {
+        width: calc(100% - 180px);
+      }
+
+      @include tablet-large {
+        width: 100%;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    width: 100%;
+
+    @include tablet-large {
+      width: 51.04vw;
+    }
+  }
+}
+
+.project-infra-card {
+  position: relative;
+
+  &:nth-child(2n) {
+
+
+    .project-infra-card__text-wrap {
+      background-color: $blue-color;
+
+    }
+
+    &>svg {
+      transform: rotate(5deg);
+
+    }
+
+    @include tablet {
+      .project-infra-card__text-wrap {
+        // margin-left: 0;
+        // margin-right: auto;
+        left: 0;
+        right: auto;
+
+      }
+    }
+  }
+
+  svg {
+    width: 100%;
+
+  }
+
+  &__text-wrap {
+    position: relative;
+    z-index: 2;
+    background-color: $accent-color-2;
+    padding: 28px 28px 40px;
+    margin-top: -20px;
+    width: 100%;
+    // margin-left: auto;
+
+    @include tablet {
+      position: absolute;
+      padding: 28px 40px 40px;
+      margin-top: 0;
+
+      bottom: -40px;
+      right: 0;
+      width: 460px;
+    }
+
+    // @include tablet-large {
+    //   margin-top: -180px;
+    // }
+
+    h3 {
+      @include text-32;
+      color: $dark-color;
+      margin-bottom: 20px;
+
+      @include tablet {
+        margin-bottom: 28px;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      li {
+        @include general-text;
+        color: $text-color-2;
+
+        &::before {
+          content: "•";
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+}

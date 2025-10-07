@@ -1,0 +1,117 @@
+.present {
+  padding-top: 160px;
+  padding-bottom: 120px;
+
+  @include laptop {
+    padding-top: 220px;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+    }
+
+    @include laptop {
+      flex-wrap: nowrap;
+    }
+  }
+
+}
+
+.present-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  // overflow: hidden;
+
+  @include tablet {}
+
+  &>svg {
+    height: 100%;
+    width: 100%;
+    transform: rotate(-3deg);
+    overflow: hidden;
+
+    @include tablet {
+      transform: rotate(3deg);
+    }
+  }
+
+  &:nth-child(2n) {
+    &>svg {
+
+      transform: rotate(3deg);
+
+      @include tablet {
+        transform: rotate(-3deg);
+      }
+
+      path {
+        fill: $grey-color;
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    &>svg {
+      path {
+        fill: $blue-color;
+      }
+    }
+  }
+
+  &:nth-child(4) {
+    &>svg {
+
+
+      path {
+        fill: $accent-color-2;
+      }
+    }
+  }
+
+
+
+
+  &__text {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .svg-pdf {
+      border-radius: 50%;
+      background-color: $wc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 68px;
+      height: 68px;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-family: $default-font;
+      font-weight: 600;
+      font-style: normal;
+      line-height: 120%;
+      font-size: 20px;
+      color: $dark-color;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+  }
+}

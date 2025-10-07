@@ -1,0 +1,333 @@
+.overflow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  background-color: rgba(28, 30, 44, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+  }
+}
+
+.modal-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  // background: $bg-color;
+  border: none;
+  transition: transform 0.3s ease-in-out 0.3s, opacity 0.3s ease 0.3s;
+  opacity: 1;
+  padding: 80px 20px;
+
+
+  @include tablet {
+    padding: 90px 100px;
+    width: 560px;
+
+  }
+
+  @include laptop {
+    width: 47%;
+  }
+
+  .hidden & {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+
+    &>svg {
+      transform: rotate(-3deg) translate(-50%, -50%);
+    }
+
+    @include laptop {
+      transform: rotate(-3deg);
+    }
+  }
+
+  &>svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    width: 150%;
+    height: 100%;
+    clip-path: polygon(0% 0%, 100% 3%, 100% 100%, 0% 97%);
+    transition: transform 0.7s ease-in-out 0.5s;
+
+    @include tablet {
+      width: 100%;
+      height: 100%;
+    }
+
+    @include laptop {
+      transform: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
+}
+
+.tablet.landscape .modal-form {
+  max-width: 60%;
+}
+
+.call-us__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: $bg-color;
+  transform: translate(-50%, -50%);
+  padding: 32px 16px;
+  transition: transform 0.3s ease-in-out 0.3s, opacity 0.3s ease 0.3s;
+  opacity: 1;
+
+  .hidden & {
+    transform: translate(-50%, -20%);
+    opacity: 0;
+  }
+
+  @include tablet {
+    padding: 72px 24px;
+  }
+
+  @include laptop {
+    padding: 100px 100px;
+  }
+
+  @include desktop {
+    padding: 100px 120px;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  // border-radius: 50%;
+  // background-color: $light-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  top: 40px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include tablet {
+    top: 90px;
+    right: 50px;
+
+  }
+
+  @include laptop {
+    top: 20px;
+    right: 20px;
+  }
+
+  // @include desktop {
+  //   top: 50px;
+  //   right: 50px;
+  // }
+}
+
+.form-title {
+  @include article-title;
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: $dark-color;
+  line-height: 100%;
+
+  @include tablet {
+    font-size: 48px;
+
+  }
+
+  @include laptop {
+    font-size: 3.33vw;
+
+  }
+}
+
+.tablet.landscape {
+  font-size: 3.18vw;
+}
+
+.form {
+  width: 100%;
+
+
+}
+
+.inputs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+
+
+
+
+}
+
+.input-title {
+  @include general-text;
+  font-size: 20px;
+  color: $dark-color;
+}
+
+
+.form-field {
+  position: relative;
+  width: 100%;
+
+  &[data-field-name],
+  &[data-field-phone] {
+    position: relative;
+
+    &::after {
+      content: "*";
+      color: $dark-color;
+      position: absolute;
+      z-index: 2;
+      top: 27px;
+      right: 7px;
+    }
+  }
+}
+
+.input-message {
+  position: absolute;
+  bottom: -16px;
+  // left: 50%;
+  // transform: translateX(-50%);
+  z-index: 2;
+  color: rgb(255, 131, 131);
+}
+
+.form-field__input {
+  @include general-text;
+  width: 100%;
+  padding: 23px 0px;
+  backdrop-filter: blur(75px);
+  -webkit-backdrop-filter: blur(75px);
+  color: $dark-color;
+  border: none;
+  border-bottom: 1px solid rgba(10, 15, 19, 0.20);
+  background-color: transparent;
+
+  &::placeholder {
+    @include general-text;
+    opacity: 0.5;
+    color: $dark-color;
+
+  }
+
+}
+
+.text-input {
+  resize: none;
+
+}
+
+.form-field-textarea {
+  width: 100%;
+
+  textarea {
+    height: 120px;
+
+    @include tablet {
+      height: 202px;
+    }
+
+    @include laptop {
+      height: 180px;
+    }
+  }
+}
+
+
+.form__button-wrapper {
+  margin-top: 80px;
+}
+
+
+
+
+
+.iti__flag {
+  background-image: url('../images/libs/flags.png');
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url('../images/libs/flags@2x.png');
+  }
+}
+
+.input-message {
+  @include general-text;
+
+}
+
+.footer .iti--allow-dropdown input {
+  padding-left: 56px;
+  padding-right: 20px;
+
+  @include laptop {
+    padding-left: 56px;
+    padding-right: 20px;
+  }
+}
+
+.iti__country-list {
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  background: rgba(242, 239, 233, 0.05);
+  backdrop-filter: blur(75px);
+  -webkit-backdrop-filter: blur(75px);
+  border-radius: 12px;
+  border-color: transparent;
+  z-index: 10;
+  color: $dark-color;
+}
+
+.iti__arrow {
+  border-top: 4px solid $text-color;
+}
+
+
+.iti__mobile {
+  .iti__country-list {
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+  }
+}
