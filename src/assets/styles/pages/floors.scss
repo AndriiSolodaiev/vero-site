@@ -1,4 +1,4 @@
-.floors {
+.floors.project {
   padding-bottom: 120px;
 
   @include tablet {
@@ -28,9 +28,9 @@
     }
 
     @include laptop {
-      flex-direction: column;
+      flex-direction: row;
       gap: 93px;
-
+      margin-bottom: 60px;
       .project-content__title-wrap {
         flex-wrap: wrap;
       }
@@ -98,7 +98,10 @@
   @include tablet {
     margin-bottom: 50px;
   }
-
+  @include laptop {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
   .block-title-wrap {
     margin-bottom: 0;
   }

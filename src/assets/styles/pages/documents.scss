@@ -44,7 +44,7 @@
 
   &-card {
     padding: 20px 20px 48px;
-    border: 1px solid #D4DCDF;
+    border: 1px solid $grey-color;
     // border-radius: var(--border24);
     display: flex;
     flex-direction: column;
@@ -167,7 +167,7 @@
     transition: all 0.3s ease;
 
     @include laptop {
-      width: calc(100% - 6.25vw - 20px);
+      width: calc(100% - 48px - 20px);
     }
   }
 
@@ -192,15 +192,18 @@
 
 
   &-card-content-btn {
+    @include tiny-text;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px;
+    padding: 16px 16px;
     border-radius: 16px;
-    background: $wc;
-    border: 1px solid #D4DCDF;
+    background-color: $wc;
+    border: 1px solid $grey-color;
     width: 100%;
-
+    text-transform: uppercase;
+    transition: background-color 0.4s ease-in-out;
     @include tablet {
       width: auto;
 
@@ -213,9 +216,12 @@
         border-left: none;
       }
     }
-
+    &:hover {
+      background-color: $accent-color-2;
+    }
     &.active {
       background: $blue-color;
+      pointer-events: none;
     }
   }
 

@@ -17,15 +17,17 @@
   //   }
   // }
 
-
+  .footer-form__descr{
+    margin-bottom: 0;
+  }
   .th-you-img-wrap {
     width: 100%;
     padding-top: 105px;
     padding-bottom: 105px;
 
     @include tablet {
-      padding-top: 150px;
-      padding-bottom: 150px;
+      padding-top: 130px;
+      padding-bottom: 130px;
     }
   }
 

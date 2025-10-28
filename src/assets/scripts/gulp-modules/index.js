@@ -1,6 +1,7 @@
 import Swiper, { Autoplay, EffectFade, Navigation } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
 import '../modules/gallery/gallerySlider';
+import { animateTitleOnScroll } from '../modules/effects/animateTitle';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 const tlFiller = gsap.timeline({
@@ -66,6 +67,101 @@ tlFillerContent
     { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.5)' },
     '<',
   );
+
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '.real-estate-homepage-list',
+    start: 'top bottom',
+    end: 'bottom top',
+    //  onLeave: self => self.kill(),
+     
+  },
+}).fromTo(
+  ".real-estate-homepage-card",
+  {
+    yPercent:10,
+    opacity:0,
+   
+  }
+  ,{
+    yPercent:0,
+    opacity:1,
+     stagger:0.2
+    
+  }
+).fromTo(".real-estate-description-wrap", {
+  opacity:0,
+  x:-10,
+  yPercent:10,
+},{
+    yPercent:0,
+    x:0,
+    opacity:1,
+    
+  }, ">-=0.3")
+
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '.progress-list',
+    start: 'top bottom',
+    end: 'bottom top',
+    //  onLeave: self => self.kill(),
+  },
+}).fromTo(
+  ".progress-card",
+  {
+    yPercent:10,
+    opacity:0,
+    
+  }, {
+    yPercent:0,
+    opacity:1,
+    stagger:0.2
+  }
+).fromTo(".progress-homepage-description-wrap", {
+  opacity:0,
+  x:-10,
+  yPercent:10,
+}, {
+    yPercent:0,
+    x:0,
+    opacity:1,
+  }, ">-=0.3")
+
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '.promo-list',
+    start: 'top bottom',
+    end: 'bottom top',
+    //  onLeave: self => self.kill(),
+  },
+}).fromTo(
+  ".promo-homepage-card",
+  {
+    yPercent:20,
+    opacity:0,
+    
+  },{
+    yPercent:0,
+    opacity:1,
+    stagger:0.2,
+   
+    
+  }
+).fromTo(".promo-homepage-description-wrap", {
+  opacity:0,
+  x:-10,
+  yPercent:10,
+},{
+  opacity:1,
+  x:0,
+  yPercent:0,
+}, ">-=0.3")
+
+
 window.addEventListener('loaderLoaded', () => {
   gsap.fromTo(
     '.hero .section-title, .hero .hero-slogan, .hero .section-descr, .hero .video-frame img',
@@ -93,13 +189,27 @@ ScrollTrigger.create({
   pin: true,
   pinSpacing: false, // <-- без відступу!
 });
-
+gsap.timeline({
+  scrollTrigger:{
+  trigger: '.hero-bg',
+  start: 'top top',
+  end: 'bottom top',
+  scrub:1,
+ 
+   
+}}
+).to(".hero-bg", {
+  opacity:1, ease:"none"
+}).to(".hero .video-frame img", {
+  yPercent: -10,
+  ease:"none"
+}, "<")
 document.addEventListener('DOMContentLoaded', function() {
   // Знаходимо всі блоки з відео
   const videoBlocks = document.querySelectorAll('.video-wrapper');
 
   videoBlocks.forEach(block => {
-    const videoBtn = block.querySelector('.video-btn');
+    const videoBtn = block.querySelector('.controls-wrap');
     const btnDescription = block.querySelector('.btn-description');
     const video = block.querySelector('video');
 
@@ -128,43 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-export function animateTitleOnScroll(triggerSelector, titleSelector) {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: triggerSelector,
-      start: 'top 80%', // коли секція з’являється у viewport
-      toggleActions: 'play none none reverse',
-    },
-  });
 
-  // SVG
-  tl.fromTo(
-    `${titleSelector} svg`,
-    { rotation: 360, scale: 0.5, x: 200, opacity: 0 },
-    { x: 0, rotation: 0, scale: 1, opacity: 1, duration: 1 },
-  );
-
-  // H2
-  tl.fromTo(
-    `${titleSelector} h2`,
-    { x: 200, opacity: 0 },
-    { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-    '<', // почати трохи раніше
-  );
-  tl.fromTo(
-    `${titleSelector} h3`,
-    { x: -200, opacity: 0 },
-    { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-    '<', // почати трохи раніше
-  );
-  // Текст (параграф)
-  //  tl.fromTo(
-  //    `${titleSelector} .about-text`,
-  //    { y: 50, opacity: 0 },
-  //    { y: 0, opacity: 1, duration: 1, ease: 'power2.out' },
-  //    '-=0.6',
-  //  );
-}
 
 // Використання:
 animateTitleOnScroll('.about-project', '.about-project-title');
@@ -311,3 +385,44 @@ function initCardsAnimation() {
 
 // Запуск після завантаження DOM
 document.addEventListener('DOMContentLoaded', initCardsAnimation);
+
+
+
+gsap.timeline({
+  scrollTrigger:{
+  trigger: '.developer-content',
+  start: 'top bottom',
+  // end: 'bottom top',
+  
+ 
+ 
+   
+}}
+).from(".developer-text__list p", {
+  opacity:0, y:20, stagger: 0.2
+}).from(".developer-site-bg svg .g-mask13", {
+  rotate: -180, duration:2,
+  transformOrigin:"center bottom"
+}, "<")
+
+
+function bigTitles() {
+  // Працює тільки на мобільних
+  if (window.innerWidth > 500) return;
+
+  document.querySelectorAll("[data-big-title]").forEach((el) => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top center",
+        end: "bottom top",
+        scrub: 1,
+      
+      },
+    })
+    .fromTo(el.querySelector("h2"), { xPercent: 10, ease:"power1" }, { xPercent: -10 })
+    .fromTo(el.querySelector("h3"), { xPercent: -10, ease:"power1" }, { xPercent: 10 }, "<");
+  });
+}
+
+bigTitles();

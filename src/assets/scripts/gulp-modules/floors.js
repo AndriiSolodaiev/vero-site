@@ -1,7 +1,45 @@
 import Swiper, { Autoplay, EffectFade, Navigation } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
-console.log('floors');
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  gsap.timeline().fromTo(".page-title__wrap", {
+    y:-150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }).fromTo(".project-content ", {
+    y:150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }, "<")
+
+})
+
+
+gsap.fromTo(".project-content__right>svg",
+      { rotate: 3,
+        transformOrigin:"center bottom"
+       },
+      {
+        rotate: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".project-content__right>svg",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      }
+    );
+
+
+
 const swiper = new Swiper('.swiper-floors', {
   modules: [Navigation],
   slidesPerView: 1,
@@ -100,3 +138,26 @@ tlFillerContent
     { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.5)' },
     '<',
   );
+
+    gsap.timeline({
+  scrollTrigger: {
+    trigger: '.real-estate-homepage-list',
+    start: 'top bottom',
+    end: 'bottom top',
+    //  onLeave: self => self.kill(),
+     
+  },
+}).fromTo(
+  ".real-estate-homepage-card",
+  {
+    yPercent:10,
+    opacity:0,
+   
+  }
+  ,{
+    yPercent:0,
+    opacity:1,
+     stagger:0.2
+    
+  }
+)

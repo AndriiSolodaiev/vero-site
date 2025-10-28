@@ -269,7 +269,7 @@
   }
 
   .domain {
-    stroke: #D4DCDF;
+    stroke: $grey-color;
   }
 
   /*-- Chart --*/
@@ -336,7 +336,7 @@
   /*-- Line --*/
   .c3-line {
     stroke-width: 1px;
-    stroke: #D4DCDF;
+    stroke: $grey-color;
   }
 
   .c3-circle._expanded_ {
@@ -518,6 +518,12 @@
   .c3-drag-zoom .extent {
     fill-opacity: 0.1;
   }
+
+  tspan{
+    @include tiny-text;
+    color:$dark-color;
+    
+  }
 }
 
 
@@ -554,7 +560,7 @@
     svg {
       width: 80px;
       height: 80px;
-
+      flex-shrink: 0;
       @include tablet {
         width: 140px;
         height: 140px;

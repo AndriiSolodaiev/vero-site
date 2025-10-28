@@ -1,6 +1,6 @@
 .property {
   padding-top: 160px;
-  padding-bottom: 120px;
+  
 
   @include laptop {
     padding-top: 220px;
@@ -17,7 +17,7 @@
   }
 
   @include laptop {
-    margin-bottom: 300px;
+    margin-bottom: 100px;
   }
 }
 

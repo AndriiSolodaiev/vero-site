@@ -25,7 +25,7 @@
   .loader-top-part,
   .loader-bottom-part {
     width: 100%;
-    height: calc(50% - 1px);
+    height: calc(50%);
     position: relative;
     background-color: $bg-color;
     overflow: hidden;
@@ -33,26 +33,23 @@
 
   .rotate-logo {
     z-index: 2;
-    width: 40vw;
-    height: 40vw;
+    width: 30vw;
+    height: 30vw;
 
     @include laptop {
-      width: 25vw;
-      height: 25vw;
+      width: 11.5vw;
+      height: 11.5vw;
     }
   }
 
-  .loader-top-part {
-    margin-bottom: 1px;
-  }
+  
 
-  .loader-bottom-part {
-    margin-top: 1px;
+  .loader-top-part .rotate-logo {
+    background-color: $bg-color;
   }
-
-  .loader-top-part .rotate-logo {}
 
   .loader-bottom-part .rotate-logo {
+    background-color: $bg-color;
     top: 0;
     transform: translate(-50%, -50%);
   }
@@ -70,14 +67,14 @@
 
 
   .loader__line {
-    height: 2px;
+    height: 1px;
     width: 100%;
     position: absolute;
     transform: translateY(-50%);
-    z-index: 2;
+    z-index: 1;
     left: 0;
     top: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: $grey-color;
     overflow: hidden;
     border-radius: 2px;
   }
@@ -86,11 +83,10 @@
   .loader__line-fill {
     position: absolute;
     top: 0;
-    transform: translateX(-50%);
-    left: 50%;
+    left: 0;
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, $accent-color-2, $blue-color);
+    background: $dark-color;
     border-radius: 2px;
     transition: width 0.15s ease-out;
   }

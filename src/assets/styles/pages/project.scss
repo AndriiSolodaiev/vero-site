@@ -10,10 +10,12 @@
 }
 
 .project-content {
+  opacity: 0;
+
   @include laptop {
     padding-left: 6.7vw;
     padding-right: 6.7vw;
-    display: flex;
+    // display: flex;
 
   }
 
@@ -25,38 +27,51 @@
     }
 
     @include laptop {
+      display: flex;
+      align-items: flex-start;
       margin-bottom: 0;
+      justify-content: space-between;
 
       &>svg {
-        transform: rotate(5deg) scale(1.2);
-        position: relative;
-        z-index: 3;
+        transform-origin: center top !important;
+        transform: scale(1.2);
+
       }
     }
   }
 
   &__right {
-    &>svg {
-      transform: rotate(4deg);
+
+    @include tablet {
+      &>svg {
+        transform: translateX(-20px);
+      }
     }
 
     @include laptop {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      justify-content: space-between;
 
       &>svg {
-        transform: rotate(-1deg) scale(1.2);
+        transform: scale(1.2);
       }
     }
   }
 
   &__left,
   &__right {
-    flex: 1;
+    // flex: 1;
 
     &>svg {
       width: 100%;
       height: auto;
+
+      @include laptop {
+        width: 50%;
+      }
+
     }
 
   }
@@ -77,6 +92,7 @@
         flex-direction: column;
         align-items: flex-end;
         padding-top: 50px;
+        margin-bottom: 0px;
       }
 
       &>* {
@@ -114,12 +130,12 @@
 
     svg {
       position: absolute;
-      top: 50%;
+      top: 0;
       right: 0;
       z-index: 1;
       width: 80px;
       height: 80px;
-      transform: translateY(-50%);
+      // transform: translateY(-50%);
 
       @include tablet {
         width: 140px;
@@ -135,6 +151,8 @@
     h2 {
       @include page-subtitle;
       color: $dark-color;
+      max-width: calc(100% - 100px);
+      line-height: 100%;
     }
   }
 
@@ -152,7 +170,7 @@
 
 .project-filler {
   position: relative;
-
+  overflow: visible;
 
 
   &__content {
@@ -272,7 +290,7 @@
   }
 
   &:nth-child(2)>svg {
-    transform: rotate(3deg);
+    transform: rotate(4deg);
 
     path,
     rect {
@@ -307,7 +325,7 @@
 
   &>svg {
     width: 100%;
-    height: 100%;
+    height: 105%;
     position: absolute;
     z-index: -1;
     top: 0;
@@ -541,7 +559,7 @@
     }
 
     p {
-      @include text-20;
+      @include general-text;
       color: $dark-color;
 
       span {
@@ -713,7 +731,7 @@
   padding: 20px;
   aspect-ratio: 1 /1.5;
   background-color: $wc;
-  border: 1px solid #D4DCDF;
+  border: 1px solid $grey-color;
 
   @include tablet {
     aspect-ratio: 1 / 0.95;
@@ -814,9 +832,15 @@
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
+  cursor: pointer;
+
+  @include laptop {
+    width: 64px;
+    height: 64px;
+  }
 
   &.swiper-button-disabled {
-    opacity: 0.7;
+    opacity: 0.2;
     cursor: no-drop;
     pointer-events: none;
   }
@@ -908,6 +932,10 @@
     @include general-text;
     color: $text-color-2;
     text-align: center;
+
+    @include laptop {
+      text-align: start;
+    }
   }
 
   svg {
@@ -1031,6 +1059,7 @@
 .project-infra {
   padding-top: 120px;
   padding-bottom: 120px;
+  overflow: visible;
 
   @include tablet {
     padding-top: 200px;
@@ -1046,7 +1075,7 @@
   }
 
   @include laptop {
-    padding-bottom: 300px
+    padding-bottom: 200px
   }
 
   &__title-wrap {
@@ -1057,7 +1086,7 @@
     @include tablet-large {
       position: sticky;
       top: 200px;
-      width: 31.25vw;
+      width: 25.25vw;
 
     }
 
@@ -1126,6 +1155,10 @@
 .project-infra-card {
   position: relative;
 
+  &>svg {
+    height: auto;
+  }
+
   &:nth-child(2n) {
 
 
@@ -1153,6 +1186,7 @@
   svg {
     width: 100%;
 
+
   }
 
   &__text-wrap {
@@ -1174,9 +1208,9 @@
       width: 460px;
     }
 
-    // @include tablet-large {
-    //   margin-top: -180px;
-    // }
+    @include laptop {
+      width: 23.95vw;
+    }
 
     h3 {
       @include text-32;

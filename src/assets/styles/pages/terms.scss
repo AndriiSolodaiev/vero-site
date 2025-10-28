@@ -1,9 +1,13 @@
 .terms {
   padding-top: 160px;
   padding-bottom: 120px;
-
+  @include tablet {
+    
+    padding-bottom: 180px;
+  }
   @include laptop {
     padding-top: 220px;
+    padding-bottom: 300px;
   }
 
   overflow: hidden;
@@ -22,7 +26,7 @@
   @include laptop {
     flex-direction: row;
     padding-left: 10.4vw;
-    padding-right: 10vw;
+    padding-right: 9vw;
     gap: 7.8vw;
   }
 
@@ -61,7 +65,7 @@
   &__title {
     @include page-subtitle;
     color: $dark-color;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     line-height: 100%;
 
     @include laptop {
@@ -91,9 +95,9 @@
       margin-bottom: 0;
     }
 
-    &li::before {
+    &::before {
       position: absolute;
-      z-index: 1;
+      z-index: 2;
       content: "•";
       top: 0;
       left: 0;
@@ -106,7 +110,7 @@
   width: 100%;
   aspect-ratio: 1/ 1.38;
   position: relative;
-
+  overflow: hidden;
   @include tablet {
     aspect-ratio: 1/ 0.68;
   }
@@ -119,7 +123,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left;
+    object-position: 20%;
+    @include tablet {
+      object-position: left;
+    }
   }
 
   &__text {
@@ -147,6 +154,11 @@
     .terms-hero__descr {
       color: $wc;
       padding: 0;
+      
+    }
+    .terms-hero__descr {
+      color: $grey-color
+      
     }
   }
 }
@@ -155,15 +167,15 @@
   padding-top: 50px;
   padding-bottom: 120px;
   position: relative;
-
+  overflow: visible;
   @include tablet {
     padding-top: 100px;
     padding-top: 200px;
   }
 
   &__top {
-    padding-left: 10px;
-    padding-right: 10px;
+    // padding-left: 10px;
+    // padding-right: 10px;
     padding-bottom: 40px;
     width: 100%;
     background-color: $wc;
@@ -182,7 +194,7 @@
       justify-content: space-between;
       align-items: flex-end;
       padding-left: 9.375vw;
-      padding-right: 16.66vw;
+      padding-right: 17.66vw;
       top: 100px;
 
       .terms-hero__title {
@@ -192,11 +204,23 @@
 
       .terms-hero__descr {
         width: 18.75vw;
+        position: relative;
+      &::before {
+        content:"•";
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+
+      }
       }
     }
 
     .terms-hero__descr {
       padding: 0;
+      &::before{
+        content: none;
+      }
     }
 
 
@@ -215,7 +239,7 @@
   flex-direction: column;
   gap: 20px;
   background-color: $wc;
-  border: 1px solid #D4DCDF;
+  border: 1px solid $grey-color;
 
   @include tablet {
     position: sticky;
@@ -226,14 +250,14 @@
   @include laptop {
     gap: 4.1666vw;
     flex-direction: row;
-    top: 240px;
+    top: 260px;
   }
 
   &:nth-child(2) {
 
 
     @include tablet {
-      top: 250px;
+      top: 270px;
     }
   }
 
@@ -241,7 +265,7 @@
 
 
     @include tablet {
-      top: 260px;
+      top: 280px;
     }
   }
 
@@ -249,7 +273,7 @@
 
 
     @include tablet {
-      top: 270px;
+      top: 290px;
     }
   }
 
@@ -289,7 +313,7 @@
     display: flex;
     justify-content: space-between;
     // margin-bottom: 20px;
-
+    align-items: center;
     p {
       @include tiny-text;
       color: $text-color-2;
@@ -306,26 +330,24 @@
     @include laptop {
       position: static;
       flex-direction: row-reverse;
+      justify-content: flex-end
     }
   }
 
   &__title {
-    @include block-title;
+    @include text-32 ;
     color: $dark-color;
-
+    font-size:36px ;
+    font-weight: 500;
   }
-
-  &__descr {
-    @include general-text;
-    color: $text-color-2;
-    line-height: 140%;
-
-    &li {
+  ul li {
+    & {
       padding-left: 26px;
       margin-bottom: 2px;
+      position: relative;
     }
 
-    &li::before {
+    &::before {
       position: absolute;
       z-index: 1;
       content: "•";
@@ -333,6 +355,13 @@
       left: 0;
 
     }
+  }
+  &__descr {
+    @include general-text;
+    color: $text-color-2;
+    line-height: 140%;
+
+    
   }
 }
 

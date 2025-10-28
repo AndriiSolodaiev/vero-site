@@ -1,5 +1,26 @@
 import { getInvestment } from '../api/index';
 import c3 from 'c3';
+import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
+gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  gsap.timeline().fromTo(".page-title__wrap", {
+    y:-150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }).fromTo(".project-content ", {
+    y:150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }, "<")
+
+})
 
 console.log('Invest module loaded');
 const chart = c3.generate({
@@ -33,7 +54,7 @@ const chart = c3.generate({
       min: 20000,
       tick: {
         format: function(d) {
-          return d + '₴/M2';
+          return d + '₴/M²';
         },
       },
     },
@@ -113,3 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
     firstButton.click();
   }
 });
+
+
+gsap.timeline({
+  scrollTrigger:{
+  trigger: '.developer-site',
+  start: 'top bottom',
+  // end: 'bottom top',
+  
+ 
+ 
+   
+}}
+).from(".developer-text__list p", {
+  opacity:0, y:20, stagger: 0.2
+}).from(".developer-site-bg svg .g-mask13", {
+  rotate: -180, duration:2,
+  transformOrigin:"center bottom"
+}, "<")

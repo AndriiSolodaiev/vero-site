@@ -1,7 +1,8 @@
 .progress-page {
   padding-top: 160px;
   padding-bottom: 120px;
-
+  overflow: hidden;
+  max-width: 100vw;
   @include laptop {
     padding-top: 220px;
   }
@@ -10,13 +11,13 @@
 .page-title__wrap {
   position: relative;
   margin-bottom: 124px;
-
+  opacity:0;
   @include tablet {
     margin-bottom: 182px;
   }
 
   @include laptop {
-    margin-bottom: 212px;
+    margin-bottom: 242px;
   }
 
   h1 {
@@ -32,16 +33,16 @@
     height: auto;
     z-index: -1;
     left: 50%;
-    transform: translateX(-50%) rotate(-10deg);
+    transform: translateX(-50%);
     transform-origin: top;
 
     @include tablet {
-      bottom: -102px;
+      bottom: -82px;
       width: 50%;
     }
 
     @include laptop {
-      bottom: -132px;
+      bottom: -82px;
       width: 30%;
     }
   }
@@ -51,7 +52,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  
   @include tablet {
     flex-direction: row;
     flex-wrap: wrap;
@@ -285,7 +286,7 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: $dark-color;
     transition: transform 0.725s var(--animation-primary);
     transform-origin: left;

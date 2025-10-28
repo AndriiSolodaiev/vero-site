@@ -19,6 +19,9 @@
 
       svg path {
         fill: $dark-color;
+        &:first-child{
+          stroke: $dark-color;
+        }
       }
     }
 
@@ -41,10 +44,12 @@
   height: 60px;
   transition: all 0.4s ease-out;
   width: 100%;
-
+  padding-left: 12px;
+  padding-right: 12px;
   @include tablet {
     height: 80px;
-
+    padding-left: 20px;
+  padding-right: 20px;
   }
 
   @include laptop {
@@ -67,6 +72,9 @@
 
       svg path {
         fill: $dark-color;
+        &:first-child{
+          stroke: $dark-color;
+        }
       }
     }
 
@@ -98,6 +106,10 @@
 
       svg path {
         fill: $dark-color;
+
+        &:first-child{
+          stroke: $dark-color;
+        }
       }
     }
 
@@ -201,7 +213,22 @@
 
 .header-link {
   display: none;
+  &.header-call-back{
+    svg{
+      clip-path: polygon(30% 0%, 100% 0, 100% 100%, 30% 100%);
+      overflow: hidden;
+      transition: all 0.4s linear;
+      transform: translateX(-29%);
+      transform-origin: left
+    }
+    &:hover,
+  &:focus {
+     svg {
+      clip-path: polygon(1% 0%, 100% 0%, 100% 100%, 1% 100%);
+      transform: translateX(0%);
 
+    }
+  }}
   @include laptop {
     display: flex;
     align-items: center;
@@ -216,6 +243,7 @@
       font-family: $default-font;
       line-height: 100%;
       text-transform: uppercase;
+      letter-spacing: -0.06em;
     }
 
     svg path {
@@ -251,7 +279,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
-
+  &:hover {
+    span.over, span.under {
+      width:18px;
+    }
+  }
   @include tablet {
     gap: 12px;
   }
@@ -277,13 +309,15 @@
 
   display: flex;
   flex-direction: column;
-
-  gap: 4px;
-
+gap: 3px;
+  
+  @include tablet {
+      gap: 4px;
+    }
   span {
     position: relative;
     z-index: 3;
-    height: 1px;
+    height: 3px;
     width: 18px;
     border-radius: 4px;
     background-color: $text-color;
@@ -331,7 +365,7 @@
 .menu-overlay {
   position: fixed;
   z-index: -1;
-  height: 100svh;
+  height: 100vh;
   width: 100%;
   top: 0;
   left: 0;
@@ -360,20 +394,20 @@
   }
 
   &.hidden {
-    visibility: hidden;
+    // visibility: hidden;
     pointer-events: none;
-    opacity: 0;
+    // opacity: 0;
   }
 
 }
 
 .menu-container {
   width: 100%;
-  height: 100%;
+  height: 100svh;
   padding-top: 60px;
   display: flex;
   flex-direction: column;
-
+  
   justify-content: center;
 
   width: 100%;
@@ -678,7 +712,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 20px;
+  padding-bottom: calc(100vh - 100svh + 20px);
   gap: 4px;
   z-index: 99;
 
@@ -699,3 +733,5 @@
     }
   }
 }
+
+

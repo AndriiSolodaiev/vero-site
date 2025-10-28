@@ -39,8 +39,17 @@
   }
 }
 
-.commercial-infra {
+.commercial-infra.project-infra {
+  padding-top: 0;
+  h2{
+    line-height: 100%;
+  }
+  @include laptop {
+      padding-left: 11.45vw;
+        padding-right: 4.16vw;
+    }
   .project-infra-card .project-infra-card__text-wrap {
+    
     p {
       @include general-text;
       color: $text-color-2;

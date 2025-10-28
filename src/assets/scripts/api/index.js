@@ -6,7 +6,7 @@ import { investmentMock, mapMock } from './mock';
 const baseUrl = '/wp-admin/admin-ajax.php';
 const isDev =
   window.location.href.match('localhost') ||
-  window.location.href.match('https://vero-wp.smartorange.com.ua/');
+  window.location.href.match('https://levdevelopment-verstka.smartorange.com.ua/');
 
 export const getMarkers = () =>
   isDev ? Promise.resolve({ data: mapMock }) : axios.post(baseUrl, { action: 'map' });

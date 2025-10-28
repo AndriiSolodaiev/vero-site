@@ -14,3 +14,71 @@ const swiper = new Swiper('.swiper-sp', {
 
   spaceBetween: 0,
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  gsap.timeline().fromTo(".page-title__wrap", {
+    y:-150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }).fromTo(".sp-content ", {
+    y:150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }, "<").fromTo(".sp-content", {
+    y:150,
+    opacity:0
+  }, {
+    y:0,
+    opacity:1
+  }, "<")
+})
+
+  gsap.timeline({
+  scrollTrigger: {
+    trigger: '.progress-list',
+    start: 'top bottom',
+    end: 'bottom top',
+    //  onLeave: self => self.kill(),
+     
+  },
+}).fromTo(
+  ".progress-card",
+  {
+    yPercent:10,
+    opacity:0,
+   
+  }
+  ,{
+    yPercent:0,
+    opacity:1,
+     stagger:0.2
+    
+  }
+)
+
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '.promo-list',
+    start: 'top bottom',
+    end: 'bottom top',
+    //  onLeave: self => self.kill(),
+     
+  },
+}).fromTo(
+  ".promo-homepage-card",
+  {
+    yPercent:10,
+    opacity:0,
+   
+  }
+  ,{
+    yPercent:0,
+    opacity:1,
+     stagger:0.2
+    
+  }
+)

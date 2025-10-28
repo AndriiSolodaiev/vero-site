@@ -204,7 +204,7 @@
 	}
 
 	@include to(600px) {
-		padding-top: 70px;
+		// padding-top: 70px;
 		height: calc(var(--vh, 100) * 100 - var(--header-h) + 70px);
 	}
 
