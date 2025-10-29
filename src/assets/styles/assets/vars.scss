@@ -209,6 +209,9 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 	@include laptop {
 		font-size: 0.83vw;
+		font-size: clamp(12px,
+				calc(12px + (16 - 12) * ((100vw - 1024px) / (1920 - 1024))),
+				16px);
 	}
 }
 
@@ -221,7 +224,18 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: -0.06em;
+
 	// @include laptop {
 	// 	font-size: 0.93vw;
 	// }
+	@include laptop {
+		font-size: 0.83vw;
+		font-size: clamp(10px,
+				calc(10px + (14 - 10) * ((100vw - 1024px) / (1920 - 1024))),
+				14px);
+	}
+}
+
+@function vw($px) {
+	@return ($px / 1920) * 100vw;
 }

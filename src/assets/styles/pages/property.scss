@@ -1,9 +1,9 @@
 .property {
   padding-top: 160px;
-  
+
 
   @include laptop {
-    padding-top: 220px;
+    padding-top: vw(220);
   }
 
   overflow: hidden;
@@ -29,6 +29,6 @@
   }
 
   @include laptop {
-    padding-bottom: 300px;
+    padding-bottom: 15.62vw;
   }
 }

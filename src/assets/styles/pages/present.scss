@@ -3,7 +3,7 @@
   padding-bottom: 120px;
 
   @include laptop {
-    padding-top: 220px;
+    padding-top: vw(220);
   }
 
   &-content {

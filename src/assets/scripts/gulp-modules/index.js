@@ -68,99 +68,113 @@ tlFillerContent
     '<',
   );
 
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.real-estate-homepage-list',
+      start: 'top bottom',
+      end: 'bottom top',
+      //  onLeave: self => self.kill(),
+    },
+  })
+  .fromTo(
+    '.real-estate-homepage-card',
+    {
+      yPercent: 10,
+      opacity: 0,
+    },
+    {
+      yPercent: 0,
+      opacity: 1,
+      stagger: 0.2,
+    },
+  )
+  .fromTo(
+    '.real-estate-description-wrap',
+    {
+      opacity: 0,
+      x: -10,
+      yPercent: 10,
+    },
+    {
+      yPercent: 0,
+      x: 0,
+      opacity: 1,
+    },
+    '>-=0.3',
+  );
 
-gsap.timeline({
-  scrollTrigger: {
-    trigger: '.real-estate-homepage-list',
-    start: 'top bottom',
-    end: 'bottom top',
-    //  onLeave: self => self.kill(),
-     
-  },
-}).fromTo(
-  ".real-estate-homepage-card",
-  {
-    yPercent:10,
-    opacity:0,
-   
-  }
-  ,{
-    yPercent:0,
-    opacity:1,
-     stagger:0.2
-    
-  }
-).fromTo(".real-estate-description-wrap", {
-  opacity:0,
-  x:-10,
-  yPercent:10,
-},{
-    yPercent:0,
-    x:0,
-    opacity:1,
-    
-  }, ">-=0.3")
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.progress-list',
+      start: 'top bottom',
+      end: 'bottom top',
+      //  onLeave: self => self.kill(),
+    },
+  })
+  .fromTo(
+    '.progress-card',
+    {
+      yPercent: 10,
+      opacity: 0,
+    },
+    {
+      yPercent: 0,
+      opacity: 1,
+      stagger: 0.2,
+    },
+  )
+  .fromTo(
+    '.progress-homepage-description-wrap',
+    {
+      opacity: 0,
+      x: -10,
+      yPercent: 10,
+    },
+    {
+      yPercent: 0,
+      x: 0,
+      opacity: 1,
+    },
+    '>-=0.3',
+  );
 
-
-gsap.timeline({
-  scrollTrigger: {
-    trigger: '.progress-list',
-    start: 'top bottom',
-    end: 'bottom top',
-    //  onLeave: self => self.kill(),
-  },
-}).fromTo(
-  ".progress-card",
-  {
-    yPercent:10,
-    opacity:0,
-    
-  }, {
-    yPercent:0,
-    opacity:1,
-    stagger:0.2
-  }
-).fromTo(".progress-homepage-description-wrap", {
-  opacity:0,
-  x:-10,
-  yPercent:10,
-}, {
-    yPercent:0,
-    x:0,
-    opacity:1,
-  }, ">-=0.3")
-
-
-gsap.timeline({
-  scrollTrigger: {
-    trigger: '.promo-list',
-    start: 'top bottom',
-    end: 'bottom top',
-    //  onLeave: self => self.kill(),
-  },
-}).fromTo(
-  ".promo-homepage-card",
-  {
-    yPercent:20,
-    opacity:0,
-    
-  },{
-    yPercent:0,
-    opacity:1,
-    stagger:0.2,
-   
-    
-  }
-).fromTo(".promo-homepage-description-wrap", {
-  opacity:0,
-  x:-10,
-  yPercent:10,
-},{
-  opacity:1,
-  x:0,
-  yPercent:0,
-}, ">-=0.3")
-
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.promo-list',
+      start: 'top bottom',
+      end: 'bottom top',
+      //  onLeave: self => self.kill(),
+    },
+  })
+  .fromTo(
+    '.promo-homepage-card',
+    {
+      yPercent: 20,
+      opacity: 0,
+    },
+    {
+      yPercent: 0,
+      opacity: 1,
+      stagger: 0.2,
+    },
+  )
+  .fromTo(
+    '.promo-homepage-description-wrap',
+    {
+      opacity: 0,
+      x: -10,
+      yPercent: 10,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      yPercent: 0,
+    },
+    '>-=0.3',
+  );
 
 window.addEventListener('loaderLoaded', () => {
   gsap.fromTo(
@@ -189,21 +203,27 @@ ScrollTrigger.create({
   pin: true,
   pinSpacing: false, // <-- без відступу!
 });
-gsap.timeline({
-  scrollTrigger:{
-  trigger: '.hero-bg',
-  start: 'top top',
-  end: 'bottom top',
-  scrub:1,
- 
-   
-}}
-).to(".hero-bg", {
-  opacity:1, ease:"none"
-}).to(".hero .video-frame img", {
-  yPercent: -10,
-  ease:"none"
-}, "<")
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.hero-bg',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+    },
+  })
+  .to('.hero-bg', {
+    opacity: 1,
+    ease: 'none',
+  })
+  .to(
+    '.hero .video-frame img',
+    {
+      yPercent: -10,
+      ease: 'none',
+    },
+    '<',
+  );
 document.addEventListener('DOMContentLoaded', function() {
   // Знаходимо всі блоки з відео
   const videoBlocks = document.querySelectorAll('.video-wrapper');
@@ -239,7 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
 // Використання:
 animateTitleOnScroll('.about-project', '.about-project-title');
 animateTitleOnScroll('.advantages', '.advantages-title');
@@ -254,7 +273,7 @@ function initCardsAnimation() {
   const cards = document.querySelectorAll('.advantages-card');
 
   // Якщо десктоп — складна анімація
-  if (window.innerWidth >= 1366) {
+  if (window.innerWidth >= 1024) {
     gsap.set(cards, {
       opacity: 0,
       y: 150,
@@ -386,42 +405,45 @@ function initCardsAnimation() {
 // Запуск після завантаження DOM
 document.addEventListener('DOMContentLoaded', initCardsAnimation);
 
-
-
-gsap.timeline({
-  scrollTrigger:{
-  trigger: '.developer-content',
-  start: 'top bottom',
-  // end: 'bottom top',
-  
- 
- 
-   
-}}
-).from(".developer-text__list p", {
-  opacity:0, y:20, stagger: 0.2
-}).from(".developer-site-bg svg .g-mask13", {
-  rotate: -180, duration:2,
-  transformOrigin:"center bottom"
-}, "<")
-
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.developer-content',
+      start: 'top bottom',
+      // end: 'bottom top',
+    },
+  })
+  .from('.developer-text__list p', {
+    opacity: 0,
+    y: 20,
+    stagger: 0.2,
+  })
+  .from(
+    '.developer-site-bg svg .g-mask13',
+    {
+      rotate: -180,
+      duration: 2,
+      transformOrigin: 'center bottom',
+    },
+    '<',
+  );
 
 function bigTitles() {
   // Працює тільки на мобільних
   if (window.innerWidth > 500) return;
 
-  document.querySelectorAll("[data-big-title]").forEach((el) => {
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: "top center",
-        end: "bottom top",
-        scrub: 1,
-      
-      },
-    })
-    .fromTo(el.querySelector("h2"), { xPercent: 10, ease:"power1" }, { xPercent: -10 })
-    .fromTo(el.querySelector("h3"), { xPercent: -10, ease:"power1" }, { xPercent: 10 }, "<");
+  document.querySelectorAll('[data-big-title]').forEach(el => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: 'top center',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
+      .fromTo(el.querySelector('h2'), { xPercent: 10, ease: 'power1' }, { xPercent: -10 })
+      .fromTo(el.querySelector('h3'), { xPercent: -10, ease: 'power1' }, { xPercent: 10 }, '<');
   });
 }
 

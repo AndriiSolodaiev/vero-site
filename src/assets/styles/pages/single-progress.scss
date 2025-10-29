@@ -6,17 +6,20 @@
   }
 
   @include laptop {
-    padding-bottom: 300px;
+    padding-bottom: 15.62vw;
   }
 
   .page-title__wrap {
     margin-bottom: 60px;
+
     svg {
-      bottom:-32px;
+      bottom: -32px;
+
       @include tablet {
         bottom: -82px
       }
     }
+
     @include tablet {
       margin-bottom: 80px;
     }

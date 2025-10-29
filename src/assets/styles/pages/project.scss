@@ -3,11 +3,13 @@
   padding-bottom: 120px;
 
   @include laptop {
-    padding-top: 220px;
+    padding-top: vw(220);
   }
 
   overflow: hidden;
 }
+
+
 
 .project-content {
   opacity: 0;
@@ -87,6 +89,10 @@
       padding-left: 4.68vw;
       padding-right: 3.64vw;
 
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
       &--right {
         display: flex;
         flex-direction: column;
@@ -142,9 +148,12 @@
         height: 140px;
       }
 
+
       @include laptop {
         position: static;
         transform: none;
+        width: vw(140);
+        height: vw(140);
       }
     }
 
@@ -228,6 +237,13 @@
         width: 140px;
         height: 140px;
       }
+
+
+      @include laptop {
+
+        width: vw(140);
+        height: vw(140);
+      }
     }
 
     h2 {
@@ -288,6 +304,11 @@
   @include tablet {
     padding: 95px;
   }
+
+  @include laptop {
+    padding: vw(95) vw(40);
+  }
+
 
   &:nth-child(2)>svg {
     transform: rotate(4deg);
@@ -445,9 +466,15 @@
     flex-direction: column;
     gap: 40px;
 
+
+
     @include laptop {
       width: 18.75vw;
 
+    }
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      width: 25vw;
     }
   }
 
@@ -468,7 +495,7 @@
       left: 0;
       bottom: 140px;
       z-index: 3;
-
+      padding: vw(160);
       width: 36%;
       padding-right: 80px;
     }
@@ -521,12 +548,16 @@
       padding: 160px;
     }
 
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      width: 56%;
+    }
+
     @include laptop {
       position: absolute;
       right: 0;
       bottom: 140px;
       z-index: 3;
-
+      padding: vw(160);
       width: 36%;
       padding-left: 80px;
     }
@@ -582,6 +613,11 @@
 
   }
 
+  @include laptop {
+    padding-top: vw(250);
+
+  }
+
   &__title-wrap {
     display: flex;
     flex-direction: column;
@@ -599,6 +635,8 @@
       justify-content: space-between;
       padding-left: 11.45vw;
       padding-right: 11.45vw;
+      margin-bottom: vw(200);
+      gap: vw(200);
     }
   }
 
@@ -688,7 +726,7 @@
   }
 
   @include laptop {
-    padding-top: 200px;
+    padding-top: vw(200);
   }
 }
 
@@ -710,6 +748,11 @@
     @include tablet {
       width: 140px;
       height: 140px;
+    }
+
+    @include laptop {
+      width: vw(140);
+      height: vw(140);
     }
   }
 
@@ -916,8 +959,8 @@
 
   @include tablet-large {
     position: absolute;
-    top: 160px;
-    padding: 80px;
+    top: vw(160);
+    padding: vw(80);
     width: fit-content;
     right: 6.25vw;
     z-index: 1;
@@ -971,7 +1014,7 @@
   }
 
   @include laptop {
-    padding-top: 200px;
+    padding-top: vw(200);
   }
 
   .block-description {
@@ -999,6 +1042,7 @@
 
     @include tablet-large {
       flex-direction: row;
+      align-items: flex-start;
     }
   }
 }
@@ -1072,11 +1116,11 @@
     gap: 12.5vw;
     position: relative;
     padding-right: 6.7vw;
+    padding-top: vw(200);
+    padding-bottom: vw(200)
   }
 
-  @include laptop {
-    padding-bottom: 200px
-  }
+
 
   &__title-wrap {
     width: 100%;
@@ -1109,6 +1153,9 @@
 
       @include tablet-large {
         position: static;
+        width: vw(140);
+        height: vw(140);
+        margin-bottom: vw(40);
       }
     }
 
@@ -1122,7 +1169,7 @@
       }
 
       @include laptop {
-        margin-bottom: 40px;
+        margin-bottom: vw(40);
       }
     }
 
@@ -1210,6 +1257,7 @@
 
     @include laptop {
       width: 23.95vw;
+      padding: vw(28) vw(40) vw(40);
     }
 
     h3 {

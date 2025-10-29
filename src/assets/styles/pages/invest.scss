@@ -1,10 +1,16 @@
+.invest .project-content__text {
+  @include laptop {
+    margin-bottom: 0;
+  }
+}
+
 .invest.project {
   @include tablet {
     padding-bottom: 200px;
   }
 
   @include laptop {
-    padding-bottom: 300px;
+    padding-bottom: 15.62vw;
   }
 
   .project-content__left {
@@ -519,10 +525,10 @@
     fill-opacity: 0.1;
   }
 
-  tspan{
+  tspan {
     @include tiny-text;
-    color:$dark-color;
-    
+    color: $dark-color;
+
   }
 }
 
@@ -561,9 +567,15 @@
       width: 80px;
       height: 80px;
       flex-shrink: 0;
+
       @include tablet {
         width: 140px;
         height: 140px;
+      }
+
+      @include laptop {
+        width: vw(140);
+        height: vw(140);
       }
     }
 

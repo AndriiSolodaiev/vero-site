@@ -1,13 +1,15 @@
 .terms {
   padding-top: 160px;
   padding-bottom: 120px;
+
   @include tablet {
-    
+
     padding-bottom: 180px;
   }
+
   @include laptop {
     padding-top: 220px;
-    padding-bottom: 300px;
+    padding-bottom: 15.62vw;
   }
 
   overflow: hidden;
@@ -48,6 +50,12 @@
       @include tablet {
         width: 140px;
         height: 140px;
+      }
+
+
+      @include laptop {
+        width: vw(140);
+        height: vw(140);
       }
     }
 
@@ -111,6 +119,7 @@
   aspect-ratio: 1/ 1.38;
   position: relative;
   overflow: hidden;
+
   @include tablet {
     aspect-ratio: 1/ 0.68;
   }
@@ -124,6 +133,7 @@
     height: 100%;
     object-fit: cover;
     object-position: 20%;
+
     @include tablet {
       object-position: left;
     }
@@ -154,11 +164,11 @@
     .terms-hero__descr {
       color: $wc;
       padding: 0;
-      
+
     }
+
     .terms-hero__descr {
       color: $grey-color
-      
     }
   }
 }
@@ -168,9 +178,14 @@
   padding-bottom: 120px;
   position: relative;
   overflow: visible;
+
   @include tablet {
-    padding-top: 100px;
+
     padding-top: 200px;
+  }
+
+  @include laptop {
+    padding-top: vw(200);
   }
 
   &__top {
@@ -205,20 +220,22 @@
       .terms-hero__descr {
         width: 18.75vw;
         position: relative;
-      &::before {
-        content:"•";
-        position: absolute;
-        top: 0;
-        left: 0;
-        
 
-      }
+        &::before {
+          content: "•";
+          position: absolute;
+          top: 0;
+          left: 0;
+
+
+        }
       }
     }
 
     .terms-hero__descr {
       padding: 0;
-      &::before{
+
+      &::before {
         content: none;
       }
     }
@@ -314,6 +331,7 @@
     justify-content: space-between;
     // margin-bottom: 20px;
     align-items: center;
+
     p {
       @include tiny-text;
       color: $text-color-2;
@@ -335,11 +353,12 @@
   }
 
   &__title {
-    @include text-32 ;
+    @include text-32;
     color: $dark-color;
-    font-size:36px ;
+    font-size: 36px;
     font-weight: 500;
   }
+
   ul li {
     & {
       padding-left: 26px;
@@ -356,12 +375,13 @@
 
     }
   }
+
   &__descr {
     @include general-text;
     color: $text-color-2;
     line-height: 140%;
 
-    
+
   }
 }
 

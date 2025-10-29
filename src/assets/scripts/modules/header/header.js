@@ -1,4 +1,3 @@
-
 import { initSmoothScrolling } from '../scroll/leniscroll';
 import device from 'current-device';
 
@@ -19,13 +18,13 @@ window.addEventListener('scroll', function headerSquosh() {
   }
 });
 
-
 const menuTimeline = gsap.timeline({
   paused: true,
   defaults: { ease: 'power3.out', duration: 1 },
 });
-const menu = document.querySelector(".menu-container")
- menuTimeline.from(
+const menu = document.querySelector('.menu-container');
+menuTimeline
+  .from(
     '.menu-left-part',
     {
       xPercent: -100,
@@ -34,125 +33,125 @@ const menu = document.querySelector(".menu-container")
     },
     0,
   )
-    .from(
-      '.menu-right-part',
-      {
-        xPercent: 100,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-1',
-      {
-        y: -1000,
-        x: -400,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<+=0.2',
-    )
-    .from(
-      '.menu-item-2',
-      {
-        y: -1200,
-        x: -200,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-3',
-      {
-        y: -1400,
+  .from(
+    '.menu-right-part',
+    {
+      xPercent: 100,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-1',
+    {
+      y: -1000,
+      x: -400,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<+=0.2',
+  )
+  .from(
+    '.menu-item-2',
+    {
+      y: -1200,
+      x: -200,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-3',
+    {
+      y: -1400,
 
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-4',
-      {
-        y: -1200,
-        x: 200,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-5',
-      {
-        y: -1000,
-        x: 400,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-6',
-      {
-        y: 1000,
-        x: -400,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-7',
-      {
-        y: 1200,
-        x: -200,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-8',
-      {
-        y: 1400,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-4',
+    {
+      y: -1200,
+      x: 200,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-5',
+    {
+      y: -1000,
+      x: 400,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-6',
+    {
+      y: 1000,
+      x: -400,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-7',
+    {
+      y: 1200,
+      x: -200,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-8',
+    {
+      y: 1400,
 
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-9',
-      {
-        y: 1200,
-        x: 200,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    )
-    .from(
-      '.menu-item-10',
-      {
-        y: 1000,
-        x: 400,
-        rotate: 0,
-        duration: 1,
-        ease: 'power3.out',
-      },
-      '<',
-    );
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-9',
+    {
+      y: 1200,
+      x: 200,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  )
+  .from(
+    '.menu-item-10',
+    {
+      y: 1000,
+      x: 400,
+      rotate: 0,
+      duration: 1,
+      ease: 'power3.out',
+    },
+    '<',
+  );
 
 document.body.addEventListener('click', function(evt) {
   const close = evt.target.closest('[data-call-us-modal-close]');
@@ -183,11 +182,11 @@ document.body.addEventListener('click', function(evt) {
       menuTimeline.play();
     } else {
       window.dispatchEvent(new Event('start-scroll'));
-      menuTimeline.reverse()
-      setTimeout(()=>{
+      menuTimeline.reverse();
+      setTimeout(() => {
         menu.classList.add('hidden');
-      }, 500)
-     
+      }, 500);
+
       header.classList.remove('menu-is-open');
     }
 
@@ -231,13 +230,6 @@ document.body.addEventListener('click', function(evt) {
   }
 });
 
-
-
- 
-
-
-
-
 const inputs = document.querySelectorAll('.form-field-input');
 
 if (inputs.length) {
@@ -276,39 +268,48 @@ gsap.to('.header', {
 //   duration: 1,
 // });
 document.addEventListener('DOMContentLoaded', () => {
-const startPod = window.innerWidth > 768 ? '-100px top' : '0px top';
-const svgHeight = window.innerWidth > 768 ? -40 : -20;
-const titleHeight = window.innerWidth > 768 ? -60 : -40;
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: '.page-title__wrap',
-      start: startPod,
-      end: '300% top',
-      scrub: true,
-     
-    },
-  })
-  .fromTo('.page-title__wrap',{
-    y: 0,
-   
-  }, {
-    y: titleHeight,
-   
-  }).fromTo('.page-title__wrap svg', 
-    {
-    y: 0,
-   
-  },{
-    y: svgHeight,
-   
-  }, "<").fromTo('.page-title__wrap h1', {
-    
-   opacity:1,
-  },{
-    opacity: 0,
-   
-  }, "<")})
+  const startPod = window.innerWidth > 768 ? '-5.2vw top' : '0px top';
+  const svgHeight = window.innerWidth > 768 ? -40 : -20;
+  const titleHeight = window.innerWidth > 768 ? -60 : -40;
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '.page-title__wrap',
+        start: startPod,
+        end: '300% top',
+        scrub: true,
+      },
+    })
+    .fromTo(
+      '.page-title__wrap',
+      {
+        y: 0,
+      },
+      {
+        y: titleHeight,
+      },
+    )
+    .fromTo(
+      '.page-title__wrap svg',
+      {
+        y: 0,
+      },
+      {
+        y: svgHeight,
+      },
+      '<',
+    )
+    .fromTo(
+      '.page-title__wrap h1',
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+      '<',
+    );
+});
 
 console.log(window.location.pathname);
 if (window.location.pathname === '/') {
@@ -368,73 +369,70 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-//Global animation 
+//Global animation
 
 function initSvgScrollAnimation() {
   // Всі елементи з data-svg-anim-left
   document.querySelectorAll('[data-svg-anim-left]').forEach(el => {
-    gsap.fromTo(el,
-      { rotate: 3,
-        transformOrigin:"center bottom"
-       },
+    gsap.fromTo(
+      el,
+      { rotate: 3, transformOrigin: 'center bottom' },
       {
         rotate: -3,
-        ease: "none",
+        ease: 'none',
         scrollTrigger: {
           trigger: el,
-          start: "top bottom",   // коли елемент входить у в'юпорт
-          end: "bottom top",     // коли виходить
-          scrub: true,           // плавно реагує на скрол
-        }
-      }
+          start: 'top bottom', // коли елемент входить у в'юпорт
+          end: 'bottom top', // коли виходить
+          scrub: true, // плавно реагує на скрол
+        },
+      },
     );
   });
 
   // Всі елементи з data-svg-anim-right
   document.querySelectorAll('[data-svg-anim-right]').forEach(el => {
-    gsap.fromTo(el,
-      { rotate: -3,
-        transformOrigin:"center bottom"
-       },
+    gsap.fromTo(
+      el,
+      { rotate: -3, transformOrigin: 'center bottom' },
       {
         rotate: 3,
-        ease: "none",
+        ease: 'none',
         scrollTrigger: {
           trigger: el,
-          start: "top bottom",
-          end: "bottom top",
+          start: 'top bottom',
+          end: 'bottom top',
           scrub: true,
-        }
-      }
+        },
+      },
     );
   });
-
-  
 }
 
 // Викликати після завантаження DOM
 window.addEventListener('DOMContentLoaded', initSvgScrollAnimation);
 
-
 animateTitleOnScroll('.footer', '.footer-title');
 
-gsap.timeline({
-  scrollTrigger:{
-  trigger: '.footer-form',
-  start: 'top bottom',
-  // end: 'bottom top',
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.footer-form',
+      start: 'top bottom',
+      // end: 'bottom top',
+    },
+  })
+  .from('.footer-form', {
+    opacity: 0,
+    yPercent: 20,
+  })
+  .from('.footer-form>svg', {
+    rotate: -3,
+  });
 
-}}
-).from(".footer-form", {
-  opacity:0, yPercent:20
-}).from(".footer-form>svg",{
-  rotate:-3,
-})
-
-window.addEventListener("orientationchange", () => {
+window.addEventListener('orientationchange', () => {
   // трохи почекати, поки браузер перерахує розміри
   setTimeout(() => {
     ScrollTrigger.refresh();
   }, 500);
-}); 
+});

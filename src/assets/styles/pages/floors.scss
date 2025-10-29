@@ -7,7 +7,7 @@
   }
 
   @include laptop {
-    padding-bottom: 300px;
+    padding-bottom: 15.62vw;
   }
 
   .mob-mode {
@@ -31,6 +31,7 @@
       flex-direction: row;
       gap: 93px;
       margin-bottom: 60px;
+
       .project-content__title-wrap {
         flex-wrap: wrap;
       }
@@ -98,10 +99,12 @@
   @include tablet {
     margin-bottom: 50px;
   }
+
   @include laptop {
     padding-left: 10vw;
     padding-right: 10vw;
   }
+
   .block-title-wrap {
     margin-bottom: 0;
   }
@@ -180,6 +183,10 @@
         height: 440px;
       }
 
+      @media screen and (min-width: 1024px) and (max-width: 1366px) {
+        height: vw(600);
+      }
+
       &>svg {
         align-self: flex-start;
 
@@ -218,7 +225,7 @@
   }
 
   @include laptop {
-    padding-top: 300px;
+    padding-top: 15.62vw;
     padding-bottom: 100px;
   }
 }
