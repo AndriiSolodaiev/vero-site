@@ -19,7 +19,8 @@
 
       svg path {
         fill: $dark-color;
-        &:first-child{
+
+        &:first-child {
           stroke: $dark-color;
         }
       }
@@ -46,10 +47,11 @@
   width: 100%;
   padding-left: 12px;
   padding-right: 12px;
+
   @include tablet {
     height: 80px;
     padding-left: 20px;
-  padding-right: 20px;
+    padding-right: 20px;
   }
 
   @include laptop {
@@ -72,7 +74,8 @@
 
       svg path {
         fill: $dark-color;
-        &:first-child{
+
+        &:first-child {
           stroke: $dark-color;
         }
       }
@@ -107,7 +110,7 @@
       svg path {
         fill: $dark-color;
 
-        &:first-child{
+        &:first-child {
           stroke: $dark-color;
         }
       }
@@ -213,22 +216,26 @@
 
 .header-link {
   display: none;
-  &.header-call-back{
-    svg{
+
+  &.header-call-back {
+    svg {
       clip-path: polygon(30% 0%, 100% 0, 100% 100%, 30% 100%);
       overflow: hidden;
       transition: all 0.4s linear;
       transform: translateX(-29%);
       transform-origin: left
     }
-    &:hover,
-  &:focus {
-     svg {
-      clip-path: polygon(1% 0%, 100% 0%, 100% 100%, 1% 100%);
-      transform: translateX(0%);
 
+    &:hover,
+    &:focus {
+      svg {
+        clip-path: polygon(1% 0%, 100% 0%, 100% 100%, 1% 100%);
+        transform: translateX(0%);
+
+      }
     }
-  }}
+  }
+
   @include laptop {
     display: flex;
     align-items: center;
@@ -279,11 +286,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
+
   &:hover {
-    span.over, span.under {
-      width:18px;
+
+    span.over,
+    span.under {
+      width: 18px;
     }
   }
+
   @include tablet {
     gap: 12px;
   }
@@ -309,11 +320,12 @@
 
   display: flex;
   flex-direction: column;
-gap: 3px;
-  
+  gap: 3px;
+
   @include tablet {
-      gap: 4px;
-    }
+    gap: 4px;
+  }
+
   span {
     position: relative;
     z-index: 3;
@@ -393,7 +405,7 @@ gap: 3px;
     right: 0;
   }
 
-  &.hidden {
+  &.hide {
     // visibility: hidden;
     pointer-events: none;
     // opacity: 0;
@@ -407,7 +419,7 @@ gap: 3px;
   padding-top: 60px;
   display: flex;
   flex-direction: column;
-  
+  visibility: hidden;
   justify-content: center;
 
   width: 100%;
@@ -733,5 +745,3 @@ gap: 3px;
     }
   }
 }
-
-

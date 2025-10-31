@@ -117,7 +117,7 @@
   align-items: center;
   gap: 40px;
 
-  &.hidden {
+  &.hide {
     display: none;
   }
 
@@ -249,7 +249,7 @@
   color: $wc;
   padding-bottom: 5px;
 
-  &.hidden {
+  &.hide {
     display: none;
   }
 

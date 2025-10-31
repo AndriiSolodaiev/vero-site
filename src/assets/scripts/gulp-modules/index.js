@@ -235,8 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Клік по кнопці
     videoBtn.addEventListener('click', function() {
-      videoBtn.classList.add('hidden');
-      btnDescription.classList.add('hidden');
+      videoBtn.classList.add('hide');
+      btnDescription.classList.add('hide');
 
       video.classList.add('playing');
       video.play();
@@ -244,16 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Коли відео закінчиться — повернути кнопку й опис
     video.addEventListener('ended', function() {
-      videoBtn.classList.remove('hidden');
-      btnDescription.classList.remove('hidden');
+      videoBtn.classList.remove('hide');
+      btnDescription.classList.remove('hide');
       video.classList.remove('playing');
     });
 
     // Якщо користувач натисне паузу до кінця — теж повернути кнопку
     video.addEventListener('pause', function() {
       if (video.currentTime < video.duration) {
-        videoBtn.classList.remove('hidden');
-        btnDescription.classList.remove('hidden');
+        videoBtn.classList.remove('hide');
+        btnDescription.classList.remove('hide');
       }
     });
   });

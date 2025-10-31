@@ -24,6 +24,10 @@ const menuTimeline = gsap.timeline({
 });
 const menu = document.querySelector('.menu-container');
 menuTimeline
+  .to(menu, {
+    visibility: 'visible',
+    duration: 0,
+  })
   .from(
     '.menu-left-part',
     {
@@ -172,11 +176,11 @@ document.body.addEventListener('click', function(evt) {
   const menu = document.querySelector('[data-menu]');
   const menuItem = evt.target.closest('.menu-item');
   if (btnMenuTarget || menuItem) {
-    const isHidden = menu.classList.contains('hidden');
+    const isHidden = menu.classList.contains('hide');
 
     if (isHidden) {
       window.dispatchEvent(new Event('stop-scroll'));
-      menu.classList.remove('hidden');
+      menu.classList.remove('hide');
       header.classList.add('menu-is-open');
 
       menuTimeline.play();
@@ -184,7 +188,7 @@ document.body.addEventListener('click', function(evt) {
       window.dispatchEvent(new Event('start-scroll'));
       menuTimeline.reverse();
       setTimeout(() => {
-        menu.classList.add('hidden');
+        menu.classList.add('hide');
       }, 500);
 
       header.classList.remove('menu-is-open');
@@ -196,37 +200,37 @@ document.body.addEventListener('click', function(evt) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   if (btn) {
-    if (overflow.classList.contains('hidden')) {
+    if (overflow.classList.contains('hide')) {
       window.dispatchEvent(new Event('stop-scroll'));
-      overflowMob.classList.add('hidden');
-      return overflow.classList.remove('hidden');
+      overflowMob.classList.add('hide');
+      return overflow.classList.remove('hide');
     }
     return;
   }
   if (close) {
     window.dispatchEvent(new Event('start-scroll'));
-    return overflow.classList.add('hidden');
+    return overflow.classList.add('hide');
   }
   if (evt.target === overflow) {
     window.dispatchEvent(new Event('start-scroll'));
-    return overflow.classList.add('hidden');
+    return overflow.classList.add('hide');
   }
 
   if (btnMob) {
-    if (overflowMob.classList.contains('hidden')) {
+    if (overflowMob.classList.contains('hide')) {
       window.dispatchEvent(new Event('stop-scroll'));
-      return overflowMob.classList.remove('hidden');
+      return overflowMob.classList.remove('hide');
     }
     return;
   }
   if (closeMob) {
     window.dispatchEvent(new Event('start-scroll'));
-    return overflowMob.classList.add('hidden');
+    return overflowMob.classList.add('hide');
   }
 
   if (evt.target === overflowMob) {
     window.dispatchEvent(new Event('start-scroll'));
-    return overflowMob.classList.add('hidden');
+    return overflowMob.classList.add('hide');
   }
 });
 

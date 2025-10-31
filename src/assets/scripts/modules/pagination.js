@@ -79,7 +79,7 @@ export function paginationInit(containerSelector, cardSelector) {
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === totalPages;
     if (loadMoreBtn) {
-      loadMoreBtn.classList.toggle('hidden', currentPage === totalPages);
+      loadMoreBtn.classList.toggle('hide', currentPage === totalPages);
     }
   }
 

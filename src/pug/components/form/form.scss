@@ -12,7 +12,7 @@
   opacity: 1;
 
 
-  &.hidden {
+  &.hide {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -43,7 +43,7 @@
   //   width: 47%;
   // }
 
-  .hidden & {
+  .hide & {
     transform: translate(-50%, -30%);
     opacity: 1;
     filter: blur(24px);
@@ -100,7 +100,7 @@
   transition: transform 0.3s ease-in-out 0.3s, opacity 0.3s ease 0.3s;
   opacity: 1;
 
-  .hidden & {
+  .hide & {
     transform: translate(-50%, -20%);
     opacity: 0;
   }

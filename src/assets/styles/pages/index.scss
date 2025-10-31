@@ -1026,7 +1026,7 @@ section {
         transition: all 0.4s ease;
         white-space: nowrap;
 
-        &.hidden {
+        &.hide {
           opacity: 0;
           visibility: hidden;
         }
@@ -1040,7 +1040,7 @@ section {
         transition: all 0.4s ease;
         z-index: 1;
 
-        &.hidden {
+        &.hide {
           opacity: 0;
           visibility: hidden;
           pointer-events: none;
@@ -2647,7 +2647,7 @@ section {
         transition: all 0.4s ease;
         white-space: nowrap;
 
-        &.hidden {
+        &.hide {
           opacity: 0;
           visibility: hidden;
         }
@@ -2661,7 +2661,7 @@ section {
         transition: all 0.4s ease;
         z-index: 1;
 
-        &.hidden {
+        &.hide {
           opacity: 0;
           visibility: hidden;
           pointer-events: none;
@@ -2706,7 +2706,7 @@ section {
         //   transform: translate(-50%, -50%) scale(1.1);
         // }
 
-        // &.hidden {
+        // &.hide {
         //   opacity: 0;
         //   visibility: hidden;
         //   pointer-events: none;
