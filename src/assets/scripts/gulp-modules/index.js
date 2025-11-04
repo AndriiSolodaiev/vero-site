@@ -2,6 +2,7 @@ import Swiper, { Autoplay, EffectFade, Navigation } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
 import '../modules/gallery/gallerySlider';
 import { animateTitleOnScroll } from '../modules/effects/animateTitle';
+import { animateTitleOnScroll2 } from '../modules/effects/animateTitle2';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 const tlFiller = gsap.timeline({
@@ -232,9 +233,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoBtn = block.querySelector('.controls-wrap');
     const btnDescription = block.querySelector('.btn-description');
     const video = block.querySelector('video');
+    const cover = block.querySelector('.video-cover');
 
     // Клік по кнопці
     videoBtn.addEventListener('click', function() {
+      cover.style.display = 'none';
       videoBtn.classList.add('hide');
       btnDescription.classList.add('hide');
 
@@ -244,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Коли відео закінчиться — повернути кнопку й опис
     video.addEventListener('ended', function() {
+      cover.style.display = 'block';
       videoBtn.classList.remove('hide');
       btnDescription.classList.remove('hide');
       video.classList.remove('playing');
@@ -260,15 +264,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Використання:
-animateTitleOnScroll('.about-project', '.about-project-title');
+animateTitleOnScroll2('.about-project', '.about-project-title');
 animateTitleOnScroll('.advantages', '.advantages-title');
-animateTitleOnScroll('.real-estate-homepage', '.real-estate-title');
+animateTitleOnScroll2('.real-estate-homepage', '.real-estate-title');
 animateTitleOnScroll('.location', '.location-title');
-animateTitleOnScroll('.progress-homepage', '.progress-homepage-title');
+animateTitleOnScroll2('.progress-homepage', '.progress-homepage-title');
 animateTitleOnScroll('.invest-homepage', '.invest-homepage-title');
-animateTitleOnScroll('.developer', '.developer-title');
+animateTitleOnScroll2('.developer', '.developer-title');
 animateTitleOnScroll('.promo-homepage', '.promo-homepage-title');
-animateTitleOnScroll('.gallery-homepage', '.gallery-homepage-title');
+animateTitleOnScroll2('.gallery-homepage', '.gallery-homepage-title');
 function initCardsAnimation() {
   const cards = document.querySelectorAll('.advantages-card');
 

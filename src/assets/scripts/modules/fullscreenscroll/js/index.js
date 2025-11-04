@@ -1,288 +1,387 @@
 import { gsap } from 'gsap';
-// import "splitting/dist/splitting.css";
-// import "splitting/dist/splitting-cells.css";
-// import Splitting from "splitting";
 import { preloadImages } from './utils';
 import { CursorText } from './cursor';
 import { Slide } from './slide';
 import { Observer } from 'gsap/Observer.js';
 gsap.registerPlugin(Observer);
 
-// Call the splittingjs to transform the data-splitting texts to spans of chars 
-// Splitting();
-
+// ======================================================
+// Helper
+// ======================================================
 function pad(num) {
-    return (num < 10 ? '0' : '') + num;
+  return (num < 10 ? '0' : '') + num;
 }
 
-// Some DOM elements
+// ======================================================
+// DOM References
+// ======================================================
+const gallery = document.querySelector('.home-gallery-screen');
+const navButtons = gallery.querySelectorAll('.frame__nav-button');
+const slides = gallery.querySelectorAll('.slide');
+
 const DOM = {
-    slides: [...document.querySelectorAll('.slide')],
-    cursor: document.querySelector('.cursor'),
-    navigationItems: document.querySelectorAll('.frame__nav > .frame__nav-button'),
-    onChangeSlide: (current) => {
-        document.querySelectorAll('[data-gallery-current]').forEach(item => {
-            item.textContent = pad(current+1);
-        });
-    },
-    prevArrow: document.querySelector('[data-gallery="prev"]'),
-    nextArrow: document.querySelector('[data-gallery="next"]'),
+  slides: [...slides],
+  cursor: document.querySelector('.cursor'),
+  prevArrow: document.querySelector('[data-gallery="prev"]'),
+  nextArrow: document.querySelector('[data-gallery="next"]'),
+  onChangeSlide: current => {
+    document.querySelectorAll('[data-gallery-current]').forEach(item => {
+      item.textContent = pad(current + 1);
+    });
+  },
 };
 
-// document.querySelector('[data-home-gallery-mobile-slide-title]').textContent = DOM.navigationItems[0].textContent;
-
-// total number of slides
-const totalSlides = DOM.slides.length;
-
+// ======================================================
+// Build Slides Array
+// ======================================================
 let slidesArr = [];
-DOM.slides.forEach(slide => {
-    slidesArr.push(new Slide(slide));
-});
+DOM.slides.forEach(slide => slidesArr.push(new Slide(slide)));
 
-// current slide position
 let current = -1;
-// check if animation is in progress
 let isAnimating = false;
 
-if (DOM.prevArrow) {
-    DOM.prevArrow.addEventListener('click', () => {
-        if ( isAnimating ) return;
-        prev();
+// ======================================================
+// Helpers
+// ======================================================
+const getVisibleSlides = () =>
+  slidesArr.filter(slide => {
+    const display = window.getComputedStyle(slide.DOM.el).display;
+    return display !== 'none';
+  });
+
+// ======================================================
+// Initial Category Setup
+// ======================================================
+let activeBtn = gallery.querySelector('.frame__nav-button.active');
+if (!activeBtn && navButtons.length > 0) {
+  activeBtn = navButtons[0];
+  activeBtn.classList.add('active');
+}
+
+if (activeBtn) {
+  const activeCategory = activeBtn.getAttribute('data-gallery-category');
+  let firstVisible = null;
+
+  slides.forEach(slide => {
+    const slideCategory = slide.getAttribute('data-category');
+    slide.classList.remove('slide--current');
+
+    if (slideCategory === activeCategory) {
+      slide.style.display = 'block';
+      if (!firstVisible) firstVisible = slide;
+    } else {
+      slide.style.display = 'none';
+    }
+  });
+
+  if (firstVisible) {
+    firstVisible.classList.add('slide--current');
+    const pos = slidesArr.findIndex(s => s.DOM.el === firstVisible);
+    if (pos !== -1) current = pos;
+  }
+}
+
+// ======================================================
+// Category Buttons Click
+// ======================================================
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // 1️⃣ Прибрати active у всіх
+    navButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // 2️⃣ Отримати категорію
+    const category = btn.getAttribute('data-gallery-category');
+    let firstVisible = null;
+
+    current = -1;
+
+    // 3️⃣ Пройтись по всіх слайдах
+    slides.forEach(slide => {
+      const slideCategory = slide.getAttribute('data-category');
+      slide.classList.remove('slide--current');
+
+      if (slideCategory === category) {
+        slide.style.display = 'block';
+        if (!firstVisible) firstVisible = slide;
+      } else {
+        slide.style.display = 'none';
+      }
+
+      // 🔄 Повне очищення трансформацій усього слайду та його внутрішніх елементів
+      const innerEls = slide.querySelectorAll(
+        '.slide__inner, .slide__img, .slide__img-inner, .slide__img-inner2',
+      );
+
+      gsap.set([slide, ...innerEls], {
+        x: 0,
+        y: 0,
+        z: 0,
+        rotation: 0,
+        rotationX: 0,
+        rotationY: 0,
+        scale: 1,
+        opacity: 1, // повертаємо прозорість
+        zIndex: 'auto', // повертаємо стандартний стековий контекст
+        clearProps: 'transform,opacity,z-index',
+      });
     });
+
+    // 4️⃣ Встановити slide--current на перший видимий
+    if (firstVisible) {
+      firstVisible.classList.add('slide--current');
+
+      // 🔄 Іще раз обнулити всі вкладені елементи першого видимого
+      const firstInnerEls = firstVisible.querySelectorAll(
+        '.slide__inner, .slide__img, .slide__img-inner, .slide__img-inner2',
+      );
+
+      gsap.set([firstVisible, ...firstInnerEls], {
+        x: 0,
+        y: 0,
+        z: 0,
+        rotation: 0,
+        rotationX: 0,
+        rotationY: 0,
+        scale: 1,
+        opacity: 1,
+        zIndex: 'auto',
+        clearProps: 'transform,opacity,z-index',
+      });
+
+      // 5️⃣ Оновити current-індекс
+      const pos = slidesArr.findIndex(s => s.DOM.el === firstVisible);
+      if (pos !== -1) current = pos;
+    }
+  });
+});
+
+// ======================================================
+// Navigation Arrows
+// ======================================================
+if (DOM.prevArrow) {
+  DOM.prevArrow.addEventListener('click', () => {
+    if (isAnimating) return;
+    prev();
+  });
 }
 if (DOM.nextArrow) {
-    DOM.nextArrow.addEventListener('click', () => {
-        if ( isAnimating ) return;
-        next();
-    })
+  DOM.nextArrow.addEventListener('click', () => {
+    if (isAnimating) return;
+    next();
+  });
 }
 
-const setCurrentSlide = position => {
-    if ( current !== -1 ) {
-        slidesArr[current].DOM.el.classList.remove('slide--current');
-    }
-
-    current = position;
-    slidesArr[current].DOM.el.classList.add('slide--current');
-
-    DOM.navigationItems[current].classList.add('frame__nav-button--current');
-};
-
+// ======================================================
+// Next / Prev
+// ======================================================
 const next = () => {
-    const newPosition = current < totalSlides - 1 ? current + 1 : 0;
-    navigate(newPosition);
+  const visibleSlides = getVisibleSlides();
+  if (visibleSlides.length <= 1) return; // один слайд — не рухаємось
+
+  const currentIndex = visibleSlides.findIndex(slide =>
+    slide.DOM.el.classList.contains('slide--current'),
+  );
+  const newIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % visibleSlides.length;
+  const newSlide = visibleSlides[newIndex];
+
+  slidesArr.forEach(slide => slide.DOM.el.classList.remove('slide--current'));
+  newSlide.DOM.el.classList.add('slide--current');
+  navigateToVisible(newSlide);
 };
 
 const prev = () => {
-    const newPosition = current > 0 ? current - 1 : totalSlides - 1;
-    navigate(newPosition);
+  const visibleSlides = getVisibleSlides();
+  if (visibleSlides.length <= 1) return; // один слайд — не рухаємось
+
+  const currentIndex = visibleSlides.findIndex(slide =>
+    slide.DOM.el.classList.contains('slide--current'),
+  );
+  const newIndex =
+    currentIndex === -1
+      ? visibleSlides.length - 1
+      : (currentIndex - 1 + visibleSlides.length) % visibleSlides.length;
+  const newSlide = visibleSlides[newIndex];
+
+  slidesArr.forEach(slide => slide.DOM.el.classList.remove('slide--current'));
+  newSlide.DOM.el.classList.add('slide--current');
+  navigateToVisible(newSlide);
 };
+
+function navigateToVisible(targetSlide) {
+  if (!targetSlide) return;
+  const newPosition = slidesArr.findIndex(s => s.DOM.el === targetSlide.DOM.el);
+  if (newPosition === -1 || newPosition === current || isAnimating) return;
+  navigate(newPosition);
+}
+
+// ======================================================
+// GSAP Slide Navigation
+// ======================================================
 
 const navigate = newPosition => {
-    isAnimating = true;
-    
-    // change navigation current class
-    DOM.navigationItems[current].classList.remove('frame__nav-button--current');
-    DOM.navigationItems[newPosition].classList.add('frame__nav-button--current');
-    
-    // navigation direction
-    const direction = current < newPosition ? current === 0 && newPosition === totalSlides - 1 ? 'prev' : 'next' : current === totalSlides - 1 && newPosition === 0 ? 'next' : 'prev';
-    
-    const currentSlide = slidesArr[current];
-    current = newPosition;
-    const upcomingSlide = slidesArr[current];
+  if (isAnimating) return;
+  isAnimating = true;
 
-    gsap.timeline({
-        defaults: {
-            duration: 1.6,
-            ease: 'power3.inOut'
-        },
-        onComplete: () => {
-            currentSlide.DOM.el.classList.remove('slide--current');
-            // Close the current slide if it was open
-            if ( currentSlide.isOpen ) {
-                hideContent(currentSlide);
-            }
+  const visibleSlides = getVisibleSlides();
+  const visibleTotal = visibleSlides.length;
+  if (visibleTotal <= 1) {
+    isAnimating = false;
+    return;
+  }
 
-            isAnimating = false;
-        }
-    })
-    .addLabel('start', 0)
+  const direction =
+    current < newPosition
+      ? current === 0 && newPosition === visibleTotal - 1
+        ? 'prev'
+        : 'next'
+      : current === visibleTotal - 1 && newPosition === 0
+      ? 'next'
+      : 'prev';
 
-    .set([currentSlide.DOM.imgInner, upcomingSlide.DOM.imgInner], {
-        transformOrigin: direction === 'next' ? '50% 0%' : '50% 100%'
-    }, 'start')
+  const currentSlide = slidesArr[current];
+  current = newPosition;
+  const upcomingSlide = slidesArr[current];
 
-    // Place coming slide either above (translate -100%) or below (translate 100%) and the slide__inner to the opposite translate.
-    .set(upcomingSlide.DOM.el, {
-        yPercent: direction === 'next' ? 100 : -100
-    }, 'start')
-    .set(upcomingSlide.DOM.inner, {
-        yPercent: direction === 'next' ? -100 : 100
-    }, 'start')
-    
-    // Add current class
+  const overlapOffset = 0; // мінімальне перекриття — щоб не було щілини
+
+  gsap.set(currentSlide.DOM.el, { display: 'block', opacity: 1, zIndex: 1 });
+  gsap.set(upcomingSlide.DOM.el, { display: 'block', opacity: 1, zIndex: 2 });
+
+  const tl = gsap.timeline({
+    defaults: { duration: 1.6, ease: 'power3.inOut' },
+    onComplete: () => {
+      currentSlide.DOM.el.classList.remove('slide--current');
+      gsap.set(currentSlide.DOM.el, { clearProps: 'transform zIndex opacity' });
+      gsap.set(currentSlide.DOM.imgInner, { clearProps: 'transform' });
+      isAnimating = false;
+    },
+  });
+
+  tl.addLabel('start', 0)
+    // 🔹 визначаємо центр деформації для обох
+    .set(
+      [currentSlide.DOM.imgInner, upcomingSlide.DOM.imgInner],
+      { transformOrigin: direction === 'next' ? '50% 0%' : '50% 100%' },
+      'start',
+    )
+
+    // 🔹 розташування нового слайду поза екраном
+    .set(
+      upcomingSlide.DOM.el,
+      { yPercent: direction === 'next' ? 100 - overlapOffset : -100 + overlapOffset },
+      'start',
+    )
+    .set(
+      upcomingSlide.DOM.inner,
+      { yPercent: direction === 'next' ? -100 + overlapOffset : 100 - overlapOffset },
+      'start',
+    )
+
+    // додаємо клас
     .add(() => {
-        upcomingSlide.DOM.el.classList.add('slide--current');
+      upcomingSlide.DOM.el.classList.add('slide--current');
     }, 'start')
 
-    // hide the back button and show back the cursor text if the current slide was open
-    .add(() => {
-        if ( currentSlide.isOpen ) {
-            toggleCursorBackTexts();
-        }
-    }, 'start')
-    
-    // Current slide moves either up or down (translate 100% or -100%)
-    .to(currentSlide.DOM.el, {
-        yPercent: direction === 'next' ? -100 : 100
-    }, 'start')
-    .to(currentSlide.DOM.imgInner, {
-        scaleY: 2
-    }, 'start')
-    // Upcoming slide translates to 0
-    .to([upcomingSlide.DOM.el, upcomingSlide.DOM.inner], {
-        yPercent: 0
-    }, 'start')
-    .to(upcomingSlide.DOM.imgInner, {
+    // 🟢 поточний слайд рухається з невеликим “тягучим” scaleY
+    .to(
+      currentSlide.DOM.imgInner,
+      {
+        scaleY: 1.3, // 🔥 менше, ніж 1.45 → виглядає природно
         ease: 'power2.inOut',
-        startAt: {scaleY: 2},
-        scaleY: 1
-    }, 'start');
+      },
+      'start',
+    )
+    .to(
+      currentSlide.DOM.el,
+      {
+        yPercent: direction === 'next' ? -100 - overlapOffset : 100 + overlapOffset,
+        ease: 'power3.inOut',
+      },
+      'start',
+    )
 
+    // 🟣 новий слайд в’їжджає і “здувається” одночасно
+    .fromTo(
+      [upcomingSlide.DOM.el, upcomingSlide.DOM.inner],
+      {
+        yPercent: direction === 'next' ? 100 : -100,
+      },
+      {
+        yPercent: 0,
+        ease: 'power3.inOut',
+      },
+      'start',
+    )
+    .fromTo(
+      upcomingSlide.DOM.imgInner,
+      { scaleY: 1.5 },
+      {
+        scaleY: 1,
+        ease: 'power2.out',
+        duration: 1.4,
+      },
+      'start',
+    );
 
-    if (typeof DOM.onChangeSlide === 'function') {
-        DOM.onChangeSlide(current);
-    }
+  if (typeof DOM.onChangeSlide === 'function') {
+    DOM.onChangeSlide(current);
+  }
 };
 
-const toggleCursorBackTexts = isContent => {
-    return gsap.timeline({
-        onStart: () => {
-            gsap.set(DOM.backChars, {opacity: isContent ? 0 : 1});
-            if ( isContent ) {
-                DOM.backCtrl.classList.add('frame__back--show');
-            }
-        },
-        onComplete: () => {
-            DOM.backCtrl.classList[isContent ? 'add' : 'remove']('frame__back--show');
-            if ( !isContent ) {
-                DOM.backCtrl.classList.remove('frame__back--show');
-            }
-        }
-    })
-};
-
+// ======================================================
+// Optional: Show / Hide content
+// ======================================================
 const showContent = position => {
-    if ( isAnimating ) return;
-    isAnimating = true;
+  if (isAnimating) return;
+  isAnimating = true;
+  const slide = slidesArr[position];
+  slide.isOpen = true;
 
-    const slide = slidesArr[position];
-
-    slide.isOpen = true;
-
-    gsap.timeline({
-        defaults: {
-            duration: 1.6,
-            ease: 'power3.inOut'
-        },
-        onStart: () => {
-            
-        },
-        onComplete: () => {
-            isAnimating = false;
-        }
+  gsap
+    .timeline({
+      defaults: { duration: 1.6, ease: 'power3.inOut' },
+      onComplete: () => (isAnimating = false),
     })
     .addLabel('start', 0)
-    .add(() => {
-        toggleCursorBackTexts('content');
-    }, 'start')
-    .to(slide.DOM.img, {
-        yPercent: -100
-    }, 'start')
-    .set(slide.DOM.imgInner, {
-        transformOrigin: '50% 100%'
-    }, 'start')
-    .to(slide.DOM.imgInner, {
-        yPercent: 100,
-        scaleY: 2
-    }, 'start')
+    .to(slide.DOM.img, { yPercent: -100 }, 'start')
+    .set(slide.DOM.imgInner, { transformOrigin: '50% 100%' }, 'start')
+    .to(slide.DOM.imgInner, { yPercent: 100, scaleY: 2 }, 'start');
 };
 
 const hideContent = (slide, animate = false) => {
-    // reset values
-    isAnimating = true;
+  isAnimating = true;
+  const complete = () => {
+    slide.isOpen = false;
+    isAnimating = false;
+  };
 
-    const complete = () => {
-        slide.isOpen = false;
-        isAnimating = false;
-    };
-
-    if ( animate ) {
-        gsap.timeline({
-            defaults: {
-                duration: 1.6,
-                ease: 'power3.inOut'
-            },
-            onComplete: complete
-        })
-        .addLabel('start', 0)
-        .to(slide.DOM.img, {
-            yPercent: 0
-        }, 'start')
-        .to(slide.DOM.imgInner, {
-            yPercent: 0,
-            scaleY: 1
-        }, 'start');
-    }
-    else {
-        gsap.set(slide.DOM.img, {
-            yPercent: 0
-        });
-        gsap.set(slide.DOM.imgInner, {
-            yPercent: 0,
-            scaleY: 1
-        });
-        complete();
-    }
+  if (animate) {
+    gsap
+      .timeline({ defaults: { duration: 1.6, ease: 'power3.inOut' }, onComplete: complete })
+      .addLabel('start', 0)
+      .to(slide.DOM.img, { yPercent: 0 }, 'start')
+      .to(slide.DOM.imgInner, { yPercent: 0, scaleY: 1 }, 'start');
+  } else {
+    gsap.set(slide.DOM.img, { yPercent: 0 });
+    gsap.set(slide.DOM.imgInner, { yPercent: 0, scaleY: 1 });
+    complete();
+  }
 };
 
+// ======================================================
+// Init Events
+// ======================================================
 const initEvents = () => {
-    // Links navigation
-    [...DOM.navigationItems].forEach((item, position) => {
-        item.addEventListener('click', () => {
-            if ( current === position || isAnimating ) return;
-            navigate(position);
-        });
-    });
-
-    // Initialize the GSAP Observer plugin
-    // Observer.create({
-    //     type: 'wheel,touch,pointer',
-    //     onDown: () => !isAnimating && prev(),
-    //     onUp: () => !isAnimating && next(),
-    //     // invert the mouse wheel delta
-    //     wheelSpeed: -1,
-    //     tolerance: 10
-    // });
-
-    for (const [position, slide] of slidesArr.entries()) {
-        slide.DOM.img.addEventListener('click', () => {
-            showContent(position);
-        });
-    }
+  for (const [position, slide] of slidesArr.entries()) {
+    slide.DOM.img.addEventListener('click', () => showContent(position));
+  }
 };
 
-// Set current slide
-setCurrentSlide(0);
-
-// Initialize custom cursor
-// new CursorText(DOM.cursor);
-
-// Initialize the events
+// ======================================================
+// Start
+// ======================================================
 initEvents();
-
-// Preload images and initialize scrolling animations
-preloadImages('.slide__img-inner').then( _ => {
-	document.body.classList.remove('loading');
+preloadImages('.slide__img-inner').then(_ => {
+  document.body.classList.remove('loading');
 });

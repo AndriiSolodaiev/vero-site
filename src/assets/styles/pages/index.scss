@@ -1,6 +1,6 @@
 section {
-  overflow: hidden;
-  max-width: 100vw;
+  overflow: hidden !important;
+  max-width: 100vw !important;
 }
 
 .section {
@@ -48,7 +48,6 @@ section {
     transform: skew(30deg);
     transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
     background-color: $accent-color;
-    ;
   }
 
   span.mobile-mode {
@@ -103,10 +102,11 @@ section {
 
 .hero {
   height: 100svh;
+
   width: 100%;
   position: relative;
   z-index: 2;
-  padding-top: 127px;
+  padding-top: 100px !important;
   overflow: hidden;
 
   .hero-bg {
@@ -119,7 +119,6 @@ section {
     background: #1c1e2cd7;
     opacity: 0;
     pointer-events: none;
-
   }
 
   @include tablet {
@@ -128,10 +127,6 @@ section {
 
   @include laptop {
     padding-top: 10.2vw;
-
-
-
-
   }
 
   .section-title {
@@ -139,13 +134,13 @@ section {
     line-height: 90%;
     display: block;
 
-    &>span {
+    & > span {
       color: $text-color;
       padding-left: 40px;
     }
 
     @include tablet {
-      &>span {
+      & > span {
         padding-left: 60px;
       }
     }
@@ -155,7 +150,7 @@ section {
     }
 
     @include laptop {
-      &>span {
+      & > span {
         padding-left: 5.2vw;
       }
     }
@@ -179,7 +174,8 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(10, 15, 19, 0.80) 0%, rgba(28, 30, 44, 0) 40% 100%), linear-gradient(180deg, rgba(10, 15, 19, 0.00) 60%, rgba(10, 15, 19, 0.80) 100%);
+    background: linear-gradient(90deg, rgba(10, 15, 19, 0.8) 0%, rgba(28, 30, 44, 0) 40% 100%),
+      linear-gradient(180deg, rgba(10, 15, 19, 0) 60%, rgba(10, 15, 19, 0.8) 100%);
   }
 
   video,
@@ -200,7 +196,7 @@ section {
   row-gap: 0;
   color: $dark-color; // clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
 
-  &>svg {
+  & > svg {
     width: 80px;
     height: 80px;
 
@@ -274,20 +270,18 @@ section {
       width: 100%;
     }
 
-    .hero-promo-item>svg {
+    .hero-promo-item > svg {
       width: 110%;
       height: 100%;
-
     }
 
-    .hero-promo-item.dark>svg {
+    .hero-promo-item.dark > svg {
       width: 110%;
       height: 100%;
-
     }
 
     @include laptop {
-      display: none
+      display: none;
     }
   }
 }
@@ -309,7 +303,7 @@ section {
     padding: 28px;
   }
 
-  &>svg {
+  & > svg {
     position: absolute;
     z-index: -1;
     top: 0;
@@ -338,30 +332,25 @@ section {
   &:first-child:hover {
     transform: translateX(-20px);
 
-    &>svg {
+    & > svg {
       transform: rotate(-2deg);
     }
 
     .arrow-svg {
-      transform: rotate(-45deg)
+      transform: rotate(-45deg);
     }
-
-
   }
 
   &.dark:hover {
     transform: translateX(-20px) translateY(-15%);
 
-    &>svg {
+    & > svg {
       transform: rotate(2deg);
-
     }
 
     .arrow-svg {
-      transform: rotate(-45deg)
+      transform: rotate(-45deg);
     }
-
-
   }
 }
 
@@ -392,7 +381,6 @@ section {
   .arrow-svg {
     transition: transform 0.4s ease-in-out;
   }
-
 }
 
 .mobile-mode {
@@ -439,11 +427,8 @@ section {
   // justify-content: space-between;
   // padding: 16px;
 
-
   @include tablet {
     // padding: 30px;
-
-
   }
 
   @include laptop {
@@ -479,12 +464,10 @@ section {
     .icon--sticker {
       bottom: 0;
       transform: rotate(0deg);
-
     }
 
     span,
     .icon--lev {
-
       transform: translateY(-10px);
     }
   }
@@ -527,7 +510,6 @@ section {
 }
 
 .down-btn {
-
   display: flex;
   gap: 12px;
   align-items: center;
@@ -537,28 +519,26 @@ section {
     margin-left: 47px;
   }
 
-  &>span {
+  & > span {
     @include general-text;
     color: $text-color;
     font-size: 14px;
     display: none;
 
-    @media screen and (min-width:1600px) {
+    @media screen and (min-width: 1600px) {
       display: inline;
     }
   }
 
   &-circle {
     border-radius: 50%;
-    border: 1px solid rgba(244, 245, 249, 0.40);
+    border: 1px solid rgba(244, 245, 249, 0.4);
 
     position: relative;
     overflow: hidden;
 
-
     width: 32px;
     height: 32px;
-
 
     /* обидві стрілки однакові */
     .arrow {
@@ -636,10 +616,6 @@ section {
 
       /* внизу — зникає */
     }
-
-
-
-
   }
 }
 
@@ -653,10 +629,10 @@ section {
   z-index: 2;
 
   @include laptop {
-    display: block
+    display: block;
   }
 
-  &>svg {
+  & > svg {
     position: absolute;
     z-index: -1;
     width: calc(480px / 1920px * 100vw);
@@ -664,7 +640,6 @@ section {
     transform: translate(-50%, 50%);
     bottom: 0;
     left: 50%;
-
   }
 
   h4 {
@@ -673,6 +648,7 @@ section {
     margin-bottom: 20px;
     text-align: center;
     width: 100%;
+    font-size: 2vw;
   }
 
   .queue-list {
@@ -682,7 +658,7 @@ section {
     justify-content: center;
     padding-bottom: 23px;
     border-radius: 100px;
-    background: rgba(28, 30, 44, 0.10);
+    background: rgba(28, 30, 44, 0.1);
     backdrop-filter: blur(17px);
     -webkit-backdrop-filter: blur(17px);
     padding: 8px 20px;
@@ -708,7 +684,6 @@ section {
       top: 50%;
       transform: translateY(-50%);
       color: $text-color;
-
     }
 
     &:last-child::after {
@@ -718,12 +693,11 @@ section {
 }
 
 .hero-address {
-
   @include laptop {
     margin-left: auto;
   }
 
-  &>svg.icon--sticker {
+  & > svg.icon--sticker {
     transform: rotate(3deg);
     bottom: -60px;
 
@@ -761,7 +735,7 @@ section {
       transform: translate(-50%, -80%);
     }
 
-    &>svg {
+    & > svg {
       width: 24px;
       height: 24px;
       transition: all 0.4s ease;
@@ -777,8 +751,6 @@ section {
 
       transition: all 0.4s ease;
     }
-
-
   }
 
   &:hover {
@@ -812,13 +784,11 @@ section {
     gap: 76px;
     justify-content: space-between;
     align-items: center;
-
   }
 
   @include laptop {
     display: none;
   }
-
 
   .queue-wrap-mob {
     display: flex;
@@ -835,7 +805,6 @@ section {
 
       @include tablet {
         width: 120px;
-
       }
     }
 
@@ -849,7 +818,6 @@ section {
 
       @include tablet {
         gap: 20px;
-
       }
     }
 
@@ -875,15 +843,12 @@ section {
   }
 
   &-content {
-
-
     @include laptop {
       display: flex;
       align-items: center;
       padding-left: 3.125vw;
       padding-right: 1.82vw;
     }
-
   }
 
   &-text {
@@ -905,7 +870,7 @@ section {
       padding: 3.9vw 7.2vw 3.9vw 5.2vw;
     }
 
-    &>svg {
+    & > svg {
       position: absolute;
       z-index: -1;
       top: 50%;
@@ -938,8 +903,6 @@ section {
       @include tablet {
         margin-bottom: 48px;
       }
-
-
     }
 
     p {
@@ -972,7 +935,7 @@ section {
     flex: 3;
     padding: 5vw 0;
 
-    &>svg {
+    & > svg {
       display: none;
 
       @include laptop {
@@ -989,6 +952,7 @@ section {
     }
 
     & .video-wrapper {
+      position: relative;
       width: 100%;
       aspect-ratio: 1/0.6;
       position: relative;
@@ -999,6 +963,16 @@ section {
         width: 95%;
       }
 
+      .video-cover {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
 
       video {
         width: 100%;
@@ -1018,6 +992,7 @@ section {
         @include block-title;
         color: $text-color;
         position: absolute;
+        z-index: 2;
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
@@ -1034,11 +1009,11 @@ section {
 
       .controls-wrap {
         position: absolute;
+        z-index: 2;
         width: 100%;
         height: 100%;
         cursor: pointer;
         transition: all 0.4s ease;
-        z-index: 1;
 
         &.hide {
           opacity: 0;
@@ -1079,10 +1054,6 @@ section {
           width: 6.25vw;
           height: 6.25vw;
         }
-
-
-
-
 
         svg {
           width: 24px;
@@ -1156,7 +1127,6 @@ section {
   @include tablet {
     transform: rotate(-3deg);
     width: calc(50% - 5px);
-
   }
 
   @include laptop {
@@ -1170,11 +1140,10 @@ section {
     background-color: $accent-color-2;
 
     @include tablet {
-      transform: rotate(3deg)
+      transform: rotate(3deg);
     }
 
     @include laptop {
-
       transform: rotate(-3deg) translate(-20%, 0%);
       z-index: 1;
     }
@@ -1184,11 +1153,10 @@ section {
     background-color: $blue-color;
 
     @include tablet {
-      transform: rotate(3deg)
+      transform: rotate(3deg);
     }
 
     @include laptop {
-
       transform: rotate(3deg) translate(-40%, -40%);
     }
   }
@@ -1197,11 +1165,10 @@ section {
     background-color: $accent-color-2;
 
     @include tablet {
-      transform: rotate(-3deg)
+      transform: rotate(-3deg);
     }
 
     @include laptop {
-
       transform: rotate(-3deg) translate(10%, 10%);
       z-index: 4;
     }
@@ -1211,56 +1178,48 @@ section {
     background-color: $blue-color;
 
     @include tablet {
-      transform: rotate(-3deg)
+      transform: rotate(-3deg);
     }
 
     @include laptop {
-
       transform: rotate(3deg) translate(10%, -15%);
     }
-
   }
 
   &-6 {
     background-color: $grey-color;
 
     @include tablet {
-      transform: rotate(3deg)
+      transform: rotate(3deg);
     }
 
     @include laptop {
-
       transform: rotate(-3deg) translate(-5%, -55%);
     }
-
   }
 
   &-7 {
     background-color: $grey-color;
 
     @include tablet {
-      transform: rotate(3deg)
+      transform: rotate(3deg);
     }
 
     @include laptop {
-
       transform: rotate(-3deg) translate(-10%, -30%);
     }
-
   }
 
   &-8 {
     background-color: $accent-color-2;
 
     @include tablet {
-      transform: rotate(-3deg)
+      transform: rotate(-3deg);
     }
 
     @include laptop {
-
       transform: rotate(3deg) translate(-20%, -50%);
     }
-
   }
 
   &__img {
@@ -1269,11 +1228,9 @@ section {
     object-fit: cover;
     margin-bottom: 20px;
 
-
     @include laptop {
       margin-bottom: 48px;
     }
-
   }
 
   &__title {
@@ -1330,15 +1287,14 @@ section {
 }
 
 .filler {
-
-  background: linear-gradient(180deg, #F4F5F9 0%, rgba(21, 19, 16, 0.00) 50%), linear-gradient(270deg, rgba(20, 21, 24, 0.00) 0%, rgba(20, 21, 24, 0.90) 100%);
+  background: linear-gradient(180deg, #f4f5f9 0%, rgba(21, 19, 16, 0) 50%),
+    linear-gradient(270deg, rgba(20, 21, 24, 0) 0%, rgba(20, 21, 24, 0.9) 100%);
   position: relative;
   min-height: 100svh;
 
-
   @include laptop {
     overflow: hidden;
-    background: linear-gradient(270deg, rgba(20, 21, 24, 0.00) 0%, rgba(20, 21, 24, 0.90) 100%);
+    background: linear-gradient(270deg, rgba(20, 21, 24, 0) 0%, rgba(20, 21, 24, 0.9) 100%);
   }
 
   &-img-wrap {
@@ -1351,7 +1307,7 @@ section {
     z-index: -1;
     overflow: hidden;
 
-    &>img {
+    & > img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -1409,7 +1365,6 @@ section {
       order: 1;
       max-width: 540px;
       width: auto;
-
     }
 
     h3 {
@@ -1431,7 +1386,6 @@ section {
       @media screen and (min-width: 1024px) and (max-width: 1366px) {
         max-width: 44vw;
       }
-
     }
   }
 
@@ -1443,7 +1397,6 @@ section {
   p {
     color: $text-color;
     margin-bottom: 40px;
-
   }
 
   .hero-slogan {
@@ -1466,7 +1419,6 @@ section {
       span {
         color: $wc;
       }
-
     }
   }
 
@@ -1500,11 +1452,9 @@ section {
       @include laptop {
         order: 3;
       }
-
     }
   }
 }
-
 
 .real-estate-homepage {
   padding-top: 120px;
@@ -1575,7 +1525,6 @@ section {
 
       @include tablet {
         width: 100%;
-
       }
 
       @include laptop {
@@ -1653,9 +1602,6 @@ section {
       &:hover {
         flex-grow: 2;
 
-
-
-
         .real-estate-homepage-card-descr {
           // height: 3.6vw;
           -webkit-line-clamp: 6;
@@ -1665,11 +1611,8 @@ section {
           background-color: $dark-color;
           border-color: $dark-color;
 
-
           svg {
             transform: rotate(90deg);
-
-
           }
         }
       }
@@ -1690,14 +1633,14 @@ section {
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(1deg, rgba(28, 30, 44, 0.00) 75.81%, rgba(28, 30, 44, 0.60) 98.76%), linear-gradient(180deg, rgba(28, 30, 44, 0.00) 37.23%, #1C1E2C 100%);
+      background: linear-gradient(1deg, rgba(28, 30, 44, 0) 75.81%, rgba(28, 30, 44, 0.6) 98.76%),
+        linear-gradient(180deg, rgba(28, 30, 44, 0) 37.23%, #1c1e2c 100%);
     }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-
     }
   }
 
@@ -1754,7 +1697,7 @@ section {
     border-radius: 59.259px;
     // background: var(--white, #f2f5fb);
     transition: all 0.4s ease-in-out;
-    border: 1px solid rgba(244, 245, 249, 0.40);
+    border: 1px solid rgba(244, 245, 249, 0.4);
     border-radius: 50%;
 
     @include tablet {
@@ -1763,7 +1706,6 @@ section {
     }
 
     @include laptop {
-
       height: 3.33vw;
       width: 3.33vw;
     }
@@ -1798,7 +1740,6 @@ section {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-
     }
   }
 
@@ -1853,10 +1794,7 @@ section {
   }
 }
 
-
-
 .location {
-
   position: relative;
   overflow: visible;
   width: 100%;
@@ -1924,7 +1862,6 @@ section {
 
       @include tablet {
         width: 100%;
-
       }
 
       @include laptop {
@@ -1958,15 +1895,12 @@ section {
       @include laptop {
         text-align: start;
       }
-
     }
 
     .general-btn {
       margin-top: 28px;
     }
   }
-
-
 }
 
 .map {
@@ -1977,11 +1911,12 @@ section {
 
   z-index: 2;
 
-  @include tablet {}
+  @include tablet {
+  }
 
   @include laptop {
     height: 100%;
-    aspect-ratio: 1 / 0.40;
+    aspect-ratio: 1 / 0.4;
   }
 }
 
@@ -1997,8 +1932,6 @@ section {
     width: 42.7vw;
     height: 42.7vw;
   }
-
-
 }
 
 .location-links-wrap {
@@ -2023,11 +1956,10 @@ section {
     padding: 8px 20px;
   }
 
-  &>p {
+  & > p {
     @include subtitle-text;
     color: $dark-color;
     margin-right: 40px;
-
   }
 
   .links-wrapper {
@@ -2045,7 +1977,6 @@ section {
     }
   }
 }
-
 
 .progress-homepage {
   padding-top: 120px;
@@ -2117,7 +2048,6 @@ section {
 
       @include tablet {
         width: 100%;
-
       }
 
       @include laptop {
@@ -2153,7 +2083,6 @@ section {
       @include laptop {
         text-align: start;
       }
-
     }
 
     .general-btn {
@@ -2218,13 +2147,11 @@ section {
     .progress-card__button svg {
       clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       transform: translate(0, 0);
-
     }
 
     .progress-card__img-wrap img {
       transform: scale(1.1);
     }
-
   }
 
   &__img-wrap {
@@ -2250,7 +2177,6 @@ section {
     justify-content: space-between;
     flex: 1;
 
-
     h3 {
       @include block-title;
       color: $dark-color;
@@ -2264,7 +2190,6 @@ section {
         margin-bottom: 64.5px;
       }
     }
-
   }
 
   &__bottom-block {
@@ -2272,8 +2197,6 @@ section {
     align-items: flex-end;
     justify-content: space-between;
     margin-top: auto;
-
-
   }
 
   &__button {
@@ -2283,12 +2206,12 @@ section {
     gap: 20px;
     align-items: center;
 
-    &>svg {
+    & > svg {
       // width: 20px;
       clip-path: polygon(40% 0%, 100% 0, 100% 100%, 40% 100%);
       overflow: hidden;
       transition: all 0.4s linear;
-      transform: translateX(-40%)
+      transform: translateX(-40%);
     }
   }
 
@@ -2354,7 +2277,6 @@ section {
 
     @include laptop {
       flex-direction: row;
-
     }
   }
 
@@ -2385,7 +2307,7 @@ section {
       padding: 5.5vw 7.2vw 6.9vw 5.2vw;
     }
 
-    &>svg {
+    & > svg {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -2394,16 +2316,11 @@ section {
       height: 100%;
       z-index: -1;
 
-
-
       @include tablet {
         width: 100%;
-
       }
 
       @include laptop {
-
-
         width: 100%;
         height: auto;
         top: 0;
@@ -2417,7 +2334,6 @@ section {
       @include block-title;
       color: $dark-color;
       margin-bottom: 48px;
-
     }
 
     p {
@@ -2439,7 +2355,7 @@ section {
     &__buttons-wrap {
       display: flex;
       align-items: center;
-      gap: 8px
+      gap: 8px;
     }
 
     .general-btn--light {
@@ -2453,8 +2369,6 @@ section {
         color: $dark-color;
       }
     }
-
-
   }
 
   &-text__subblock {
@@ -2483,7 +2397,7 @@ section {
       padding: 3.9vw 7.2vw 4.9vw 5.2vw;
     }
 
-    &>svg {
+    & > svg {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -2492,15 +2406,11 @@ section {
       height: 100%;
       z-index: -1;
 
-
-
       @include tablet {
         width: 100%;
-
       }
 
       @include laptop {
-
         clip-path: polygon(0% 0%, 100% 5%, 100% 100%, 0% 95%);
         width: 100%;
         height: 100%;
@@ -2534,7 +2444,6 @@ section {
             transform: translate(150%, -150%);
           }
         }
-
       }
     }
 
@@ -2551,13 +2460,11 @@ section {
       transition: all 0.4s ease;
       position: relative;
 
-
-      &>svg {
+      & > svg {
         width: 24px;
         height: 24px;
         transition: all 0.4s ease;
       }
-
 
       .icon--arrow {
         position: absolute;
@@ -2569,11 +2476,7 @@ section {
         z-index: 1;
         transition: all 0.4s ease;
       }
-
-
     }
-
-
 
     h3 {
       @include subtitle-text;
@@ -2585,11 +2488,7 @@ section {
     p {
       @include general-text;
       color: $text-color-2;
-
-
-
     }
-
   }
 
   &-video {
@@ -2603,7 +2502,7 @@ section {
       margin-top: 0;
     }
 
-    &>svg {
+    & > svg {
       position: absolute;
       z-index: -1;
       top: 0;
@@ -2613,12 +2512,24 @@ section {
     }
 
     & .video-wrapper {
+      position: relative;
       width: 100%;
       aspect-ratio: 1/0.6;
       position: relative;
 
       @include laptop {
         transform: translateX(-8%);
+      }
+
+      .video-cover {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
       }
 
       video {
@@ -2655,11 +2566,11 @@ section {
 
       .controls-wrap {
         position: absolute;
+        z-index: 2;
         width: 100%;
         height: 100%;
         cursor: pointer;
         transition: all 0.4s ease;
-        z-index: 1;
 
         &.hide {
           opacity: 0;
@@ -2720,7 +2631,6 @@ section {
             width: 36px;
             height: 36px;
           }
-
         }
       }
     }
@@ -2767,11 +2677,9 @@ section {
     flex-direction: row;
     align-items: center;
   }
-
 }
 
 .developer-text {
-
   @include laptop {
     flex: 1;
     padding: vw(80) vw(40) vw(40);
@@ -2798,14 +2706,12 @@ section {
     }
 
     @include laptop {
-
       row-gap: vw(40);
       column-gap: vw(60);
     }
   }
 
   p {
-
     @include general-text;
     color: $dark-color;
     width: 100%;
@@ -2813,8 +2719,6 @@ section {
     @include tablet {
       width: calc((100% - 60px) / 2);
     }
-
-
   }
 }
 
@@ -2825,7 +2729,7 @@ section {
   padding-bottom: 60px;
 
   @include laptop {
-    padding-bottom: 40px
+    padding-bottom: 40px;
   }
 
   &-bg {
@@ -2841,7 +2745,6 @@ section {
       width: 100%;
       left: 0;
     }
-
 
     svg {
       width: 100%;
@@ -2866,14 +2769,13 @@ section {
       margin-bottom: 9.375vw;
     }
 
-
     svg {
       width: 138.462px;
       height: 48px;
     }
   }
 
-  &>h3 {
+  & > h3 {
     @include article-title;
     color: $dark-color;
     text-align: center;
@@ -2885,10 +2787,8 @@ section {
     @media screen and (min-width: 1024px) and (max-width: 1366px) {
       font-size: 2.8vw;
     }
-
   }
 }
-
 
 .promo-homepage {
   padding-top: 120px;
@@ -2945,7 +2845,7 @@ section {
       padding: 3.75vw 3.16vw 3.75vw 5.25vw;
     }
 
-    &>svg {
+    & > svg {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -2956,12 +2856,9 @@ section {
 
       @include tablet {
         width: 100%;
-
       }
 
       @include laptop {
-
-
         width: 100%;
 
         top: 0;
@@ -2992,8 +2889,6 @@ section {
       background-color: $accent-color-2;
     }
   }
-
-
 }
 
 .promo-list {
@@ -3027,14 +2922,19 @@ section {
   opacity: 0;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(1deg, rgba(28, 30, 44, 0.00) 75.81%, rgba(28, 30, 44, 0.60) 98.76%), linear-gradient(180deg, rgba(28, 30, 44, 0.00) 60.44%, rgba(28, 30, 44, 0.80) 100%);
+    background-image: linear-gradient(
+        1deg,
+        rgba(28, 30, 44, 0) 75.81%,
+        rgba(28, 30, 44, 0.6) 98.76%
+      ),
+      linear-gradient(180deg, rgba(28, 30, 44, 0) 60.44%, rgba(28, 30, 44, 0.8) 100%);
   }
 
   @include tablet {
@@ -3103,7 +3003,7 @@ section {
     border-radius: 59.259px;
     // background: var(--white, #f2f5fb);
     transition: all 0.4s ease-in-out;
-    border: 1px solid rgba(244, 245, 249, 0.40);
+    border: 1px solid rgba(244, 245, 249, 0.4);
     border-radius: 50%;
 
     @include tablet {
@@ -3112,7 +3012,6 @@ section {
     }
 
     @include laptop {
-
       height: 3.33vw;
       width: 3.33vw;
     }
@@ -3148,7 +3047,6 @@ section {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-
     }
   }
 
@@ -3160,43 +3058,32 @@ section {
   }
 
   &:hover {
-
-
-
-
     img {
       transform: scale(1.1);
     }
-
 
     .promo-homepage-card-button {
       background-color: $dark-color;
       border-color: $dark-color;
 
-
       svg {
         transform: rotate(90deg);
-
-
       }
     }
   }
 }
 
 .gallery-homepage {
-
   padding-bottom: 50px;
   position: relative;
   overflow: hidden;
   width: 100%;
 
   @include tablet {
-
     padding-bottom: 50px;
   }
 
   @include laptop {
-
     padding-bottom: 100px;
   }
 
@@ -3213,11 +3100,9 @@ section {
       bottom: auto;
       transform: translate(0, 0);
     }
-
   }
 
   &-title {
     margin-bottom: 60px;
-
   }
 }

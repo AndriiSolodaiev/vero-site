@@ -1,17 +1,17 @@
 .footer {
   position: relative;
-  background: linear-gradient(180deg, #F4F5F9 0%, #f4f5f956 100%);
+  background: linear-gradient(180deg, #f4f5f9 0%, #f4f5f956 100%);
   overflow: hidden;
   max-width: 100vw;
 
-  @include tablet {}
+  @include tablet {
+  }
 
   @include laptop {
     padding-top: vw(200);
-
   }
 
-  &>img {
+  & > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -19,10 +19,7 @@
     z-index: -1;
     top: 0;
     bottom: 0;
-
   }
-
-
 
   .footer-title {
     margin-bottom: 40px;
@@ -95,7 +92,6 @@
     @include tablet {
       flex-direction: row;
       gap: 120px;
-
     }
 
     @include laptop {
@@ -112,8 +108,6 @@
       margin-bottom: 0px;
     }
 
-
-
     &-label {
       @include tiny-text;
       color: $dark-color;
@@ -122,7 +116,6 @@
 
       @include tablet {
         margin-bottom: 12px;
-
       }
 
       @include laptop {
@@ -159,7 +152,7 @@
   &__address {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
 
     &-item {
       display: flex;
@@ -179,18 +172,16 @@
           margin-right: 10px;
           padding: 4px 12px;
           border-radius: 100px;
-          border: 1px solid #A8A8A8;
+          border: 1px solid #a8a8a8;
         }
       }
     }
   }
-
 }
 
 .footer-form {
   position: relative;
   padding: 78px 0px;
-
 
   @include tablet {
     width: 80%;
@@ -240,12 +231,10 @@
 
     @include tablet {
       font-size: 48px;
-
     }
 
     @include laptop {
       font-size: 3.33vw;
-
     }
   }
 
@@ -261,8 +250,6 @@
 }
 
 .footer__bottom-block {
-
-
   .btn-up {
     display: flex;
     justify-items: center;
@@ -287,7 +274,6 @@
   .footer__license-wrap {
     display: flex;
     justify-content: space-between;
-
   }
 
   .footer__license {
@@ -304,9 +290,7 @@
       }
     }
   }
-
 }
-
 
 .socials-list__item {
   width: 40px;
@@ -338,7 +322,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 1;
     width: 100%;
