@@ -1,4 +1,3 @@
-
 .lang,
 .social {
   z-index: 6;
@@ -6,13 +5,13 @@
 
   &__item.lang__item--active a {
     color: black;
-    
+
     &::before {
       display: none;
     }
-    
+
   }
-  
+
   &__item a {
     margin: 0 7.5px;
     position: relative;
@@ -24,7 +23,7 @@
     color: #BDBDBD;
     transition: all 0.3s;
     transition: transform .7s var(--in),
-    opacity .25s;
+      opacity .25s;
 
     @include from(1441px) {
       font-size: max(vh(12, 0.9), 12px);
@@ -34,7 +33,7 @@
       color: $bc;
       transform: translate(10%, 0%);
 
-      @include from(1025px) {
+      @include from(1024px) {
         &::before {
           opacity: 0;
         }

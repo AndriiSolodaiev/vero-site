@@ -230,6 +230,8 @@
 
         }
       }
+
+
     }
 
     .terms-hero__descr {
@@ -398,4 +400,49 @@
       flex-shrink: 0;
     }
   }
+}
+
+.terms-open-list {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: text-decoration 0.4s ease-in-out;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transform: rotate(180deg);
+    transition: transform 0.4s ease-in-out;
+    flex-shrink: 0;
+
+    @include laptop {}
+  }
+
+  &.is-open svg {
+    transform: rotate(0deg);
+  }
+
+  @media (hover:hover) {
+    &:hover span {
+      text-decoration: underline;
+    }
+  }
+}
+
+.terms-hero__list--child {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.terms-hero__descr--title {
+  &::before {
+    content: none;
+
+  }
+
+  padding-left: 0;
 }

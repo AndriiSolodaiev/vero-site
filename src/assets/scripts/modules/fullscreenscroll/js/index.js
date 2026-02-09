@@ -49,6 +49,208 @@ const getVisibleSlides = () =>
     return display !== 'none';
   });
 
+const getActiveCategory = () => {
+  const activeBtn = gallery.querySelector('.frame__nav-button.active');
+  return activeBtn ? activeBtn.getAttribute('data-gallery-category') : null;
+};
+
+const getCurrentSlideIndex = () => {
+  const visibleSlides = getVisibleSlides();
+  return visibleSlides.findIndex(slide => slide.DOM.el.classList.contains('slide--current'));
+};
+
+const updateArrowStates = () => {
+  const visibleSlides = getVisibleSlides();
+  const currentIndex = getCurrentSlideIndex();
+  const activeBtn = gallery.querySelector('.frame__nav-button.active');
+
+  if (visibleSlides.length <= 1 && navButtons.length <= 1) {
+    DOM.prevArrow?.classList.add('disabled');
+    DOM.nextArrow?.classList.add('disabled');
+    return;
+  }
+
+  // Перевірка для кнопки PREV
+  // disabled тільки якщо: перший слайд + перша категорія
+  if (currentIndex === 0) {
+    const prevBtn = activeBtn?.previousElementSibling;
+    const isFirstCategory = !prevBtn || !prevBtn.classList.contains('frame__nav-button');
+
+    if (isFirstCategory) {
+      DOM.prevArrow?.classList.add('disabled');
+    } else {
+      DOM.prevArrow?.classList.remove('disabled');
+    }
+  } else {
+    DOM.prevArrow?.classList.remove('disabled');
+  }
+
+  // Перевірка для кнопки NEXT
+  // disabled тільки якщо: останній слайд + остання категорія
+  if (currentIndex === visibleSlides.length - 1) {
+    const nextBtn = activeBtn?.nextElementSibling;
+    const isLastCategory = !nextBtn || !nextBtn.classList.contains('frame__nav-button');
+
+    if (isLastCategory) {
+      DOM.nextArrow?.classList.add('disabled');
+    } else {
+      DOM.nextArrow?.classList.remove('disabled');
+    }
+  } else {
+    DOM.nextArrow?.classList.remove('disabled');
+  }
+};
+
+// ======================================================
+// Switch Category
+// ======================================================
+const switchCategory = direction => {
+  if (isAnimating) return false;
+
+  const activeBtn = gallery.querySelector('.frame__nav-button.active');
+  if (!activeBtn) return false;
+
+  const targetBtn =
+    direction === 'next' ? activeBtn.nextElementSibling : activeBtn.previousElementSibling;
+
+  if (!targetBtn || !targetBtn.classList.contains('frame__nav-button')) {
+    return false;
+  }
+
+  isAnimating = true;
+
+  const currentSlideEl = document.querySelector('.slide--current');
+  const currentSlideObj = slidesArr.find(s => s.DOM.el === currentSlideEl);
+
+  // Змінюємо категорію
+  const targetCategory = targetBtn.getAttribute('data-gallery-category');
+
+  // Знаходимо всі слайди нової категорії
+  const newCategorySlides = slidesArr.filter(slide => {
+    const slideCategory = slide.DOM.el.getAttribute('data-category');
+    return slideCategory === targetCategory;
+  });
+
+  if (newCategorySlides.length === 0) {
+    isAnimating = false;
+    return false;
+  }
+
+  // Визначаємо цільовий слайд
+  const targetSlideObj =
+    direction === 'next' ? newCategorySlides[0] : newCategorySlides[newCategorySlides.length - 1];
+
+  const overlapOffset = 0;
+
+  // Показуємо слайди нової категорії
+  newCategorySlides.forEach(slide => {
+    slide.DOM.el.style.display = 'block';
+  });
+
+  // Приховуємо слайди старої категорії (крім поточного)
+  const oldCategory = activeBtn.getAttribute('data-gallery-category');
+  slidesArr.forEach(slide => {
+    const slideCategory = slide.DOM.el.getAttribute('data-category');
+    if (slideCategory !== targetCategory && slide !== currentSlideObj) {
+      slide.DOM.el.style.display = 'none';
+    }
+  });
+
+  gsap.set(currentSlideObj.DOM.el, { display: 'block', opacity: 1, zIndex: 1 });
+  gsap.set(targetSlideObj.DOM.el, { display: 'block', opacity: 1, zIndex: 2 });
+
+  const tl = gsap.timeline({
+    defaults: { duration: 1, ease: 'power3.inOut' },
+    onComplete: () => {
+      // Оновлюємо активну кнопку
+      navButtons.forEach(b => b.classList.remove('active'));
+      targetBtn.classList.add('active');
+
+      // Приховуємо всі слайди старої категорії
+      slidesArr.forEach(slide => {
+        const slideCategory = slide.DOM.el.getAttribute('data-category');
+        if (slideCategory !== targetCategory) {
+          slide.DOM.el.style.display = 'none';
+          slide.DOM.el.classList.remove('slide--current');
+        }
+      });
+
+      // Очищаємо трансформації поточного слайду
+      currentSlideObj.DOM.el.classList.remove('slide--current');
+      gsap.set(currentSlideObj.DOM.el, { clearProps: 'transform,zIndex,opacity' });
+      gsap.set(currentSlideObj.DOM.imgInner, { clearProps: 'transform' });
+
+      // Встановлюємо новий поточний слайд
+      targetSlideObj.DOM.el.classList.add('slide--current');
+      const pos = slidesArr.findIndex(s => s.DOM.el === targetSlideObj.DOM.el);
+      if (pos !== -1) current = pos;
+
+      isAnimating = false;
+      updateArrowStates();
+
+      if (typeof DOM.onChangeSlide === 'function') {
+        DOM.onChangeSlide(current);
+      }
+    },
+  });
+
+  tl.addLabel('start', 0)
+    .set(
+      [currentSlideObj.DOM.imgInner, targetSlideObj.DOM.imgInner],
+      { transformOrigin: direction === 'next' ? '0% 50%' : '100% 50%' },
+      'start',
+    )
+    .set(
+      targetSlideObj.DOM.el,
+      { xPercent: direction === 'next' ? 100 - overlapOffset : -100 + overlapOffset },
+      'start',
+    )
+    .set(
+      targetSlideObj.DOM.inner,
+      { xPercent: direction === 'next' ? -100 + overlapOffset : 100 - overlapOffset },
+      'start',
+    )
+    .to(
+      currentSlideObj.DOM.imgInner,
+      {
+        scaleX: 1.3,
+        ease: 'power2.inOut',
+      },
+      'start',
+    )
+    .to(
+      currentSlideObj.DOM.el,
+      {
+        xPercent: direction === 'next' ? -100 - overlapOffset : 100 + overlapOffset,
+        ease: 'power3.inOut',
+      },
+      'start',
+    )
+    .fromTo(
+      [targetSlideObj.DOM.el, targetSlideObj.DOM.inner],
+      {
+        xPercent: direction === 'next' ? 100 : -100,
+      },
+      {
+        xPercent: 0,
+        ease: 'power3.inOut',
+      },
+      'start',
+    )
+    .fromTo(
+      targetSlideObj.DOM.imgInner,
+      { scaleX: 1.5 },
+      {
+        scaleX: 1,
+        ease: 'power2.out',
+        duration: 0.8,
+      },
+      'start',
+    );
+
+  return true;
+};
+
 // ======================================================
 // Initial Category Setup
 // ======================================================
@@ -81,22 +283,22 @@ if (activeBtn) {
   }
 }
 
+// Початкове оновлення стану стрілок
+updateArrowStates();
+
 // ======================================================
 // Category Buttons Click
 // ======================================================
 navButtons.forEach(btn => {
   btn.addEventListener('click', () => {
-    // 1️⃣ Прибрати active у всіх
     navButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    // 2️⃣ Отримати категорію
     const category = btn.getAttribute('data-gallery-category');
     let firstVisible = null;
 
     current = -1;
 
-    // 3️⃣ Пройтись по всіх слайдах
     slides.forEach(slide => {
       const slideCategory = slide.getAttribute('data-category');
       slide.classList.remove('slide--current');
@@ -108,7 +310,6 @@ navButtons.forEach(btn => {
         slide.style.display = 'none';
       }
 
-      // 🔄 Повне очищення трансформацій усього слайду та його внутрішніх елементів
       const innerEls = slide.querySelectorAll(
         '.slide__inner, .slide__img, .slide__img-inner, .slide__img-inner2',
       );
@@ -121,17 +322,15 @@ navButtons.forEach(btn => {
         rotationX: 0,
         rotationY: 0,
         scale: 1,
-        opacity: 1, // повертаємо прозорість
-        zIndex: 'auto', // повертаємо стандартний стековий контекст
+        opacity: 1,
+        zIndex: 'auto',
         clearProps: 'transform,opacity,z-index',
       });
     });
 
-    // 4️⃣ Встановити slide--current на перший видимий
     if (firstVisible) {
       firstVisible.classList.add('slide--current');
 
-      // 🔄 Іще раз обнулити всі вкладені елементи першого видимого
       const firstInnerEls = firstVisible.querySelectorAll(
         '.slide__inner, .slide__img, .slide__img-inner, .slide__img-inner2',
       );
@@ -149,10 +348,11 @@ navButtons.forEach(btn => {
         clearProps: 'transform,opacity,z-index',
       });
 
-      // 5️⃣ Оновити current-індекс
       const pos = slidesArr.findIndex(s => s.DOM.el === firstVisible);
       if (pos !== -1) current = pos;
     }
+
+    updateArrowStates();
   });
 });
 
@@ -162,13 +362,39 @@ navButtons.forEach(btn => {
 if (DOM.prevArrow) {
   DOM.prevArrow.addEventListener('click', () => {
     if (isAnimating) return;
-    prev();
+
+    const currentIndex = getCurrentSlideIndex();
+
+    // Якщо на першому слайді - спробувати переключити категорію
+    if (currentIndex === 0) {
+      const switched = switchCategory('prev');
+      if (!switched) {
+        // Немає попередньої категорії - залишаємось
+        return;
+      }
+    } else {
+      prev();
+    }
   });
 }
+
 if (DOM.nextArrow) {
   DOM.nextArrow.addEventListener('click', () => {
     if (isAnimating) return;
-    next();
+
+    const visibleSlides = getVisibleSlides();
+    const currentIndex = getCurrentSlideIndex();
+
+    // Якщо на останньому слайді - спробувати переключити категорію
+    if (currentIndex === visibleSlides.length - 1) {
+      const switched = switchCategory('next');
+      if (!switched) {
+        // Немає наступної категорії - залишаємось
+        return;
+      }
+    } else {
+      next();
+    }
   });
 }
 
@@ -177,7 +403,7 @@ if (DOM.nextArrow) {
 // ======================================================
 const next = () => {
   const visibleSlides = getVisibleSlides();
-  if (visibleSlides.length <= 1) return; // один слайд — не рухаємось
+  if (visibleSlides.length <= 1) return;
 
   const currentIndex = visibleSlides.findIndex(slide =>
     slide.DOM.el.classList.contains('slide--current'),
@@ -192,7 +418,7 @@ const next = () => {
 
 const prev = () => {
   const visibleSlides = getVisibleSlides();
-  if (visibleSlides.length <= 1) return; // один слайд — не рухаємось
+  if (visibleSlides.length <= 1) return;
 
   const currentIndex = visibleSlides.findIndex(slide =>
     slide.DOM.el.classList.contains('slide--current'),
@@ -218,7 +444,6 @@ function navigateToVisible(targetSlide) {
 // ======================================================
 // GSAP Slide Navigation
 // ======================================================
-
 const navigate = newPosition => {
   if (isAnimating) return;
   isAnimating = true;
@@ -230,64 +455,56 @@ const navigate = newPosition => {
     return;
   }
 
-  const direction =
-    current < newPosition
-      ? current === 0 && newPosition === visibleTotal - 1
-        ? 'prev'
-        : 'next'
-      : current === visibleTotal - 1 && newPosition === 0
-      ? 'next'
-      : 'prev';
+  // Визначаємо індекси в межах видимих слайдів
+  const currentVisibleIndex = visibleSlides.findIndex(s => s.DOM.el === slidesArr[current].DOM.el);
+  const newVisibleIndex = visibleSlides.findIndex(s => s.DOM.el === slidesArr[newPosition].DOM.el);
+
+  // Вперед = справа наліво, назад = зліва направо
+  const direction = newVisibleIndex > currentVisibleIndex ? 'next' : 'prev';
 
   const currentSlide = slidesArr[current];
   current = newPosition;
   const upcomingSlide = slidesArr[current];
 
-  const overlapOffset = 0; // мінімальне перекриття — щоб не було щілини
+  const overlapOffset = 0;
 
   gsap.set(currentSlide.DOM.el, { display: 'block', opacity: 1, zIndex: 1 });
   gsap.set(upcomingSlide.DOM.el, { display: 'block', opacity: 1, zIndex: 2 });
 
   const tl = gsap.timeline({
-    defaults: { duration: 1.6, ease: 'power3.inOut' },
+    defaults: { duration: 1, ease: 'power3.inOut' },
     onComplete: () => {
       currentSlide.DOM.el.classList.remove('slide--current');
       gsap.set(currentSlide.DOM.el, { clearProps: 'transform zIndex opacity' });
       gsap.set(currentSlide.DOM.imgInner, { clearProps: 'transform' });
       isAnimating = false;
+      updateArrowStates();
     },
   });
 
   tl.addLabel('start', 0)
-    // 🔹 визначаємо центр деформації для обох
     .set(
       [currentSlide.DOM.imgInner, upcomingSlide.DOM.imgInner],
-      { transformOrigin: direction === 'next' ? '50% 0%' : '50% 100%' },
+      { transformOrigin: direction === 'next' ? '0% 50%' : '100% 50%' },
       'start',
     )
-
-    // 🔹 розташування нового слайду поза екраном
     .set(
       upcomingSlide.DOM.el,
-      { yPercent: direction === 'next' ? 100 - overlapOffset : -100 + overlapOffset },
+      { xPercent: direction === 'next' ? 100 - overlapOffset : -100 + overlapOffset },
       'start',
     )
     .set(
       upcomingSlide.DOM.inner,
-      { yPercent: direction === 'next' ? -100 + overlapOffset : 100 - overlapOffset },
+      { xPercent: direction === 'next' ? -100 + overlapOffset : 100 - overlapOffset },
       'start',
     )
-
-    // додаємо клас
     .add(() => {
       upcomingSlide.DOM.el.classList.add('slide--current');
     }, 'start')
-
-    // 🟢 поточний слайд рухається з невеликим “тягучим” scaleY
     .to(
       currentSlide.DOM.imgInner,
       {
-        scaleY: 1.3, // 🔥 менше, ніж 1.45 → виглядає природно
+        scaleX: 1.3,
         ease: 'power2.inOut',
       },
       'start',
@@ -295,31 +512,29 @@ const navigate = newPosition => {
     .to(
       currentSlide.DOM.el,
       {
-        yPercent: direction === 'next' ? -100 - overlapOffset : 100 + overlapOffset,
+        xPercent: direction === 'next' ? -100 - overlapOffset : 100 + overlapOffset,
         ease: 'power3.inOut',
       },
       'start',
     )
-
-    // 🟣 новий слайд в’їжджає і “здувається” одночасно
     .fromTo(
       [upcomingSlide.DOM.el, upcomingSlide.DOM.inner],
       {
-        yPercent: direction === 'next' ? 100 : -100,
+        xPercent: direction === 'next' ? 100 : -100,
       },
       {
-        yPercent: 0,
+        xPercent: 0,
         ease: 'power3.inOut',
       },
       'start',
     )
     .fromTo(
       upcomingSlide.DOM.imgInner,
-      { scaleY: 1.5 },
+      { scaleX: 1.5 },
       {
-        scaleY: 1,
+        scaleX: 1,
         ease: 'power2.out',
-        duration: 1.4,
+        duration: 0.8,
       },
       'start',
     );
@@ -340,7 +555,7 @@ const showContent = position => {
 
   gsap
     .timeline({
-      defaults: { duration: 1.6, ease: 'power3.inOut' },
+      defaults: { duration: 1, ease: 'power3.inOut' },
       onComplete: () => (isAnimating = false),
     })
     .addLabel('start', 0)
@@ -358,7 +573,7 @@ const hideContent = (slide, animate = false) => {
 
   if (animate) {
     gsap
-      .timeline({ defaults: { duration: 1.6, ease: 'power3.inOut' }, onComplete: complete })
+      .timeline({ defaults: { duration: 1, ease: 'power3.inOut' }, onComplete: complete })
       .addLabel('start', 0)
       .to(slide.DOM.img, { yPercent: 0 }, 'start')
       .to(slide.DOM.imgInner, { yPercent: 0, scaleY: 1 }, 'start');

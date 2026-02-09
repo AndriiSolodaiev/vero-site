@@ -7,15 +7,26 @@ import { animateTitleOnScroll } from '../../modules/effects/animateTitle';
 gsap.registerPlugin(ScrollTrigger);
 
 initSmoothScrolling();
-const header = document.querySelector('.header-bg');
 
-window.addEventListener('scroll', function headerSquosh() {
-  const scrollPosition = window.scrollY;
-  if (scrollPosition > 20) {
-    header.classList.add('scroll-down');
+let lastScroll = 0;
+const header = document.querySelector('.header');
+const scrollThreshold = 10; // мінімальна зміна для реагування
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Якщо прокрутка незначна — нічого не робимо
+  if (Math.abs(currentScroll - lastScroll) < scrollThreshold) return;
+
+  if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
+    // Користувач крутить вниз
+    header.classList.add('hide');
   } else {
-    header.classList.remove('scroll-down');
+    // Користувач крутить вгору
+    header.classList.remove('hide');
   }
+
+  lastScroll = currentScroll;
 });
 
 const menuTimeline = gsap.timeline({
@@ -182,11 +193,15 @@ document.body.addEventListener('click', function(evt) {
       window.dispatchEvent(new Event('stop-scroll'));
       menu.classList.remove('hide');
       header.classList.add('menu-is-open');
-
+      // document.body.style.overflow = 'hidden';
       menuTimeline.play();
     } else {
       window.dispatchEvent(new Event('start-scroll'));
-      menuTimeline.reverse();
+      // document.body.style.overflow = '';
+      if (btnMenuTarget || menuItem.href.match('#')) {
+        menuTimeline.reverse();
+      }
+
       setTimeout(() => {
         menu.classList.add('hide');
       }, 500);
@@ -261,11 +276,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-gsap.to('.header', {
-  duration: 1.5,
-  ease: 'power3.out',
-  translateY: 0,
-});
+gsap.fromTo(
+  '.header-bg',
+  {
+    duration: 0.4,
+    // ease: 'power3.out',
+    translateY: -100,
+  },
+  {
+    duration: 0.4,
+    // ease: 'power3.out',
+    translateY: 0,
+    delay: 0.2,
+  },
+);
 
 // gsap.to('.page-title__wrap svg', {
 //   rotate: 0,
@@ -325,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lineFill = document.querySelector('.loader__line-fill');
 
   let percent = 0;
-  const speed = 30;
+  const speed = 15;
 
   const simulateLoading = setInterval(() => {
     // приріст відсотків під час завантаження

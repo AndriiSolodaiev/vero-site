@@ -2,54 +2,60 @@ import Swiper, { Autoplay, EffectFade, Navigation } from 'swiper';
 import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
-  gsap.timeline().fromTo(".page-title__wrap", {
-    y:-150,
-    opacity:0
-  }, {
-    y:0,
-    opacity:1
-  }).fromTo(".project-content ", {
-    y:150,
-    opacity:0
-  }, {
-    y:0,
-    opacity:1
-  }, "<")
-
-})
-
-
-gsap.fromTo(".project-content__right>svg",
-      { rotate: 3,
-        transformOrigin:"center bottom"
-       },
+  gsap
+    .timeline()
+    .fromTo(
+      '.page-title__wrap',
       {
-        rotate: 8,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".project-content__right>svg",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      }
+        y: -150,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+      },
+    )
+    .fromTo(
+      '.project-content ',
+      {
+        y: 150,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+      },
+      '<',
     );
+});
 
-
+gsap.fromTo(
+  '.project-content__right>svg',
+  { rotate: 3, transformOrigin: 'center bottom' },
+  {
+    rotate: 8,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.project-content__right>svg',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+    },
+  },
+);
 
 const swiper = new Swiper('.swiper-floors', {
   modules: [Navigation],
   slidesPerView: 1,
   speed: 800,
+  grabCursor: true,
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
   slidesPerView: 0.9,
-  slideCentered: true,
+  centeredSlides: true,
   spaceBetween: -60,
   breakpoints: {
     768: {
@@ -65,6 +71,7 @@ const swiper = new Swiper('.swiper-floors', {
     1366: {
       slidesPerView: 4.1,
       spaceBetween: 28,
+      centeredSlides: false,
     },
   },
 });
@@ -139,25 +146,24 @@ tlFillerContent
     '<',
   );
 
-    gsap.timeline({
-  scrollTrigger: {
-    trigger: '.real-estate-homepage-list',
-    start: 'top bottom',
-    end: 'bottom top',
-    //  onLeave: self => self.kill(),
-     
-  },
-}).fromTo(
-  ".real-estate-homepage-card",
-  {
-    yPercent:10,
-    opacity:0,
-   
-  }
-  ,{
-    yPercent:0,
-    opacity:1,
-     stagger:0.2
-    
-  }
-)
+gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: '.real-estate-homepage-list',
+      start: 'top bottom',
+      end: 'bottom top',
+      //  onLeave: self => self.kill(),
+    },
+  })
+  .fromTo(
+    '.real-estate-homepage-card',
+    {
+      yPercent: 10,
+      opacity: 0,
+    },
+    {
+      yPercent: 0,
+      opacity: 1,
+      stagger: 0.2,
+    },
+  );

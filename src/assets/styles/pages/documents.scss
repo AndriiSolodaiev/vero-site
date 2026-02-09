@@ -63,11 +63,11 @@
       .documents-page-card-content {
         transition: all 0.3s ease;
         margin-top: 40px;
-        max-height: 100vh;
+        max-height: 2000px;
 
         /* Set based on the content size, adjust as needed */
         @include tablet {
-          max-height: 140vh;
+          max-height: 2000px;
         }
       }
 
@@ -98,7 +98,7 @@
     @include block-title;
     font-size: 32px;
     color: $dark-color;
-    cursor: pointer;
+
 
     @include tablet {
       font-size: 5.2vw;

@@ -4,14 +4,13 @@
   overflow: hidden;
   max-width: 100vw;
 
-  @include tablet {
-  }
+  @include tablet {}
 
   @include laptop {
     padding-top: vw(200);
   }
 
-  & > img {
+  &>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -53,7 +52,7 @@
   @include laptop {
     display: flex;
     gap: 20px;
-    margin-bottom: vw(80);
+    margin-bottom: 0;
   }
 }
 
@@ -268,6 +267,43 @@
       align-items: center;
       border-radius: 50%;
       background: $accent-color;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: translateY(100%);
+        transition: transform 0.4s ease-in-out;
+        background-color: $blue-color;
+        border-radius: 50%;
+      }
+
+      svg {
+        position: relative;
+        z-index: 2;
+      }
+    }
+
+    @media (hover:hover) {
+      &:hover {
+        .btn-up-circle {
+          svg path {
+            fill: $dark-color;
+          }
+
+          &::before {
+            transform: translateY(0%);
+
+          }
+        }
+
+      }
     }
   }
 
@@ -311,13 +347,15 @@
     }
   }
 
-  &:hover {
-    &::before {
-      transform: translateY(0);
-    }
+  @media (hover:hover) {
+    &:hover {
+      &::before {
+        transform: translateY(0);
+      }
 
-    svg path {
-      fill: $wc;
+      svg path {
+        fill: $wc;
+      }
     }
   }
 

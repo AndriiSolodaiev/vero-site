@@ -9,6 +9,12 @@
     }
   }
 
+  @include laptop {
+    .project-content__text>* {
+      width: 25vw !important;
+    }
+  }
+
   .project-content__text-wrap {
     display: flex;
     flex-direction: row-reverse;
@@ -41,15 +47,18 @@
 
 .commercial-infra.project-infra {
   padding-top: 0;
-  h2{
+
+  h2 {
     line-height: 100%;
   }
+
   @include laptop {
-      padding-left: 11.45vw;
-        padding-right: 4.16vw;
-    }
+    padding-left: 11.45vw;
+    padding-right: 4.16vw;
+  }
+
   .project-infra-card .project-infra-card__text-wrap {
-    
+
     p {
       @include general-text;
       color: $text-color-2;

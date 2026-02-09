@@ -4,7 +4,20 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  transform: translateY(-100%);
+  // transform: translateY(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+
+  &.visible {
+    transform: translateY(0);
+  }
+
+  &.hide {
+    .header-bg {
+      transform: translateY(-100%) !important;
+
+    }
+  }
 
   &.type1 {
     .logo-wrap svg path {
@@ -27,7 +40,7 @@
     }
 
     .menu-btn {
-      & > span {
+      &>span {
         color: $dark-color;
       }
 
@@ -35,6 +48,44 @@
         background-color: $dark-color;
       }
     }
+  }
+
+  &.menu-is-open {
+    .header-bg {
+      background-color: transparent;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+
+      .logo-wrap svg path {
+        fill: $dark-color;
+      }
+
+      .header-link,
+      .header-mob-tel {
+        span {
+          color: $dark-color;
+        }
+
+        svg path {
+          fill: $dark-color;
+
+          &:first-child {
+            stroke: $dark-color;
+          }
+        }
+      }
+
+      .menu-btn {
+        &>span {
+          color: $dark-color;
+        }
+
+        .menu-burger span {
+          background-color: $dark-color;
+        }
+      }
+    }
+
   }
 }
 
@@ -47,6 +98,11 @@
   width: 100%;
   padding-left: 12px;
   padding-right: 12px;
+  pointer-events: all;
+  background-color: rgba(244, 245, 249, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform: translateY(-100%);
 
   @include tablet {
     height: 80px;
@@ -81,7 +137,7 @@
     }
 
     .menu-btn {
-      & > span {
+      &>span {
         color: $dark-color;
       }
 
@@ -116,7 +172,7 @@
     }
 
     .menu-btn {
-      & > span {
+      &>span {
         color: $dark-color;
       }
 
@@ -149,8 +205,7 @@
     transition: all 0.5s ease;
   }
 
-  @include tablet {
-  }
+  @include tablet {}
 
   @include laptop {
     transition: all 0.5s ease;
@@ -275,6 +330,7 @@
   gap: 8px;
 
   &:hover {
+
     span.over,
     span.under {
       width: 18px;
@@ -334,7 +390,7 @@
   }
 }
 
-.header-bg.menu-is-open {
+.header.menu-is-open {
   .menu-burger {
     .over {
       opacity: 0;
@@ -342,11 +398,16 @@
 
     .middle {
       transform: rotate(45deg);
+
     }
 
     .under {
-      transform: rotate(-45deg) translate(3px, -4px);
+      transform: rotate(-45deg) translate(4px, -4px);
       width: 18px;
+
+      @include laptop {
+        transform: rotate(-45deg) translate(3px, -4px);
+      }
     }
   }
 }
@@ -469,6 +530,7 @@
   }
 
   &:hover {
+
     // transform: translate(10%, -10%) !important;
     .menu-item-double-wrap {
       transform: translate(0%, -10%);

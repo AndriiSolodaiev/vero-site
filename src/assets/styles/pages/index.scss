@@ -1,5 +1,5 @@
 section {
-  overflow: hidden !important;
+  overflow: hidden;
   max-width: 100vw !important;
 }
 
@@ -64,18 +64,20 @@ section {
     }
   }
 
-  &:hover {
-    span {
-      color: $dark-color;
-    }
+  @media (hover:hover) {
+    &:hover {
+      span {
+        color: $dark-color;
+      }
 
-    &::before {
-      transform: translate3d(100%, 0, 0);
-    }
+      &::before {
+        transform: translate3d(100%, 0, 0);
+      }
 
-    // &.button--white {
-    //   background: var(--green-light);
-    // }
+      // &.button--white {
+      //   background: var(--green-light);
+      // }
+    }
   }
 
   span {
@@ -134,13 +136,13 @@ section {
     line-height: 90%;
     display: block;
 
-    & > span {
+    &>span {
       color: $text-color;
       padding-left: 40px;
     }
 
     @include tablet {
-      & > span {
+      &>span {
         padding-left: 60px;
       }
     }
@@ -150,7 +152,7 @@ section {
     }
 
     @include laptop {
-      & > span {
+      &>span {
         padding-left: 5.2vw;
       }
     }
@@ -174,7 +176,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(10, 15, 19, 0.8) 0%, rgba(28, 30, 44, 0) 40% 100%),
+    background: linear-gradient(90deg, rgba(10, 15, 19, 0.6) 0%, rgba(28, 30, 44, 0) 100%),
       linear-gradient(180deg, rgba(10, 15, 19, 0) 60%, rgba(10, 15, 19, 0.8) 100%);
   }
 
@@ -196,7 +198,7 @@ section {
   row-gap: 0;
   color: $dark-color; // clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
 
-  & > svg {
+  &>svg {
     width: 80px;
     height: 80px;
 
@@ -270,12 +272,12 @@ section {
       width: 100%;
     }
 
-    .hero-promo-item > svg {
+    .hero-promo-item>svg {
       width: 110%;
       height: 100%;
     }
 
-    .hero-promo-item.dark > svg {
+    .hero-promo-item.dark>svg {
       width: 110%;
       height: 100%;
     }
@@ -303,7 +305,7 @@ section {
     padding: 28px;
   }
 
-  & > svg {
+  &>svg {
     position: absolute;
     z-index: -1;
     top: 0;
@@ -332,7 +334,7 @@ section {
   &:first-child:hover {
     transform: translateX(-20px);
 
-    & > svg {
+    &>svg {
       transform: rotate(-2deg);
     }
 
@@ -344,7 +346,7 @@ section {
   &.dark:hover {
     transform: translateX(-20px) translateY(-15%);
 
-    & > svg {
+    &>svg {
       transform: rotate(2deg);
     }
 
@@ -519,13 +521,13 @@ section {
     margin-left: 47px;
   }
 
-  & > span {
+  &>span {
     @include general-text;
     color: $text-color;
     font-size: 14px;
     display: none;
 
-    @media screen and (min-width: 1600px) {
+    @media screen and (min-width: 1500px) {
       display: inline;
     }
   }
@@ -621,7 +623,6 @@ section {
 
 .hero-bottom-info {
   display: none;
-
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -632,7 +633,7 @@ section {
     display: block;
   }
 
-  & > svg {
+  &>svg {
     position: absolute;
     z-index: -1;
     width: calc(480px / 1920px * 100vw);
@@ -643,12 +644,17 @@ section {
   }
 
   h4 {
-    @include text-20;
+    @include text-32;
     color: $text-color;
     margin-bottom: 20px;
     text-align: center;
     width: 100%;
-    font-size: 2vw;
+
+
+    @include laptop {
+      font-size: 3.3vw;
+    }
+
   }
 
   .queue-list {
@@ -697,7 +703,7 @@ section {
     margin-left: auto;
   }
 
-  & > svg.icon--sticker {
+  &>svg.icon--sticker {
     transform: rotate(3deg);
     bottom: -60px;
 
@@ -735,7 +741,7 @@ section {
       transform: translate(-50%, -80%);
     }
 
-    & > svg {
+    &>svg {
       width: 24px;
       height: 24px;
       transition: all 0.4s ease;
@@ -796,15 +802,16 @@ section {
     align-items: center;
 
     h4 {
-      @include text-20;
+      @include text-32;
       font-weight: 600;
       color: $dark-color;
       margin-bottom: 28px;
       text-align: center;
       width: 100%;
+      font-size: 24px;
 
       @include tablet {
-        width: 120px;
+        width: 140px;
       }
     }
 
@@ -840,6 +847,10 @@ section {
 
   &-title {
     margin-bottom: 120px;
+
+    @include laptop {
+      margin-bottom: 0px;
+    }
   }
 
   &-content {
@@ -870,7 +881,7 @@ section {
       padding: 3.9vw 7.2vw 3.9vw 5.2vw;
     }
 
-    & > svg {
+    &>svg {
       position: absolute;
       z-index: -1;
       top: 50%;
@@ -935,7 +946,7 @@ section {
     flex: 3;
     padding: 5vw 0;
 
-    & > svg {
+    &>svg {
       display: none;
 
       @include laptop {
@@ -1034,8 +1045,8 @@ section {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 48px;
-        height: 48px;
+        width: 75px;
+        height: 75px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1307,7 +1318,7 @@ section {
     z-index: -1;
     overflow: hidden;
 
-    & > img {
+    &>img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -1415,9 +1426,11 @@ section {
       color: $dark-color;
     }
 
-    &:hover {
-      span {
-        color: $wc;
+    @media (hover:hover) {
+      &:hover {
+        span {
+          color: $wc;
+        }
       }
     }
   }
@@ -1911,8 +1924,7 @@ section {
 
   z-index: 2;
 
-  @include tablet {
-  }
+  @include tablet {}
 
   @include laptop {
     height: 100%;
@@ -1956,7 +1968,7 @@ section {
     padding: 8px 20px;
   }
 
-  & > p {
+  &>p {
     @include subtitle-text;
     color: $dark-color;
     margin-right: 40px;
@@ -2112,6 +2124,24 @@ section {
     align-items: stretch;
     gap: 2px;
   }
+
+  .progress-card {
+    display: none;
+  }
+
+  .progress-card:nth-child(-n+2) {
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    .progress-card {
+      display: none;
+    }
+
+    .progress-card:nth-child(-n+3) {
+      display: flex;
+    }
+  }
 }
 
 .progress-card {
@@ -2206,7 +2236,7 @@ section {
     gap: 20px;
     align-items: center;
 
-    & > svg {
+    &>svg {
       // width: 20px;
       clip-path: polygon(40% 0%, 100% 0, 100% 100%, 40% 100%);
       overflow: hidden;
@@ -2272,11 +2302,12 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 3.125vw;
-    padding-right: 1.82vw;
+
 
     @include laptop {
       flex-direction: row;
+      padding-left: 3.125vw;
+      padding-right: 1.82vw;
     }
   }
 
@@ -2307,7 +2338,7 @@ section {
       padding: 5.5vw 7.2vw 6.9vw 5.2vw;
     }
 
-    & > svg {
+    &>svg {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -2356,6 +2387,15 @@ section {
       display: flex;
       align-items: center;
       gap: 8px;
+
+      @include to (767px) {
+        justify-content: center;
+      }
+
+      @include to (1024px) {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .general-btn--light {
@@ -2397,7 +2437,7 @@ section {
       padding: 3.9vw 7.2vw 4.9vw 5.2vw;
     }
 
-    & > svg {
+    &>svg {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -2460,7 +2500,7 @@ section {
       transition: all 0.4s ease;
       position: relative;
 
-      & > svg {
+      &>svg {
         width: 24px;
         height: 24px;
         transition: all 0.4s ease;
@@ -2502,7 +2542,7 @@ section {
       margin-top: 0;
     }
 
-    & > svg {
+    &>svg {
       position: absolute;
       z-index: -1;
       top: 0;
@@ -2578,10 +2618,12 @@ section {
           pointer-events: none;
         }
 
-        &:hover {
-          .video-btn {
-            opacity: 0.9;
-            transform: translate(-50%, -50%) scale(1.1);
+        @media (hover:hover) {
+          &:hover {
+            .video-btn {
+              opacity: 0.9;
+              transform: translate(-50%, -50%) scale(1.1);
+            }
           }
         }
       }
@@ -2591,8 +2633,8 @@ section {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 48px;
-        height: 48px;
+        width: 75px;
+        height: 75px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2711,14 +2753,32 @@ section {
     }
   }
 
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    @include tablet {
+
+      row-gap: 40px;
+      column-gap: 60px;
+      width: calc((100% - 60px) / 2);
+    }
+
+    @include laptop {
+      row-gap: vw(40);
+      column-gap: vw(60);
+    }
+  }
+
   p {
     @include general-text;
     color: $dark-color;
     width: 100%;
 
-    @include tablet {
-      width: calc((100% - 60px) / 2);
-    }
+    // @include tablet {
+    //   width: calc((100% - 60px) / 2);
+    // }
   }
 }
 
@@ -2737,7 +2797,7 @@ section {
     top: 0;
     left: -20%;
     z-index: -1;
-    height: 100%;
+    // height: 100%;
 
     width: 140%;
 
@@ -2775,7 +2835,7 @@ section {
     }
   }
 
-  & > h3 {
+  &>h3 {
     @include article-title;
     color: $dark-color;
     text-align: center;
@@ -2845,7 +2905,7 @@ section {
       padding: 3.75vw 3.16vw 3.75vw 5.25vw;
     }
 
-    & > svg {
+    &>svg {
       position: absolute;
       bottom: 0;
       left: 50%;
@@ -2887,6 +2947,29 @@ section {
     .general-btn {
       margin-top: 28px;
       background-color: $accent-color-2;
+
+      @include to (1024px) {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .promo-homepage-card {
+    display: none;
+  }
+
+  .promo-homepage-card:nth-last-child(-n+2) {
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    .promo-homepage-card {
+      display: none;
+    }
+
+    .promo-homepage-card:nth-last-child(-n+3) {
+      display: flex;
     }
   }
 }
@@ -2929,11 +3012,9 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(
-        1deg,
+    background-image: linear-gradient(1deg,
         rgba(28, 30, 44, 0) 75.81%,
-        rgba(28, 30, 44, 0.6) 98.76%
-      ),
+        rgba(28, 30, 44, 0.6) 98.76%),
       linear-gradient(180deg, rgba(28, 30, 44, 0) 60.44%, rgba(28, 30, 44, 0.8) 100%);
   }
 
@@ -3105,4 +3186,220 @@ section {
   &-title {
     margin-bottom: 60px;
   }
+}
+
+
+.map-main-wrap {
+  width: 100%;
+  height: 90vh;
+  // border-radius: 20px;
+  // background-color: $wc;
+  position: relative;
+  // overflow: hidden;
+
+  @include tablet {}
+
+  @include laptop {
+    height: 85vh;
+
+    // flex: 1;
+  }
+
+  .map-wrapper {
+    width: 100%;
+    height: 100%;
+    // border-radius: 20px;
+    // overflow: hidden;
+
+    .map {
+      height: 100%;
+      width: 100%;
+      color: $bg-color;
+    }
+  }
+
+  .map-navigation {
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 12px;
+    background-color: transparent;
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: center;
+    transition: all 0.4s ease-in-out;
+    width: fit-content;
+
+    .map-navigation__main {
+      display: none;
+    }
+
+    .general-btn {
+      transition: all 0.4s ease-in-out;
+
+      span {
+        color: $dark-color;
+      }
+
+      &::before {
+        background-color: $wc;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .oppened-fltr {
+        display: none;
+        gap: 12px;
+
+        svg {
+          width: 8px;
+          height: 8px;
+        }
+      }
+
+      .closed-fltr {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+      }
+    }
+
+    &.oppened {
+      background: rgba(212, 220, 223, 0.80);
+      backdrop-filter: blur(20px);
+      width: calc(100% - 60px);
+
+      @include tablet {
+        width: 100%;
+      }
+
+      @include laptop {
+        width: 100%;
+      }
+
+      .map-navigation__main {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+      }
+
+      .general-btn {
+        color: $dark-color;
+
+        &::before {
+          background-color: $wc;
+        }
+
+        .oppened-fltr {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .closed-fltr {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .map-navigation__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 100px;
+    background-color: transparent;
+    border: 1px solid $wc;
+    padding: 6px 12px;
+    color: $dark-color;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    text-transform: uppercase;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+    cursor: pointer;
+
+    svg {
+
+      transition: stroke 0.4s ease-in-out;
+    }
+
+    @media (hover:hover) {
+      &:hover {
+
+        background-color: $wc;
+
+
+        svg use {
+          // stroke: $dark-color;
+          // fill: $dark-color;
+        }
+      }
+    }
+
+    &.active {
+      background-color: $accent-color;
+      color: $wc;
+
+      svg {
+        stroke: $wc;
+        fill: $wc;
+      }
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      transition: stroke 0.4s ease-in-out;
+    }
+  }
+}
+
+.gm-style-iw.gm-style-iw-c {
+  padding: 20px 48px 20px 20px !important;
+}
+
+.map-wrapper .gm-style-iw.gm-style-iw-c {
+  padding: 20px 48px 20px 20px !important;
+}
+
+.map-wrapper .gm-style-iw-d {
+  font-family: $default-font;
+  padding: 0 !important;
+  overflow: hidden !important;
+  color: $accent-color;
+}
+
+.map-wrapper .gm-style-iw-chr {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.map-wrapper .gm-ui-hover-effect {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.map-wrapper .gm-ui-hover-effect span {
+  margin: 0 !important;
 }

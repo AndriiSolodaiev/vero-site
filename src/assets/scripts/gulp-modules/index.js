@@ -3,6 +3,9 @@ import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
 import '../modules/gallery/gallerySlider';
 import { animateTitleOnScroll } from '../modules/effects/animateTitle';
 import { animateTitleOnScroll2 } from '../modules/effects/animateTitle2';
+import googleMap from '../modules/map/map';
+
+googleMap();
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 const tlFiller = gsap.timeline({

@@ -26,6 +26,10 @@
     @include page-title;
     color: $dark-color;
     text-align: center;
+
+    @include to (768px) {
+      font-size: 36px;
+    }
   }
 
   &>svg {

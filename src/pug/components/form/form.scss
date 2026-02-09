@@ -10,12 +10,27 @@
   z-index: 1000;
   transition: all 0.3s ease-in-out;
   opacity: 1;
-
+  pointer-events: all;
 
   &.hide {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+
+  }
+}
+
+.overflow.hide .modal-form {
+  transform: translate(-50%, -30%);
+  opacity: 1;
+  filter: blur(24px);
+
+  &>svg {
+    transform: rotate(-3deg) translate(-50%, -50%);
+  }
+
+  @include laptop {
+    transform: translate(-50%, -30%) rotate(-3deg);
 
   }
 }
@@ -43,20 +58,7 @@
   //   width: 47%;
   // }
 
-  .hide & {
-    transform: translate(-50%, -30%);
-    opacity: 1;
-    filter: blur(24px);
 
-    &>svg {
-      transform: rotate(-3deg) translate(-50%, -50%);
-    }
-
-    @include laptop {
-      transform: translate(-50%, -30%) rotate(-3deg);
-
-    }
-  }
 
   &>svg {
     position: absolute;

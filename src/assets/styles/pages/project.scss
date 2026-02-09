@@ -53,7 +53,7 @@
     @include laptop {
       display: flex;
       flex-direction: row-reverse;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: space-between;
 
       &>svg {
@@ -97,7 +97,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        padding-top: 50px;
+        padding-top: 100px;
         margin-bottom: 0px;
       }
 
@@ -126,6 +126,10 @@
     position: relative;
     width: 100%;
     margin-bottom: 20px;
+
+    @include tablet {
+      margin-bottom: 70px;
+    }
 
     @include laptop {
       display: flex;
@@ -457,6 +461,10 @@
 
       @include tablet {
         top: 200px;
+      }
+
+      @include laptop {
+        top: vw(200);
       }
     }
   }

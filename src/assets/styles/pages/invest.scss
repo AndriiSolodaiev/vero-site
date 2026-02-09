@@ -181,6 +181,10 @@
     flex-direction: column;
     gap: 28px;
 
+    @include laptop {
+      order: -1;
+    }
+
     p {
       @include general-text;
       color: $text-color-2;

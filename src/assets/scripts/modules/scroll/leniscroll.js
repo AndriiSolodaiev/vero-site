@@ -25,7 +25,7 @@ export const initSmoothScrolling = () => {
   window.addEventListener('start-scroll', () => {
     lenis.start();
   });
-
+  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault()
@@ -35,16 +35,20 @@ export const initSmoothScrolling = () => {
 
     if (target) {
       setTimeout(() => {
+      
       lenis.scrollTo(target, {
-        offset: -100,
         duration: 1, // в секундах
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // easeOutExpo
-      })}, 10)
+      }
+      
+    )}, 10)
+    
     }
   })})
   // Define a function to run at each animation frame
   const scrollFn = time => {
     lenis.raf(time); // Run Lenis' requestAnimationFrame method
+     
     requestAnimationFrame(scrollFn); // Recursively call scrollFn on each frame
   };
   // Start the animation frame loop
