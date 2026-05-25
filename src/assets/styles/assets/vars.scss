@@ -28,6 +28,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 	line-height: 80%;
 	text-decoration: none;
 	color: $text-color;
+	letter-spacing: -0.06em;
 
 	@include tablet {
 		font-size: 17vw;

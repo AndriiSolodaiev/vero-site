@@ -19,9 +19,9 @@
 
     }
 
-    @include laptop {
-      flex-wrap: nowrap;
-    }
+    // @include laptop {
+    //   flex-wrap: nowrap;
+    // }
   }
 
 }
@@ -32,7 +32,9 @@
   height: 400px;
   // overflow: hidden;
 
-  @include tablet {}
+  @include laptop {
+    min-width: 300px;
+  }
 
   &>svg {
     height: 100%;

@@ -14,9 +14,21 @@
  }
 }
 .breadcrumbs-item{
-  @include general-text;
+  font-family: $default-font;
+      font-weight: 600;
+      font-style: normal;
+      line-height: 140%;
+      font-size: 16px;
+      color: $accent-color;
+      margin-top: 20px;
+      text-align: center;
   
 white-space: nowrap;
+
+@include tablet {
+  font-size: 20px;
+  margin-top : 28px;
+}
 &:last-child{
   text-overflow: ellipsis;
   overflow: hidden;
@@ -25,7 +37,13 @@ white-space: nowrap;
   a {
     margin-right: 12px;
   }
-  // &__current--color {
-    
-  // }
+ &__link {
+ text-decoration: underline;   
+ transition: color 0.3s ease-in-out;
+ @media (hover: hover) {
+    &:hover {
+      color: $dark-color;
+    }
+ }
+}
 }
