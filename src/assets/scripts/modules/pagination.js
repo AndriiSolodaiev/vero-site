@@ -1,4 +1,4 @@
-import { gsap } from 'gsap/all';
+import { gsap } from 'gsap';
 export function paginationInit(containerSelector, cardSelector) {
   const container = document.querySelector(containerSelector);
   if (!container) return;

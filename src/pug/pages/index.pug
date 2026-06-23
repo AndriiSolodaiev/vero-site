@@ -17,6 +17,7 @@ block meta
   title= title_page
   meta(name='description' content='')
 block head
+  link(rel='preload' as='image' href='./assets/images/hero.jpg')
   link(rel='stylesheet' href="./assets/styles/main.min.css")
 block scripts
   script(defer src='./assets/scripts/vendors.bundle.js')
@@ -27,7 +28,7 @@ block content
   section.hero
     .hero-bg
     .video-frame 
-      img(src="./assets/images/hero.jpg", alt="hero")
+      img(src="./assets/images/hero.jpg", alt="hero", width="1920", height="1080", fetchpriority="high", loading="eager", decoding="async")
     .container
       h1.section-title VERO
         br
@@ -244,35 +245,35 @@ block content
       h2 Переваги
     .advantages-cards 
       .advantages-card.advantages-card-1
-        img.advantages-card__img(src="/assets/images/advantages/1.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="800" src="/assets/images/advantages/1.jpg" alt="advantages")
         h3.advantages-card__title Дизайнерські лобі
         p.advantages-card__descr Кожен хол — як вітальня стильного готелю. Італійська харизма в деталях, натхнення — від українських митців. Атмосфера, у якій приємно зустрічати гостей і повертатися додому.
       .advantages-card.advantages-card-2
-        img.advantages-card__img(src="/assets/images/advantages/2.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="672" src="/assets/images/advantages/2.jpg" alt="advantages")
         h3.advantages-card__title Архітектура, що дихає
         p.advantages-card__descr Камерна забудова до п’яти поверхів. Будинки не перекривають небо, а навпаки — впускають світло, повітря та простір. Квартири з просторими терасами, балконами та приватними патіо — для справжнього життя, не обмеженого стінами.
       .advantages-card.advantages-card-3
-        img.advantages-card__img(src="/assets/images/advantages/3.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="675" src="/assets/images/advantages/3.jpg" alt="advantages")
         h3.advantages-card__title Планування, яке створено під вас
         p.advantages-card__descr Житло, де кожен м² функціональний. Продумані рішення для різних сценаріїв життя: сімейних, творчих, активних, інтровертних.
       .advantages-card.advantages-card-4
-        img.advantages-card__img(src="/assets/images/advantages/4.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="900" src="/assets/images/advantages/4.jpg" alt="advantages")
         h3.advantages-card__title Озеро — не фон, а подія
         p.advantages-card__descr Ранкова кава на березі, вечірній променад, свіже повітря і простір, де можна сісти на сап чи просто мовчки подивитися на відображення у воді. Природа — не за парканом, а поруч, щодня.
       .advantages-card.advantages-card-5
-        img.advantages-card__img(src="/assets/images/advantages/5.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="800" src="/assets/images/advantages/5.jpg" alt="advantages")
         h3.advantages-card__title Представницькі поверхи
         p.advantages-card__descr Останні поверхи — для тих, хто звик жити з особливим рівнем комфорту. Високі стелі (3 м), кращі панорами, максимальна приватність, ексклюзивний інтер’єр — усе, щоб щоранку починався красиво.
       .advantages-card.advantages-card-6
-        img.advantages-card__img(src="/assets/images/advantages/6.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="817" src="/assets/images/advantages/6.jpg" alt="advantages")
         h3.advantages-card__title Підземний паркінг з ліфтом
         p.advantages-card__descr Двір — без авто, шуму та візуального хаосу. Машини — внизу, спокій — угорі. Прямий доступ із паркінгу до квартири — без зайвих сходів і компромісів.
       .advantages-card.advantages-card-7
-        img.advantages-card__img(src="/assets/images/advantages/7.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="673" src="/assets/images/advantages/7.jpg" alt="advantages")
         h3.advantages-card__title Ландшафт, що надихає
         p.advantages-card__descr Сонце в кожному метрі, тінь від дерев у потрібний момент, декоративні рослини, пішохідні алеї. Тут хочеться дихати повними легенями.
       .advantages-card.advantages-card-8
-        img.advantages-card__img(src="/assets/images/advantages/8.jpg" alt="advantages")
+        img.advantages-card__img(loading="lazy" decoding="async" width="1200" height="800" src="/assets/images/advantages/8.jpg" alt="advantages")
         h3.advantages-card__title Інфраструктура рівня клубу
         p.advantages-card__descr Бібліотека просто в холі. Авторська кав’ярня, магазин із найнеобхіднішим, дитячі та спортивні зони. Все під рукою — щоб ви витрачали час на себе, а не на дорогу.
     <svg class="rotate-logo" width="1140" height="1140" viewBox="0 0 1140 1140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -352,15 +353,15 @@ block content
     </svg>  
   section.filler
     .filler-img-wrap
-      img(src="./assets/images/filler.jpg", alt="filler")
+      img(loading="lazy" decoding="async" width="1920" height="1080" src="./assets/images/filler.jpg", alt="filler")
     .filler-content-wrap
-      img(src="./assets/images/filler-left.jpg", alt="filler-left").filler-img.filler-img--left
+      img(loading="lazy" decoding="async" width="930" height="1400" src="./assets/images/filler-left.jpg", alt="filler-left").filler-img.filler-img--left
       .filler-text-wrap
         h2.section-title.filler-title VERo
         p.hero-slogan простір для свідомих, витончених і вільних
         a(href="/plannings").general-btn 
           span  Переглянути планування
-      img(src="./assets/images/filler-right.jpg", alt="filler-right").filler-img.filler-img--right
+      img(loading="lazy" decoding="async" width="1400" height="932" src="./assets/images/filler-right.jpg", alt="filler-right").filler-img.filler-img--right
   section.real-estate-homepage.container
     .section-title.real-estate-title(data-big-title)
       <svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140" fill="none">
@@ -386,7 +387,7 @@ block content
         .real-estate-homepage-list.swiper-wrapper
             a(href="/floors.html").real-estate-homepage-card.swiper-slide
                 .real-estate-homepage-card-img
-                    img(src="./assets/images/re-1.jpg", alt="real-estate")
+                    img(loading="lazy" decoding="async" width="1251" height="1480" src="./assets/images/re-1.jpg", alt="real-estate")
                 .real-estate-homepage-card-inner
                     .real-estate-homepage-card-top
                         .real-estate-homepage-card-list
@@ -407,7 +408,7 @@ block content
                         p.real-estate-homepage-card-descr.text-body.text-gray Представницькі поверхи – це ексклюзивний простір, де кожен елемент створений для вашого комфорту.
             a(href="/patio.html").real-estate-homepage-card.swiper-slide
                 .real-estate-homepage-card-img
-                    img(src="./assets/images/re-2.jpg", alt="real-estate")
+                    img(loading="lazy" decoding="async" width="1251" height="1480" src="./assets/images/re-2.jpg", alt="real-estate")
                 .real-estate-homepage-card-inner
                     .real-estate-homepage-card-top
                         .real-estate-homepage-card-list
@@ -428,7 +429,7 @@ block content
                         p.real-estate-homepage-card-descr.text-body.text-gray Ми пропонуємо вам більше, ніж просто квартиру – це унікальна можливість додати до вашого домашнього простору відкритий оазис приватності серед зелені.
             a(href="/commercial.html").real-estate-homepage-card.swiper-slide
                 .real-estate-homepage-card-img
-                    img(src="./assets/images/re-3.jpg", alt="real-estate")
+                    img(loading="lazy" decoding="async" width="1251" height="1480" src="./assets/images/re-3.jpg", alt="real-estate")
                 .real-estate-homepage-card-inner
                     .real-estate-homepage-card-top
                         .real-estate-homepage-card-list
@@ -578,7 +579,7 @@ block content
     .progress-list
       a(href="/").progress-card
         .progress-card__img-wrap
-          img(src="./assets/images/progress-1.jpg", alt="progress")
+          img(loading="lazy" decoding="async" width="1100" height="616" src="./assets/images/progress-1.jpg", alt="progress")
         .progress-card__text-wrap 
           h3 Змонтовано перекриття другого поверху
           .progress-card__bottom-block 
@@ -591,7 +592,7 @@ block content
             p.progress-card__date 06.08.2025
       a(href="/").progress-card
         .progress-card__img-wrap
-          img(src="./assets/images/progress-2.jpg", alt="progress")
+          img(loading="lazy" decoding="async" width="1100" height="616" src="./assets/images/progress-2.jpg", alt="progress")
         .progress-card__text-wrap 
           h3 Викопано котлован під фундамент
           .progress-card__bottom-block 
@@ -604,7 +605,7 @@ block content
             p.progress-card__date 06.08.2025
       a(href="/").progress-card
         .progress-card__img-wrap
-          img(src="./assets/images/progress-3.jpg", alt="progress")
+          img(loading="lazy" decoding="async" width="1100" height="616" src="./assets/images/progress-3.jpg", alt="progress")
         .progress-card__text-wrap 
           h3 Благоустрій території розпочато
           .progress-card__bottom-block 
@@ -795,7 +796,7 @@ block content
     
     .promo-list 
       a(href="/").promo-homepage-card
-        img(src="./assets/images/promo-1.jpg", alt="promo")
+        img(loading="lazy" decoding="async" width="1400" height="933" src="./assets/images/promo-1.jpg", alt="promo")
         .promo-homepage-card-top
             .promo-homepage-card-list
                 .promo-homepage-card-list-item 
@@ -814,7 +815,7 @@ block content
         .promo-homepage-card-text
             h3.promo-homepage-card-title.text-h4.text-white Знижка -5% при 100% оплаті
       a(href="/").promo-homepage-card
-        img(src="./assets/images/promo-2.jpg", alt="promo")
+        img(loading="lazy" decoding="async" width="1400" height="935" src="./assets/images/promo-2.jpg", alt="promo")
         .promo-homepage-card-top
             .promo-homepage-card-list
                 .promo-homepage-card-list-item 
@@ -833,7 +834,7 @@ block content
         .promo-homepage-card-text
             h3.promo-homepage-card-title.text-h4.text-white Знижки на паркомісця
       a(href="/").promo-homepage-card
-        img(src="./assets/images/promo-3.jpg", alt="promo")
+        img(loading="lazy" decoding="async" width="1400" height="981" src="./assets/images/promo-3.jpg", alt="promo")
         .promo-homepage-card-top
             .promo-homepage-card-list
                 .promo-homepage-card-list-item 

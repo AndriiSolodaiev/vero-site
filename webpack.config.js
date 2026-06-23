@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   mode: process.argv.includes('--production') ? 'production' : 'development',
@@ -67,14 +66,6 @@ const config = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-    }),
-    new UglifyJSPlugin({
-      sourceMap: true,
-      uglifyOptions: {
-        compress: {
-          drop_console: process.argv.includes('--production'),
-        },
-      },
     }),
   ],
 };

@@ -1,5 +1,8 @@
 import { paginationInit } from '../modules/pagination';
-import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomEase } from 'gsap/CustomEase';
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 

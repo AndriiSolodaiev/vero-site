@@ -415,7 +415,7 @@ function _styles() {
       }),
     )
     .pipe(cleanCSS())
-    .pipe(gulp.dest(paths.styles.dest));
+    .pipe(gulp.dest(pathsProd.style.dest));
 }
 
 // FONTS

@@ -1,4 +1,4 @@
-import { gsap } from "gsap/all";
+import { gsap } from 'gsap';
 export default function buttonHover(selector) {
     var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     if (window.matchMedia('(max-width:575px)').matches || isSafari) {

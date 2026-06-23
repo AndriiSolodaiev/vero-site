@@ -22,7 +22,6 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin super-title () {
 	font-size: 66px;
-	font-family: $default-font;
 	font-weight: 700;
 	font-style: normal;
 	line-height: 80%;
@@ -41,7 +40,6 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin section-title () {
 	font-size: 64px;
-	font-family: $default-font;
 	font-weight: 400;
 	font-style: normal;
 	line-height: 90%;
@@ -64,7 +62,6 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin page-title () {
 	font-size: 42px;
-	font-family: $default-font;
 	font-weight: 500;
 	font-style: normal;
 	line-height: 90%;
@@ -86,7 +83,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin page-subtitle () {
 	font-size: 36px;
-	font-family: $default-font;
+	
 	font-weight: 500;
 	font-style: normal;
 	line-height: 130%;
@@ -106,7 +103,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin text-32 () {
 	font-size: 32px;
-	font-family: $default-font;
+	
 	font-weight: 500;
 	font-style: normal;
 	line-height: 100%;
@@ -124,7 +121,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin text-20 () {
 	font-size: 20px;
-	font-family: $default-font;
+	
 	font-weight: 600;
 	font-style: normal;
 	line-height: 120%;
@@ -142,7 +139,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin article-title () {
 	font-size: 20px;
-	font-family: $default-font;
+	
 	font-weight: 500;
 	font-style: normal;
 	line-height: 100%;
@@ -160,7 +157,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin block-title () {
 	font-size: 18px;
-	font-family: $default-font;
+	
 	font-weight: 600;
 	font-style: normal;
 	line-height: 100%;
@@ -179,7 +176,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin subtitle-text() {
 	font-size: 18px;
-	font-family: $default-font;
+	
 	font-weight: 600;
 	font-style: normal;
 	color: $text-color;
@@ -199,7 +196,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin general-text() {
 	font-size: 16px;
-	font-family: $default-font;
+	
 	font-weight: 500;
 	font-style: normal;
 	line-height: 140%;
@@ -218,7 +215,6 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin tiny-text() {
 	font-size: 14px;
-	font-family: $default-font;
 	font-weight: 600;
 	font-style: normal;
 	line-height: 100%;

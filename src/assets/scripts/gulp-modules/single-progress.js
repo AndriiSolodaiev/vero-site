@@ -1,5 +1,8 @@
 import Swiper, { Autoplay, EffectFade, Navigation } from 'swiper';
-import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomEase } from 'gsap/CustomEase';
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 console.log('floors');
 const swiper = new Swiper('.swiper-sp', {

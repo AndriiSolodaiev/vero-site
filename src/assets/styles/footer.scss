@@ -373,3 +373,21 @@
     border-radius: 50%;
   }
 }
+.footer-contacts__logo{
+  display: flex;
+  width: 200px;
+  height: auto;
+  
+  svg {
+    width: 100%;
+    height: auto;
+  }
+  
+  svg path {
+    fill: $dark-color;
+  }
+
+  @include laptop {
+    width: 15vw;
+  }
+}

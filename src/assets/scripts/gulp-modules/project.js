@@ -1,6 +1,9 @@
 import '../modules/distortion/HeatDistortion';
 import Swiper, { Autoplay, EffectFade, Navigation } from 'swiper';
-import { gsap, ScrollTrigger, CustomEase, CSSRulePlugin } from 'gsap/all';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomEase } from 'gsap/CustomEase';
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin';
 import googleMap from '../modules/map/map';
 
 googleMap();

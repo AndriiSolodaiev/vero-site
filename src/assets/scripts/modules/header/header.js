@@ -1,7 +1,8 @@
 import { initSmoothScrolling } from '../scroll/leniscroll';
 import device from 'current-device';
 
-import { gsap, ScrollTrigger } from 'gsap/all';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { animateTitleOnScroll } from '../../modules/effects/animateTitle';
 
 gsap.registerPlugin(ScrollTrigger);
