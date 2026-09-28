@@ -12,7 +12,7 @@
 
 
 .project-content {
-  opacity: 0;
+  // opacity: 0;
 
   @include laptop {
     padding-left: 6.7vw;
@@ -161,7 +161,7 @@
       }
     }
 
-    h2 {
+    .project-content__title {
       @include page-subtitle;
       color: $dark-color;
       max-width: calc(100% - 100px);
@@ -250,7 +250,7 @@
       }
     }
 
-    h2 {
+    .text-h2 {
       @include page-subtitle;
       color: $dark-color;
       margin-bottom: 20px;
@@ -383,7 +383,7 @@
     }
   }
 
-  h3 {
+  .text-h3 {
     @include block-title;
     font-size: 32px;
     color: $dark-color;
@@ -451,7 +451,7 @@
       object-fit: cover;
     }
 
-    h2 {
+    .text-h2 {
       @include page-subtitle;
       color: $wc;
       position: absolute;
@@ -672,7 +672,7 @@
       }
     }
 
-    h2 {
+    .text-h2 {
       @include text-32;
 
       color: $dark-color;
@@ -696,7 +696,7 @@
       width: 18.75vw;
     }
 
-    h2 {
+    .text-h2 {
       @include text-32;
 
       color: $dark-color;
@@ -764,7 +764,7 @@
     }
   }
 
-  h2 {
+  .text-h2 {
     @include page-subtitle;
     color: $dark-color;
 
@@ -831,7 +831,7 @@
       height: 28px;
     }
 
-    h3 {
+    .text-h3 {
       @include text-32;
       color: $dark-color;
 
@@ -1091,7 +1091,7 @@
       height: 28px;
     }
 
-    h3 {
+    .text-h3 {
       @include text-32;
       color: $dark-color;
       text-align: center;
@@ -1167,7 +1167,7 @@
       }
     }
 
-    h2 {
+    .text-h2 {
       @include page-subtitle;
       color: $dark-color;
       margin-bottom: 20px;
@@ -1268,7 +1268,7 @@
       padding: vw(28) vw(40) vw(40);
     }
 
-    h3 {
+    .text-h3 {
       @include text-32;
       color: $dark-color;
       margin-bottom: 20px;

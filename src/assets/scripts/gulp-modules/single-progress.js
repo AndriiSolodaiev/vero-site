@@ -18,6 +18,7 @@ const swiper = new Swiper('.swiper-sp', {
   spaceBetween: 0,
 });
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 document.addEventListener('DOMContentLoaded', function() {
   gsap
     .timeline()
@@ -101,3 +102,4 @@ gsap
       stagger: 0.2,
     },
   );
+*/

@@ -21,7 +21,7 @@ $dark-color: #1C1E2C;
 $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 
 @mixin super-title () {
-	font-size: 66px;
+	font-size: 44px;
 	font-weight: 700;
 	font-style: normal;
 	line-height: 80%;
@@ -39,7 +39,7 @@ $cubic-btn: cubic-bezier(.12, .57, .41, 1);
 }
 
 @mixin section-title () {
-	font-size: 64px;
+	font-size: 44px;
 	font-weight: 400;
 	font-style: normal;
 	line-height: 90%;

@@ -4,6 +4,7 @@ import { CustomEase } from 'gsap/CustomEase';
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 document.addEventListener('DOMContentLoaded', function() {
   gsap
     .timeline()
@@ -54,6 +55,7 @@ projectLocation.fromTo(
     ease: 'none',
   },
 );
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Знаходимо елемент-перемикач та список, який потрібно відкрити

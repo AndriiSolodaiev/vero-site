@@ -11,177 +11,178 @@ import googleMap from '../modules/map/map';
 googleMap();
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
-const tlFiller = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.filler',
-    start: 'top bottom',
-    end: 'bottom top',
-    scrub: 1,
-  },
-});
+// Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
+// const tlFiller = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: '.filler',
+//     start: 'top bottom',
+//     end: 'bottom top',
+//     scrub: 1,
+//   },
+// });
 
-// Плавне розсунення псевдоелементів
-tlFiller.fromTo(
-  '.filler-img-wrap>img',
-  {
-    scale: 1.1,
-    yPercent: -10,
-    ease: 'none',
-  },
-  {
-    duration: 1,
-    scale: 1.1,
-    yPercent: 10,
-    ease: 'none',
-  },
-);
-let tlFillerContent = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.filler',
-    start: 'top center', // коли з’являється секція
-    toggleActions: 'play none none none',
-  },
-});
+// // Плавне розсунення псевдоелементів
+// tlFiller.fromTo(
+//   '.filler-img-wrap>img',
+//   {
+//     scale: 1.1,
+//     yPercent: -10,
+//     ease: 'none',
+//   },
+//   {
+//     duration: 1,
+//     scale: 1.1,
+//     yPercent: 10,
+//     ease: 'none',
+//   },
+// );
+// let tlFillerContent = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: '.filler',
+//     start: 'top center', // коли з’являється секція
+//     toggleActions: 'play none none none',
+//   },
+// });
 
-// 1. Ліва картинка
-tlFillerContent
-  .fromTo(
-    '.filler .filler-img--left',
-    { x: -100, opacity: 0, scale: 0.9, filter: 'blur(10px)' },
-    { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' },
-  )
-  .fromTo(
-    '.filler .filler-img--right',
-    { x: 100, opacity: 0, scale: 0.9, filter: 'blur(10px)' },
-    { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' },
-    '<', // почати трохи раніше за попередній
-  )
-  .fromTo(
-    '.filler .filler-title',
-    { y: 50, opacity: 0, scale: 0.95 },
-    { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' },
-    '<',
-  )
-  .fromTo(
-    '.filler .hero-slogan',
-    { y: 30, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
-    '<+=0.2', // трошки раніше, щоб був перекритий ефект
-  )
-  .fromTo(
-    '.filler .general-btn',
-    { y: 20, opacity: 0, scale: 0.9 },
-    { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.5)' },
-    '<',
-  );
+// // 1. Ліва картинка
+// tlFillerContent
+//   .fromTo(
+//     '.filler .filler-img--left',
+//     { x: -100, scale: 0.9, filter: 'blur(10px)' },
+//     { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' },
+//   )
+//   .fromTo(
+//     '.filler .filler-img--right',
+//     { x: 100, scale: 0.9, filter: 'blur(10px)' },
+//     { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' },
+//     '<', // почати трохи раніше за попередній
+//   )
+//   .fromTo(
+//     '.filler .filler-title',
+//     { y: 50,  scale: 0.95 },
+//     { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' },
+//     '<',
+//   )
+//   .fromTo(
+//     '.filler .hero-slogan',
+//     { y: 30,  },
+//     { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
+//     '<+=0.2', // трошки раніше, щоб був перекритий ефект
+//   )
+//   .fromTo(
+//     '.filler .general-btn',
+//     { y: 20, scale: 0.9 },
+//     { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'elastic.out(1, 0.5)' },
+//     '<',
+//   );
 
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: '.real-estate-homepage-list',
-      start: 'top bottom',
-      end: 'bottom top',
-      //  onLeave: self => self.kill(),
-    },
-  })
-  .fromTo(
-    '.real-estate-homepage-card',
-    {
-      yPercent: 10,
-      opacity: 0,
-    },
-    {
-      yPercent: 0,
-      opacity: 1,
-      stagger: 0.2,
-    },
-  )
-  .fromTo(
-    '.real-estate-description-wrap',
-    {
-      opacity: 0,
-      x: -10,
-      yPercent: 10,
-    },
-    {
-      yPercent: 0,
-      x: 0,
-      opacity: 1,
-    },
-    '>-=0.3',
-  );
+// gsap
+//   .timeline({
+//     scrollTrigger: {
+//       trigger: '.real-estate-homepage-list',
+//       start: 'top bottom',
+//       end: 'bottom top',
+//       //  onLeave: self => self.kill(),
+//     },
+//   })
+//   .fromTo(
+//     '.real-estate-homepage-card',
+//     {
+//       yPercent: 10,
+//       opacity:1
+//     },
+//     {
+//       yPercent: 0,
+//       opacity:1,
+//       stagger: 0.2,
+//     },
+//   )
+//   .fromTo(
+//     '.real-estate-description-wrap',
+//     {
 
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: '.progress-list',
-      start: 'top bottom',
-      end: 'bottom top',
-      //  onLeave: self => self.kill(),
-    },
-  })
-  .fromTo(
-    '.progress-card',
-    {
-      yPercent: 10,
-      opacity: 0,
-    },
-    {
-      yPercent: 0,
-      opacity: 1,
-      stagger: 0.2,
-    },
-  )
-  .fromTo(
-    '.progress-homepage-description-wrap',
-    {
-      opacity: 0,
-      x: -10,
-      yPercent: 10,
-    },
-    {
-      yPercent: 0,
-      x: 0,
-      opacity: 1,
-    },
-    '>-=0.3',
-  );
+//       x: -10,
+//       yPercent: 10,
+//     },
+//     {
+//       yPercent: 0,
+//       x: 0,
+//       opacity: 1,
+//     },
+//     '>-=0.3',
+//   );
 
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: '.promo-list',
-      start: 'top bottom',
-      end: 'bottom top',
-      //  onLeave: self => self.kill(),
-    },
-  })
-  .fromTo(
-    '.promo-homepage-card',
-    {
-      yPercent: 20,
-      opacity: 0,
-    },
-    {
-      yPercent: 0,
-      opacity: 1,
-      stagger: 0.2,
-    },
-  )
-  .fromTo(
-    '.promo-homepage-description-wrap',
-    {
-      opacity: 0,
-      x: -10,
-      yPercent: 10,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      yPercent: 0,
-    },
-    '>-=0.3',
-  );
+// gsap
+//   .timeline({
+//     scrollTrigger: {
+//       trigger: '.progress-list',
+//       start: 'top bottom',
+//       end: 'bottom top',
+//       //  onLeave: self => self.kill(),
+//     },
+//   })
+//   .fromTo(
+//     '.progress-card',
+//     {
+//       yPercent: 10,
+//       opacity:1,
+//     },
+//     {
+//       yPercent: 0,
+//       opacity:1,
+//       stagger: 0.2,
+//     },
+//   )
+//   .fromTo(
+//     '.progress-homepage-description-wrap',
+//     {
+
+//       x: -10,
+//       yPercent: 10,
+//     },
+//     {
+//       yPercent: 0,
+//       x: 0,
+//       opacity: 1,
+//     },
+//     '>-=0.3',
+//   );
+
+// gsap
+//   .timeline({
+//     scrollTrigger: {
+//       trigger: '.promo-list',
+//       start: 'top bottom',
+//       end: 'bottom top',
+//       //  onLeave: self => self.kill(),
+//     },
+//   })
+//   .fromTo(
+//     '.promo-homepage-card',
+//     {
+//       yPercent: 20,
+
+//     },
+//     {
+//       yPercent: 0,
+//       opacity: 1,
+//       stagger: 0.2,
+//     },
+//   )
+//   .fromTo(
+//     '.promo-homepage-description-wrap',
+//     {
+
+//       x: -10,
+//       yPercent: 10,
+//     },
+//     {
+//       opacity: 1,
+//       x: 0,
+//       yPercent: 0,
+//     },
+//     '>-=0.3',
+//   );
 
 window.addEventListener('loaderLoaded', () => {
   gsap.fromTo(
@@ -202,35 +203,35 @@ window.addEventListener('loaderLoaded', () => {
   );
 });
 
-// 2. Hero піниться (але друга секція налізає)
-ScrollTrigger.create({
-  trigger: '.hero',
-  start: 'top top',
-  end: '+=100%',
-  pin: true,
-  pinSpacing: false, // <-- без відступу!
-});
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: '.hero-bg',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1,
-    },
-  })
-  .to('.hero-bg', {
-    opacity: 1,
-    ease: 'none',
-  })
-  .to(
-    '.hero .video-frame img',
-    {
-      yPercent: -10,
-      ease: 'none',
-    },
-    '<',
-  );
+// // 2. Hero піниться (але друга секція налізає)
+// ScrollTrigger.create({
+//   trigger: '.hero',
+//   start: 'top top',
+//   end: '+=100%',
+//   pin: true,
+//   pinSpacing: false, // <-- без відступу!
+// });
+// gsap
+//   .timeline({
+//     scrollTrigger: {
+//       trigger: '.hero-bg',
+//       start: 'top top',
+//       end: 'bottom top',
+//       scrub: 1,
+//     },
+//   })
+//   .to('.hero-bg', {
+//     opacity: 1,
+//     ease: 'none',
+//   })
+//   .to(
+//     '.hero .video-frame img',
+//     {
+//       yPercent: -10,
+//       ease: 'none',
+//     },
+//     '<',
+//   );
 document.addEventListener('DOMContentLoaded', function() {
   // Знаходимо всі блоки з відео
   const videoBlocks = document.querySelectorAll('.video-wrapper');
@@ -270,22 +271,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Використання:
-animateTitleOnScroll2('.about-project', '.about-project-title');
-animateTitleOnScroll('.advantages', '.advantages-title');
-animateTitleOnScroll2('.real-estate-homepage', '.real-estate-title');
-animateTitleOnScroll('.location', '.location-title');
-animateTitleOnScroll2('.progress-homepage', '.progress-homepage-title');
-animateTitleOnScroll('.invest-homepage', '.invest-homepage-title');
-animateTitleOnScroll2('.developer', '.developer-title');
-animateTitleOnScroll('.promo-homepage', '.promo-homepage-title');
-animateTitleOnScroll2('.gallery-homepage', '.gallery-homepage-title');
+// animateTitleOnScroll2('.about-project', '.about-project-title');
+// animateTitleOnScroll('.advantages', '.advantages-title');
+// animateTitleOnScroll2('.real-estate-homepage', '.real-estate-title');
+// animateTitleOnScroll('.location', '.location-title');
+// animateTitleOnScroll2('.progress-homepage', '.progress-homepage-title');
+// animateTitleOnScroll('.invest-homepage', '.invest-homepage-title');
+// animateTitleOnScroll2('.developer', '.developer-title');
+// animateTitleOnScroll('.promo-homepage', '.promo-homepage-title');
+// animateTitleOnScroll2('.gallery-homepage', '.gallery-homepage-title');
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 function initCardsAnimation() {
   const cards = document.querySelectorAll('.advantages-card');
 
   // Якщо десктоп — складна анімація
   if (window.innerWidth >= 1024) {
     gsap.set(cards, {
-      opacity: 0,
+      // opacity: 0,
       y: 150,
       rotation: () => gsap.utils.random(-25, 25),
       scale: 0.6,
@@ -391,7 +393,7 @@ function initCardsAnimation() {
   else {
     cards.forEach(card => {
       gsap.set(card, {
-        opacity: 0,
+        // opacity: 0,
         y: 50,
         filter: 'blur(6px)',
       });
@@ -424,7 +426,7 @@ gsap
     },
   })
   .from('.developer-text__list p', {
-    opacity: 0,
+    // opacity: 0,
     y: 20,
     stagger: 0.2,
   })
@@ -458,3 +460,4 @@ function bigTitles() {
 }
 
 bigTitles();
+*/

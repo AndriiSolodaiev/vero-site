@@ -41,7 +41,7 @@
       }
     }
 
-    h2 {
+    .project-content__text-title {
       line-height: 100%;
     }
   }
@@ -583,10 +583,11 @@
       }
     }
 
-    h3 {
+    .text-h2 {
       @include page-subtitle;
       line-height: 100%;
-
+      color: $dark-color;
+      
       @include tablet {
         max-width: 500px;
       }

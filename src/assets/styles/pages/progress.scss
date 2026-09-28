@@ -12,7 +12,7 @@
 .page-title__wrap {
   position: relative;
   margin-bottom: 124px;
-  opacity: 0;
+  // opacity: 0;
 
   @include tablet {
     margin-bottom: 182px;
@@ -22,7 +22,7 @@
     margin-bottom: vw(242);
   }
 
-  h1 {
+  .page-title__title {
     @include page-title;
     color: $dark-color;
     text-align: center;

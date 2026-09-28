@@ -40,6 +40,7 @@ function updateCounter(swiper) {
   }
 }
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 document.addEventListener('DOMContentLoaded', function() {
   gsap
     .timeline()
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '.page-title__wrap',
       {
         y: -150,
-        opacity: 0,
+        opacity: 1,
       },
       {
         y: 0,
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '.project-content ',
       {
         y: 150,
-        opacity: 0,
+        opacity: 1,
       },
       {
         y: 0,
@@ -133,7 +134,7 @@ gsap
     '.project-location h2',
     {
       y: 50,
-      opacity: 0,
+      opacity: 1,
       filter: 'blur(15px)',
     },
     {
@@ -147,7 +148,7 @@ gsap
     '.project-location__left-card',
     {
       y: 50,
-      opacity: 0,
+      opacity: 1,
       xPercent: -20,
       filter: 'blur(15px)',
     },
@@ -165,7 +166,7 @@ gsap
     {
       y: 50,
       xPercent: 20,
-      opacity: 0,
+      opacity: 1,
       filter: 'blur(15px)',
     },
     {
@@ -191,7 +192,7 @@ gsap
     '.project-eco-card',
     {
       yPercent: 20,
-      opacity: 0,
+      opacity: 1,
     },
     {
       yPercent: 0,
@@ -202,7 +203,7 @@ gsap
   .fromTo(
     '.project-eco .block-description',
     {
-      opacity: 0,
+      opacity: 1,
       x: -10,
       yPercent: 10,
     },
@@ -233,3 +234,4 @@ gsap.fromTo(
     },
   },
 );
+*/

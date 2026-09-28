@@ -8,22 +8,23 @@ gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  gsap.timeline().fromTo(".page-title__wrap", {
-    y:-150,
-    opacity:0
-  }, {
-    y:0,
-    opacity:1
-  }).fromTo(".project-content ", {
-    y:150,
-    opacity:0
-  }, {
-    y:0,
-    opacity:1
-  }, "<")
+// Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
+// document.addEventListener('DOMContentLoaded', function() {
+//   gsap.timeline().fromTo(".page-title__wrap", {
+//     y:-150,
+//     opacity:0
+//   }, {
+//     y:0,
+//     opacity:1
+//   }).fromTo(".project-content ", {
+//     y:150,
+//     opacity:0
+//   }, {
+//     y:0,
+//     opacity:1
+//   }, "<")
 
-})
+// })
 
 console.log('Invest module loaded');
 const chart = c3.generate({
@@ -139,15 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 gsap.timeline({
   scrollTrigger:{
   trigger: '.developer-site',
   start: 'top bottom',
   // end: 'bottom top',
-  
- 
- 
-   
+
+
+
+
 }}
 ).from(".developer-text__list p", {
   opacity:0, y:20, stagger: 0.2
@@ -155,3 +157,4 @@ gsap.timeline({
   rotate: -180, duration:2,
   transformOrigin:"center bottom"
 }, "<")
+*/

@@ -5,6 +5,7 @@ import { CustomEase } from 'gsap/CustomEase';
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin';
 gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 document.addEventListener('DOMContentLoaded', function() {
   gsap
     .timeline()
@@ -47,6 +48,7 @@ gsap.fromTo(
     },
   },
 );
+*/
 
 const swiper = new Swiper('.swiper-floors', {
   modules: [Navigation],
@@ -79,6 +81,7 @@ const swiper = new Swiper('.swiper-floors', {
   },
 });
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 const tlFiller = gsap.timeline({
   scrollTrigger: {
     trigger: '.filler',
@@ -170,3 +173,4 @@ gsap
       stagger: 0.2,
     },
   );
+*/

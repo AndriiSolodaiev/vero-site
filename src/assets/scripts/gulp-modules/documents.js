@@ -7,23 +7,24 @@ gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  gsap.timeline().fromTo(".page-title__wrap", {
-    y:-150,
-    opacity:0
-  }, {
-    y:0,
-    opacity:1
-  }).fromTo(".documents-page-list", {
-    y:150,
-    opacity:0
-  }, {
-    y:0,
-    opacity:1,
-    stagger:0.2
-  }, "<")
+// Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
+// document.addEventListener('DOMContentLoaded', function() {
+//   gsap.timeline().fromTo(".page-title__wrap", {
+//     y:-150,
+//     opacity:1
+//   }, {
+//     y:0,
+//     opacity:1
+//   }).fromTo(".documents-page-list", {
+//     y:150,
+//     opacity:1
+//   }, {
+//     y:0,
+//     opacity:1,
+//     stagger:0.2
+//   }, "<")
 
-})
+// })
 
 
 const listWrapper = document.querySelectorAll('.documents-page-card-content-inner');

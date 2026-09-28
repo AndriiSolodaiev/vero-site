@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger, CustomEase, CSSRulePlugin);
 
 
 
+/* Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 document.addEventListener('DOMContentLoaded', function() {
   gsap.timeline().fromTo(".page-title__wrap", {
     y:-150,
@@ -40,7 +41,7 @@ gsap.fromTo(".project-content__right>svg",
         }
       }
     );
-
+*/
 
 
 

@@ -196,7 +196,7 @@
       }
 
       &__text {
-        h3 {
+        .text-h3 {
           @include text-32;
           color: $dark-color;
           margin-bottom: 20px;

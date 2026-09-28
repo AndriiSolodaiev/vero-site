@@ -2,7 +2,7 @@
   padding-bottom: 0;
 
   .project-content__title-wrap {
-    h2 {
+    .project-content__title {
       width: calc(100% - 100px);
       line-height: 100%;
 
@@ -37,7 +37,7 @@
       flex-shrink: 0;
     }
 
-    h3 {
+    .text-h3 {
       @include text-20;
       color: $text-color-2;
       margin-bottom: 12px;
@@ -48,7 +48,7 @@
 .commercial-infra.project-infra {
   padding-top: 0;
 
-  h2 {
+  .text-h2 {
     line-height: 100%;
   }
 
@@ -58,7 +58,9 @@
   }
 
   .project-infra-card .project-infra-card__text-wrap {
-
+    .text-h3 {
+      
+    }
     p {
       @include general-text;
       color: $text-color-2;

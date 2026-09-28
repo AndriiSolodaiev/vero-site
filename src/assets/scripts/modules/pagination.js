@@ -15,17 +15,18 @@ export function paginationInit(containerSelector, cardSelector) {
   let currentPage = 1;
 
   function animateCards(visibleCards) {
-    gsap.fromTo(
-      visibleCards,
-      { autoAlpha: 0, y: 30 },
-      {
-        autoAlpha: 1,
-        y: 0,
-        stagger: 0.1,
-        duration: 0.4,
-        ease: 'power2.out',
-      },
-    );
+    // Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
+    // gsap.fromTo(
+    //   visibleCards,
+    //   { autoAlpha: 0, y: 30 },
+    //   {
+    //     autoAlpha: 1,
+    //     y: 0,
+    //     stagger: 0.1,
+    //     duration: 0.4,
+    //     ease: 'power2.out',
+    //   },
+    // );
   }
 
   // Показуємо сторінку повністю (тільки цю сторінку)

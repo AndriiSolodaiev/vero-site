@@ -9,26 +9,26 @@ gsap.registerPlugin(ScrollTrigger);
 
 initSmoothScrolling();
 
-let lastScroll = 0;
+// let lastScroll = 0;
 const header = document.querySelector('.header');
-const scrollThreshold = 10; // мінімальна зміна для реагування
+// const scrollThreshold = 10; // мінімальна зміна для реагування
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+// window.addEventListener('scroll', () => {
+//   const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-  // Якщо прокрутка незначна — нічого не робимо
-  if (Math.abs(currentScroll - lastScroll) < scrollThreshold) return;
+//   // Якщо прокрутка незначна — нічого не робимо
+//   if (Math.abs(currentScroll - lastScroll) < scrollThreshold) return;
 
-  if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
-    // Користувач крутить вниз
-    header.classList.add('hide');
-  } else {
-    // Користувач крутить вгору
-    header.classList.remove('hide');
-  }
+//   if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
+//     // Користувач крутить вниз
+//     header.classList.add('hide');
+//   } else {
+//     // Користувач крутить вгору
+//     header.classList.remove('hide');
+//   }
 
-  lastScroll = currentScroll;
-});
+//   lastScroll = currentScroll;
+// });
 
 const menuTimeline = gsap.timeline({
   paused: true,
@@ -181,6 +181,25 @@ document.body.addEventListener('click', function(evt) {
 
   const countryList = evt.target.closest('.iti__country-list');
 
+  const seoToggle = evt.target.closest('[data-seo-block-toggle]');
+  if (seoToggle) {
+    const seoCard = seoToggle.closest('[data-seo-block]');
+    const seoContent = seoCard.querySelector('[data-seo-block-content]');
+    const isOpen = seoCard.classList.contains('is-open');
+
+    if (isOpen) {
+      seoContent.style.maxHeight = '0px';
+      seoCard.classList.remove('is-open');
+      seoToggle.setAttribute('aria-expanded', 'false');
+    } else {
+      seoContent.style.maxHeight = `${seoContent.scrollHeight}px`;
+      seoCard.classList.add('is-open');
+      seoToggle.setAttribute('aria-expanded', 'true');
+    }
+
+    return;
+  }
+
   const btnUp = evt.target.closest('[data-btn-up]');
 
   const btnMenuTarget = evt.target.closest('[data-menu-button]');
@@ -296,77 +315,97 @@ gsap.fromTo(
 //   rotate: 0,
 //   duration: 1,
 // });
-document.addEventListener('DOMContentLoaded', () => {
-  const startPod = window.innerWidth > 768 ? '-5.2vw top' : '0px top';
-  const svgHeight = window.innerWidth > 768 ? -40 : -20;
-  const titleHeight = window.innerWidth > 768 ? -60 : -40;
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: '.page-title__wrap',
-        start: startPod,
-        end: '300% top',
-        scrub: true,
-      },
-    })
-    .fromTo(
-      '.page-title__wrap',
-      {
-        y: 0,
-      },
-      {
-        y: titleHeight,
-      },
-    )
-    .fromTo(
-      '.page-title__wrap svg',
-      {
-        y: 0,
-      },
-      {
-        y: svgHeight,
-      },
-      '<',
-    )
-    .fromTo(
-      '.page-title__wrap h1',
-      {
-        opacity: 1,
-      },
-      {
-        opacity: 0,
-      },
-      '<',
-    );
-});
+// Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
+// document.addEventListener('DOMContentLoaded', () => {
+//   const startPod = window.innerWidth > 768 ? '-5.2vw top' : '0px top';
+//   const svgHeight = window.innerWidth > 768 ? -40 : -20;
+//   const titleHeight = window.innerWidth > 768 ? -60 : -40;
+//   gsap
+//     .timeline({
+//       scrollTrigger: {
+//         trigger: '.page-title__wrap',
+//         start: startPod,
+//         end: '300% top',
+//         scrub: true,
+//       },
+//     })
+//     .fromTo(
+//       '.page-title__wrap',
+//       {
+//         y: 0,
+//       },
+//       {
+//         y: titleHeight,
+//       },
+//     )
+//     .fromTo(
+//       '.page-title__wrap svg',
+//       {
+//         y: 0,
+//       },
+//       {
+//         y: svgHeight,
+//       },
+//       '<',
+//     )
+//     .fromTo(
+//       '.page-title__wrap h1',
+//       {
+//         opacity: 1,
+//       },
+//       {
+//         opacity: 0,
+//       },
+//       '<',
+//     );
+// });
 
 console.log(window.location.pathname);
-if (window.location.pathname === '/') {
-  document.querySelector('.loader-wrap').style.display = 'flex';
+const loaderWrapEl = document.querySelector('.loader-wrap');
+if (window.location.pathname === '/' && loaderWrapEl) {
+  loaderWrapEl.style.display = 'flex';
 }
 document.addEventListener('DOMContentLoaded', () => {
   const loader = document.querySelector('.loader-wrap');
   const percentText = document.querySelector('.loader__percent');
   const lineFill = document.querySelector('.loader__line-fill');
 
+  // Розмітку лоадера тимчасово закоментовано (main.pug) — поки її немає,
+  // просто сигналізуємо про готовність, щоб анімація hero все одно запустилась.
+  if (!loader || !percentText || !lineFill) {
+    let dispatched = false;
+    const notifyLoaded = () => {
+      if (dispatched) return;
+      dispatched = true;
+      window.dispatchEvent(new Event('loaderLoaded'));
+    };
+    window.addEventListener('load', notifyLoaded);
+    setTimeout(notifyLoaded, 300);
+    return;
+  }
+
   let percent = 0;
-  const speed = 15;
+  const speed = 10;
 
   const simulateLoading = setInterval(() => {
     // приріст відсотків під час завантаження
-    percent += Math.random() * 5;
+    percent += Math.random() * 8;
     if (percent > 95) percent = 95;
     percentText.textContent = `${Math.floor(percent)}%`;
     lineFill.style.width = `${percent}%`;
   }, speed);
 
-  // коли вся сторінка справді завантажена
-  window.addEventListener('load', () => {
+  // Завершуємо лоадер або по реальному завантаженню, або по таймауту —
+  // щоб не "висіти" довго на повільних ресурсах (відео/великі зображення)
+  let isFinished = false;
+  const finishLoading = () => {
+    if (isFinished) return;
+    isFinished = true;
     clearInterval(simulateLoading);
 
     let finalProgress = percent;
     const increase = setInterval(() => {
-      finalProgress += 2;
+      finalProgress += 10;
       if (finalProgress >= 100) {
         finalProgress = 100;
         clearInterval(increase);
@@ -377,87 +416,91 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         gsap.to('.loader-bottom-part ', {
           yPercent: 100,
-          duration: 1.22,
+          duration: 0.7,
           ease: 'power3.out',
         });
         gsap.to('.loader-top-part ', {
           yPercent: -100,
-          duration: 1.2,
+          duration: 0.7,
           ease: 'power3.out',
         });
         // невелика затримка перед “роз’їздом”
         window.dispatchEvent(new Event('loaderLoaded'));
         setTimeout(() => {
           loader.classList.add('loaded');
-        }, 500);
+        }, 150);
       }
 
       percentText.textContent = `${Math.floor(finalProgress)}%`;
       lineFill.style.width = `${finalProgress}%`;
-    }, 30);
-  });
+    }, 15);
+  };
+
+  window.addEventListener('load', finishLoading);
+  setTimeout(finishLoading, 1200);
 });
 
 //Global animation
+// Анімацію вимкнено (закоментовано всі анімації, крім меню та попапів)
 
-function initSvgScrollAnimation() {
-  // Всі елементи з data-svg-anim-left
-  document.querySelectorAll('[data-svg-anim-left]').forEach(el => {
-    gsap.fromTo(
-      el,
-      { rotate: 3, transformOrigin: 'center bottom' },
-      {
-        rotate: -3,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom', // коли елемент входить у в'юпорт
-          end: 'bottom top', // коли виходить
-          scrub: true, // плавно реагує на скрол
-        },
-      },
-    );
-  });
+// function initSvgScrollAnimation() {
+//   // Всі елементи з data-svg-anim-left
+//   document.querySelectorAll('[data-svg-anim-left]').forEach(el => {
+//     gsap.fromTo(
+//       el,
+//       { rotate: 3, transformOrigin: 'center bottom' },
+//       {
+//         rotate: -3,
+//         ease: 'none',
+//         scrollTrigger: {
+//           trigger: el,
+//           start: 'top bottom', // коли елемент входить у в'юпорт
+//           end: 'bottom top', // коли виходить
+//           scrub: true, // плавно реагує на скрол
+//         },
+//       },
+//     );
+//   });
 
-  // Всі елементи з data-svg-anim-right
-  document.querySelectorAll('[data-svg-anim-right]').forEach(el => {
-    gsap.fromTo(
-      el,
-      { rotate: -3, transformOrigin: 'center bottom' },
-      {
-        rotate: 3,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      },
-    );
-  });
-}
+//   // Всі елементи з data-svg-anim-right
+//   document.querySelectorAll('[data-svg-anim-right]').forEach(el => {
+//     gsap.fromTo(
+//       el,
+//       { rotate: -3, transformOrigin: 'center bottom' },
+//       {
+//         rotate: 3,
+//         ease: 'none',
+//         scrollTrigger: {
+//           trigger: el,
+//           start: 'top bottom',
+//           end: 'bottom top',
+//           scrub: true,
+//         },
+//       },
+//     );
+//   });
+// }
 
-// Викликати після завантаження DOM
-window.addEventListener('DOMContentLoaded', initSvgScrollAnimation);
+// // Викликати після завантаження DOM
+// window.addEventListener('DOMContentLoaded', initSvgScrollAnimation);
 
-animateTitleOnScroll('.footer', '.footer-title');
+// animateTitleOnScroll('.footer', '.footer-title');
 
-gsap
-  .timeline({
-    scrollTrigger: {
-      trigger: '.footer-form',
-      start: 'top bottom',
-      // end: 'bottom top',
-    },
-  })
-  .from('.footer-form', {
-    opacity: 0,
-    yPercent: 20,
-  })
-  .from('.footer-form>svg', {
-    rotate: -3,
-  });
+// gsap
+//   .timeline({
+//     scrollTrigger: {
+//       trigger: '.footer-form',
+//       start: 'top bottom',
+//       // end: 'bottom top',
+//     },
+//   })
+//   .from('.footer-form', {
+
+//     yPercent: 20,
+//   })
+//   .from('.footer-form>svg', {
+//     rotate: -3,
+//   });
 
 window.addEventListener('orientationchange', () => {
   // трохи почекати, поки браузер перерахує розміри
