@@ -960,6 +960,9 @@ block content
         <svg class="seo-block__toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M4.88379 16.884L12 9.76782L19.1162 16.884L20.8838 15.1165L12.8838 7.11646C12.3956 6.6283 11.6044 6.6283 11.1162 7.11646L3.11621 15.1165L4.88379 16.884Z" fill="currentColor"/>
         </svg>
+  include ../includes/seo-blocks-data.pug
+  +interlinking(interlinkingLinks)
+  +faq(faqData)
 block footer
   include ../includes/footer.pug
 

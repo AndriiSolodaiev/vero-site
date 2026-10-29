@@ -1,0 +1,254 @@
+.faq {
+  position: relative;
+  z-index: 0;
+  // До laptop обрізаємо заголовок, що виходить за край на мобайлі; на laptop логотип має виходити за верхню межу блоку
+  overflow: hidden;
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  @include laptop {
+    overflow: visible;
+    padding-top: vw(150);
+    padding-bottom: vw(150);
+  }
+
+  // Знак, що обертається, частково заходить на блок перелінковки — лише на десктопі, як у макеті
+  .rotate-logo {
+    display: none;
+
+    @include laptop {
+      display: block;
+      top: vw(-236);
+      right: vw(40);
+      bottom: auto;
+      left: auto;
+      width: vw(772);
+      height: vw(772);
+      transform: none;
+    }
+  }
+
+  &__head {
+    margin-bottom: 40px;
+
+    @include tablet {
+      margin-bottom: 80px;
+    }
+
+    @include laptop {
+      margin-bottom: vw(150);
+    }
+  }
+
+  &__title {
+    margin-bottom: 0;
+
+    @include laptop {
+      row-gap: vw(10);
+    }
+  }
+
+  &__subtitle {
+    @include general-text;
+    max-width: 600px;
+    margin-top: 20px;
+    color: $text-color-2;
+
+    @include laptop {
+      max-width: vw(600);
+      margin-top: vw(24);
+    }
+  }
+
+  &__columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    @include laptop {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      column-gap: vw(20);
+    }
+  }
+
+  // До laptop колонки йдуть одна під одною і мають виглядати як один список
+  &__list + &__list .faq-item:first-child {
+    border-top: none;
+
+    @include laptop {
+      border-top: 1px solid $grey-color;
+    }
+  }
+}
+
+.faq-item {
+  padding-bottom: 16px;
+  border-bottom: 1px solid $grey-color;
+  backdrop-filter: blur(17px);
+
+  &:first-child {
+    border-top: 1px solid $grey-color;
+  }
+
+  @include tablet {
+    padding-bottom: 24px;
+  }
+
+  @include laptop {
+    padding-bottom: vw(24);
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    min-height: 44px;
+    padding: 16px 0;
+    border: none;
+    background: none;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    @include tablet {
+      padding: 24px;
+    }
+
+    @include laptop {
+      gap: vw(20);
+      min-height: 0;
+      padding: vw(24);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $accent-color;
+      outline-offset: -2px;
+    }
+  }
+
+  // text-20 на laptop дає 1.04vw (~10.6px на 1024) — дрібніше за текст відповіді, тому обмежуємо знизу
+  &__number,
+  &__question {
+    @include text-20;
+
+    @include laptop {
+      font-size: clamp(14px, calc(14px + (20 - 14) * ((100vw - 1024px) / (1920 - 1024))), 20px);
+    }
+  }
+
+  &__number {
+    flex: 0 0 40px;
+    color: $grey-light-color;
+
+    @include laptop {
+      flex-basis: vw(40);
+    }
+  }
+
+  &__question {
+    flex: 1;
+    color: $text-color-2;
+    transition: color 0.3s ease;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-left: 20px;
+    color: $dark-color;
+    transition: transform 0.4s ease-in-out;
+
+    @include laptop {
+      width: clamp(16px, vw(24), 24px);
+      height: clamp(16px, vw(24), 24px);
+      margin-left: vw(20);
+    }
+  }
+
+  &.is-open &__icon {
+    transform: rotate(180deg);
+  }
+
+  @media (hover: hover) {
+    &__toggle:hover &__question {
+      color: $accent-color;
+    }
+  }
+
+  // Відповідь завжди є в DOM, ховається лише висотою — щоб текст індексувався
+  &__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  // Відступи як у state=open: питання → відповідь 16/40px, під відповіддю 32/48px (разом з padding-bottom пункту)
+  &__answer-inner {
+    @include general-text;
+    padding: 0 0 16px 60px;
+    color: $dark-color;
+
+    @include tablet {
+      padding: 16px 24px 24px 84px;
+    }
+
+    @include laptop {
+      padding: vw(16) vw(24) vw(24) vw(84);
+    }
+
+    p,
+    ul,
+    ol {
+      margin: 10px 0 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    ul,
+    ol {
+      padding-left: 20px;
+    }
+
+    ul {
+      list-style: disc;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    li + li {
+      margin-top: 4px;
+    }
+
+    a {
+      color: $accent-color;
+      text-decoration: underline;
+      transition: opacity 0.3s ease;
+
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    strong,
+    b {
+      font-weight: 700;
+    }
+
+    em,
+    i {
+      font-style: italic;
+    }
+  }
+}

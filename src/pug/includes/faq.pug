@@ -1,0 +1,45 @@
+//- Блок FAQ (після перелінковки, перед футером).
+//- faq: {
+//-   title: 'Часті запитання',          — H2, редагований для кожної сторінки
+//-   subtitle: '...',                   — опційний вступний текст
+//-   items: [{ question: '...', answer: '<p>HTML з WYSIWYG</p>' }]  — 3–5 пунктів
+//- }
+//- Відповідь завжди присутня в DOM (згорнута через max-height), JSON-LD FAQPage генерується з тих самих даних.
+//- На десктопі пункти діляться на дві незалежні колонки: ліва — перша половина (округлення вгору), права — решта.
+mixin faq(faq)
+  - var items = (faq && faq.items) || []
+  - var titleWords = ((faq && faq.title) || 'Часті запитання').trim().split(/\s+/)
+  - var titleFirst = titleWords.shift()
+  - var half = Math.ceil(items.length / 2)
+  - var columns = [items.slice(0, half), items.slice(half)]
+  - var schema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(function(item) { return { '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } }; }) }
+  if items.length
+    section.faq.container(aria-labelledby="faq-title" data-faq)
+      include ./rotate-logo.pug
+      .faq__head
+        h2.section-title.faq__title#faq-title
+          include ./title-sign.pug
+          span= titleFirst
+          = ' '
+          if titleWords.length
+            span.section-title__line= titleWords.join(' ')
+        if faq.subtitle
+          p.faq__subtitle= faq.subtitle
+      .faq__columns
+        each column, columnIndex in columns
+          if column.length
+            ul.faq__list
+              each item, itemIndex in column
+                - var index = columnIndex * half + itemIndex + 1
+                - var number = index < 10 ? '0' + index : String(index)
+                li.faq-item(data-faq-item)
+                  h3.faq-item__title
+                    button.faq-item__toggle(type="button" id="faq-question-" + index aria-expanded="false" aria-controls="faq-answer-" + index data-faq-toggle)
+                      span.faq-item__number(aria-hidden="true")= number
+                      span.faq-item__question= item.question
+                      <svg class="faq-item__icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 14.5L12 9.5L7 14.5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      </svg>
+                  .faq-item__answer(id="faq-answer-" + index role="region" aria-labelledby="faq-question-" + index aria-hidden="true" data-faq-answer)
+                    .faq-item__answer-inner!= item.answer
+      script(type="application/ld+json")!= JSON.stringify(schema).replace(/</g, '\\u003c')

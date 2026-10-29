@@ -1,0 +1,26 @@
+//- Блок внутрішньої перелінковки (між SEO-блоком і FAQ).
+//- links: [{ anchor: 'Текст посилання', url: '/vnutrishniy-url/' }] — порядок масиву = порядок карток.
+//- Блок не рендериться, якщо немає жодної пари «Анкор + URL».
+//- На бекенді додатково: глобальний тумблер у налаштуваннях сайту (п. 5.2 ТЗ).
+//- Колір картки задається в CSS через nth-child, з бекенду передавати не потрібно.
+mixin interlinking(links, title)
+  - var titleWords = (title || 'Дізнайтеся більше').trim().split(/\s+/)
+  - var titleFirst = titleWords.shift()
+  if links && links.length
+    nav.interlinking.container(aria-labelledby="interlinking-title")
+      img.interlinking__bg(src="./assets/images/interlinking-sign.svg" width="834" height="840" alt="" aria-hidden="true" loading="lazy" decoding="async")
+      h2.section-title.interlinking__title#interlinking-title
+        include ./title-sign.pug
+        span= titleFirst
+        = ' '
+        if titleWords.length
+          span.section-title__line= titleWords.join(' ')
+      ul.interlinking__list
+        each link in links
+          li.interlinking__item
+            a.interlinking-card(href=link.url)
+              span.interlinking-card__text= link.anchor
+              span.interlinking-card__arrow(aria-hidden="true")
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.1387 1.37891L11.501 0.999023L11.8633 1.37891L15.0029 4.67578L14.3721 5.44238L12.001 3.93359L12.001 23L11.001 23L11.001 3.93457L8.63086 5.44238L8 4.67578L11.1387 1.37891Z" fill="currentColor"/>
+                </svg>

@@ -9,6 +9,7 @@
 
 // import { animateTitleOnScroll } from '../../gulp-modules';
 import { contactFormFooter } from './contactFormFooter';
+import { initFaq } from '../faq/faq';
 
 // animateTitleOnScroll('.footer', '.footer-title');
 const footer = document.querySelector('footer');
@@ -23,3 +24,5 @@ const initFooter = () => {
 if (footer) {
   initFooter();
 }
+
+initFaq();
