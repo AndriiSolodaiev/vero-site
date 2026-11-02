@@ -164,6 +164,10 @@
         color: $text-color-2;
         white-space: nowrap;
 
+        @include laptop {
+          white-space: normal;
+        }
+
         .city {
           @include tiny-text;
           display: inline-block;

@@ -255,6 +255,28 @@
       gap: 40px;
     }
 
+    // колонка — половина екрана, тож на ноутбуках кнопка йде під текст, інакше тексту лишається ~100px
+    @media screen and (min-width: 1024px) and (max-width: 1599px) {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      column-gap: 20px;
+      row-gap: 16px;
+
+      &>p,
+      &>.general-btn {
+        grid-column: 1 / -1;
+      }
+
+      &>svg+p,
+      &>svg~.general-btn {
+        grid-column: 2;
+      }
+
+      &>.general-btn {
+        justify-self: start;
+      }
+    }
+
     &>p {
       @include general-text;
       color: $text-color-2;

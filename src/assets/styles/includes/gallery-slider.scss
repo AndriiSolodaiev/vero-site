@@ -65,7 +65,8 @@
 
 
   @include laptop {
-    height: calc(100vh - 100px);
+    // не вище 16:9 від ширини, щоб на високих екранах не було порожніх смуг над і під фото
+    height: min(calc(100vh - 100px), calc((100vw - 40px) * 0.5625));
 
     &:after {
       content: '';

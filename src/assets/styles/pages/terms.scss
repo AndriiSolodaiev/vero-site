@@ -218,7 +218,7 @@
       }
 
       .terms-hero__descr {
-        width: 18.75vw;
+        width: max(18.75vw, 320px);
         position: relative;
 
         &::before {
@@ -323,8 +323,9 @@
     flex-direction: column;
     gap: 20px;
 
+    // шрифт на ноутбуках не менше 16px, тож колонка теж не вужча 320px — інакше текст рветься на короткі рядки
     @include laptop {
-      width: 18.75vw;
+      width: max(18.75vw, 320px);
     }
   }
 

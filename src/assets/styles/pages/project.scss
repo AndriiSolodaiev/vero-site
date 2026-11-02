@@ -178,6 +178,14 @@
   }
 }
 
+// сторінка «Про нас»: шрифт на ноутбуках не менше 16px, тож колонка теж не вужча 320px,
+// інакше текст сильно витягується у висоту (floors/invest мають власну розкладку)
+.project:not(.floors):not(.invest) .project-content__text>* {
+  @include laptop {
+    width: max(18.75vw, 320px) !important;
+  }
+}
+
 
 
 
@@ -277,7 +285,7 @@
 
       @include laptop {
         text-align: start;
-        font-size: 1.04vw;
+        font-size: max(16px, 1.04vw);
       }
     }
   }
@@ -738,6 +746,27 @@
   }
 }
 
+.project-architect,
+.project-eco {
+  @include tablet-large {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr auto;
+
+    .block-title-wrap {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .swiper-architect,
+    .project-eco__list {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      min-width: 0;
+    }
+  }
+}
+
 .block-title-wrap {
   display: flex;
   align-items: center;
@@ -965,16 +994,20 @@
     }
   }
 
+  // у grid секції (див. .project-architect, .project-eco): висота блоку відсуває слайдер/список вниз,
+  // коли текст не вміщується; під них може заходити лише нижній відступ блоку
   @include tablet-large {
-    position: absolute;
-    top: vw(160);
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: start;
+    margin: vw(-40) 6.25vw vw(-60) 0;
     padding: vw(80);
     width: fit-content;
-    right: 6.25vw;
     z-index: 1;
 
     p {
-      width: 18.75vw;
+      // шрифт на ноутбуках не менше 16px, тож колонка теж не вужча 300px
+      width: max(18.75vw, 300px);
       margin: 0;
     }
   }
