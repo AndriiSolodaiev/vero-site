@@ -2224,6 +2224,11 @@ section {
 
   @include laptop-small {
     @include sticker-grid-section('.progress-homepage-title', '.progress-homepage-description-wrap', '.progress-list');
+
+    // кнопка «Дивитися більше звітів» (~234px) ширша за вміст стікера 27vw — вилазила за край
+    .progress-homepage-description-wrap {
+      width: max(27vw, 330px);
+    }
   }
 }
 

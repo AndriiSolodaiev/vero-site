@@ -588,6 +588,13 @@
       }
     }
 
+    // стікери нижче й компактніші, щоб не закривали будинок на фото
+    @include laptop-small {
+      bottom: 40px;
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
     &>svg {
       position: absolute;
       z-index: -1;
@@ -606,7 +613,7 @@
 
       // svg тримає пропорції (висота від ширини) — ширший, щоб стікер був вищий за текст
       @include laptop-small {
-        width: 260%;
+        width: 240%;
       }
 
       path,
@@ -655,6 +662,13 @@
       padding-left: 80px;
     }
 
+    // див. __left-card; зверху більше — стікер повернутий і його верхній край справа нижче
+    @include laptop-small {
+      bottom: 40px;
+      padding-top: 64px;
+      padding-bottom: 48px;
+    }
+
 
 
     &>svg {
@@ -673,7 +687,7 @@
       }
 
       @include laptop-small {
-        width: 260%;
+        width: 240%;
       }
 
       path,

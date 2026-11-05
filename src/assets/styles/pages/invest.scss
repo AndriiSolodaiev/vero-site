@@ -582,6 +582,11 @@
       align-items: flex-start;
     }
 
+    // текст колонок починався впритул під заголовком — іконка ніби лежала на тексті
+    @include laptop-small {
+      margin-bottom: 32px;
+    }
+
     svg {
       width: 80px;
       height: 80px;
