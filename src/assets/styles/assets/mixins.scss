@@ -65,6 +65,13 @@ $screen-height: 720;
   }
 }
 
+// планшети в ландшафті / портрет iPad Pro та малі ноутбуки
+@mixin laptop-small() {
+  @media screen and (min-width: 1024px) and (max-width: 1399px) {
+    @content;
+  }
+}
+
 @mixin desktop() {
   @media screen and (min-width: 1920px) {
     @content;

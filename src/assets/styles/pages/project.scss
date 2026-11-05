@@ -184,6 +184,37 @@
   @include laptop {
     width: max(18.75vw, 320px) !important;
   }
+
+  @include laptop-small {
+    width: 100% !important;
+  }
+}
+
+// «Про нас», блок «Візія» на планшетах/малих ноутбуках: прибираємо бокові поля і scale(1.2) у фото,
+// щоб текст займав усю ширину біля фото і не тягнувся вузьким стовпцем
+.project:not(.floors):not(.invest) .project-content {
+  @include laptop-small {
+    padding-left: 0;
+    padding-right: 0;
+
+    .project-content__left>svg,
+    .project-content__right>svg {
+      width: 52%;
+      transform: none;
+    }
+
+    .project-content__left .project-content__text {
+      flex: 1;
+      padding-left: 0;
+      padding-right: 40px;
+    }
+
+    .project-content__right .project-content__text {
+      flex: 1;
+      padding-left: 40px;
+      padding-right: 0;
+    }
+  }
 }
 
 
@@ -218,6 +249,13 @@
       position: relative;
     }
 
+    // менші поля/відступ — ширший лівий текст і картки
+    @include laptop-small {
+      gap: 40px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
 
   }
 
@@ -238,6 +276,10 @@
       width: 18.75vw;
       position: sticky;
       top: 160px;
+    }
+
+    @include laptop-small {
+      width: 300px;
     }
 
     &>svg {
@@ -304,6 +346,11 @@
     @include laptop {
       padding-top: 120px;
     }
+
+    @include laptop-small {
+      flex: 1;
+      min-width: 0;
+    }
   }
 
 }
@@ -319,6 +366,11 @@
 
   @include laptop {
     padding: vw(95) vw(40);
+  }
+
+  // більший відступ тексту від країв стікера
+  @include laptop-small {
+    padding: 60px 48px;
   }
 
 
@@ -406,6 +458,11 @@
       margin-bottom: 0;
       flex: 1
     }
+
+    // заголовок вужчий — колонка з текстом ширша
+    @include laptop-small {
+      flex: 0 1 35%;
+    }
   }
 
   p {
@@ -452,6 +509,11 @@
     position: relative;
     width: 100%;
     height: 100vh;
+
+    // на планшеті в портреті 100vh дуже високий — заголовок «Локація» далеко вгорі, під ним порожньо
+    @include laptop-small {
+      height: min(100vh, 80vw);
+    }
 
     img {
       width: 100%;
@@ -516,6 +578,16 @@
       padding-right: 80px;
     }
 
+    // текст-блок 25vw ширший за вміст картки (36% − 8.33vw − 80px) і вилазив за правий край стікера.
+    // Зліва стікер іде за край екрана, тож лівий відступ менший, а ширина тексту не більша за картку
+    @include laptop-small {
+      padding-left: 40px;
+
+      .project-location__text-wrap {
+        max-width: 100%;
+      }
+    }
+
     &>svg {
       position: absolute;
       z-index: -1;
@@ -530,6 +602,11 @@
         left: auto;
         right: 0;
         transform: translateY(-50%);
+      }
+
+      // svg тримає пропорції (висота від ширини) — ширший, щоб стікер був вищий за текст
+      @include laptop-small {
+        width: 260%;
       }
 
       path,
@@ -595,6 +672,10 @@
         transform: translateY(-45%) rotate(5deg);
       }
 
+      @include laptop-small {
+        width: 260%;
+      }
+
       path,
       rect {
         fill: $accent-color-2;
@@ -654,6 +735,13 @@
       margin-bottom: vw(200);
       gap: vw(200);
     }
+
+    // текст стискався до ~90px
+    @include laptop-small {
+      padding-left: 40px;
+      padding-right: 40px;
+      gap: 60px;
+    }
   }
 
   &__links {
@@ -661,6 +749,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include laptop-small {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
     @include tablet {
       padding-left: 60px;
@@ -702,6 +795,11 @@
     @include laptop {
       padding: 0;
       width: 18.75vw;
+    }
+
+    @include laptop-small {
+      flex: 0 0 300px;
+      width: 300px;
     }
 
     .text-h2 {
@@ -1012,6 +1110,13 @@
     }
   }
 
+  // більші відступи тексту від країв стікера, низ стікера не ховається під слайдер;
+  // текст зсунутий правіше (сума бокових відступів та сама — розмір стікера не змінюється)
+  @include laptop-small {
+    padding: 56px 48px 56px 72px;
+    margin-bottom: 0;
+  }
+
   p {
     @include general-text;
     color: $text-color-2;
@@ -1299,6 +1404,11 @@
     @include laptop {
       width: 23.95vw;
       padding: vw(28) vw(40) vw(40);
+    }
+
+    // пункти списку в один рядок
+    @include laptop-small {
+      width: max(23.95vw, 360px);
     }
 
     .text-h3 {

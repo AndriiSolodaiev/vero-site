@@ -248,6 +248,13 @@
   // transform: translateX(-50%);
   z-index: 2;
   color: rgb(255, 131, 131);
+
+  // у вузькій формі повідомлення переноситься на 2 рядки і, прив'язане знизу, наїжджало на поле —
+  // прив'язуємо до низу поля, щоб росло вниз
+  @include laptop-small {
+    bottom: auto;
+    top: calc(100% + 2px);
+  }
 }
 
 .form-field__input {

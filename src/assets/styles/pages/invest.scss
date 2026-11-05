@@ -44,6 +44,13 @@
     .project-content__text-title {
       line-height: 100%;
     }
+
+    // ширший опис
+    @include laptop-small {
+      &>* {
+        width: 300px !important;
+      }
+    }
   }
 
   .project-content__title-wrap {
@@ -59,6 +66,14 @@
     @include laptop {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    // max-width calc(100% - 100px) (місце під іконку на мобілці) стискав заголовок до ~90px —
+    // «Інвестуйте разом з нами» розпадався на 4 рядки; тут 3, як у макеті
+    @include laptop-small {
+      .project-content__title {
+        max-width: 18.75vw;
+      }
     }
   }
 }

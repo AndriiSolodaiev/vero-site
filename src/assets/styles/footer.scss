@@ -54,6 +54,11 @@
     gap: 20px;
     margin-bottom: 0;
   }
+
+  // однакові відступи між блоками: контакти за шириною контенту, форма забирає решту
+  @include laptop-small {
+    gap: 40px;
+  }
 }
 
 .mobile-tablet-mode {
@@ -82,6 +87,11 @@
     width: calc(70% - 10px);
   }
 
+  @include laptop-small {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
   &__list {
     width: 100%;
     display: flex;
@@ -97,6 +107,10 @@
       flex-direction: row;
 
       gap: calc(180px / 1920px * 100vw);
+    }
+
+    @include laptop-small {
+      gap: 40px;
     }
   }
 
@@ -136,6 +150,10 @@
           text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
         }
       }
+
+      @include laptop-small {
+        padding-right: 0;
+      }
     }
 
     &-link--second {
@@ -166,6 +184,11 @@
 
         @include laptop {
           white-space: normal;
+        }
+
+        // адреси в один рядок
+        @include laptop-small {
+          white-space: nowrap;
         }
 
         .city {
@@ -199,6 +222,17 @@
     margin-right: 3.1vw;
     top: -70px;
     width: 35%;
+  }
+
+  // ширша форма: забирає місце, що лишилось після контактів.
+  // Бокові відступи не менші, ніж на laptop: краї фону-стікера фігурні (~11% ширини зліва,
+  // до ~15% справа внизу) — з меншими відступами поля впиралися в край стікера
+  @include laptop-small {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    margin-right: 0;
+    padding: 3.8vw max(56px, 6.09vw) 3.8vw max(64px, 6.4vw);
   }
 
   svg {
